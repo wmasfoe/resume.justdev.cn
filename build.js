@@ -51,7 +51,7 @@ async function buildPDF(html) {
 
 async function buildAll() {
   const html = await buildHTML()
-  await buildPDF(html)
+  // await buildPDF(html)
 }
 
 buildAll().catch(e => {
