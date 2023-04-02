@@ -26,7 +26,7 @@ async function buildHTML() {
 }
 
 async function buildPDF(html) {
-  const browser = await puppeteer.launch({ headless: true })
+  const browser = await puppeteer.launch()
   const page = await browser.newPage();
   console.log('Opening puppeteer...')
   await page.setContent(html, { waitUntil: 'networkidle0' })
