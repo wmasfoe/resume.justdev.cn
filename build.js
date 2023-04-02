@@ -26,7 +26,7 @@ async function buildHTML() {
 }
 
 async function buildPDF(html) {
-  const browser = await puppeteer.launch({ headless: true })
+  const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] })
   const page = await browser.newPage();
   console.log('Opening puppeteer...')
   await page.setContent(html, { waitUntil: 'networkidle0' })
@@ -51,7 +51,7 @@ async function buildPDF(html) {
 
 async function buildAll() {
   const html = await buildHTML()
-  // await buildPDF(html)
+  await buildPDF(html)
 }
 
 buildAll().catch(e => {
