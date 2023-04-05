@@ -11,6 +11,24 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC|Nunito+Sans:400,700&display=swap" rel="stylesheet">
     <style>{{{css}}}</style>
+    <style>
+      @media (prefers-color-scheme: dark) {
+        html, img { 
+          filter: invert(1) hue-rotate(180deg);
+        }
+        div, li, ul, ol, img, p {
+          box-shadow: none;
+        }
+        *, html, body, div {
+          color-scheme: dark;
+        }
+        .background-card h4 .title {
+          filter: none;
+          background-color: inherit !important;
+          color: inherit !important;
+        }
+      }
+    </style>
   </head>
 
   <body itemscope itemtype="http://schema.org/Person">
