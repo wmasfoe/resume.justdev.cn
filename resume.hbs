@@ -165,13 +165,29 @@
             </div>
 
             <h4 id="skills"><span class="title">技术栈</span> </h4>
-            <div class="card-nested" itemprop="description">
+            <ul class="list-unstyled">
+              {{#each resume.skills}}
+                <li class="card-nested relax">
+                  <div class="content has-sidebar">
+                    <p class='name'>{{name}}</p>
+                    {{#if desc}}
+                      <ul class='highlight'>
+                        {{#each desc}}
+                          <li> {{.}} </li>
+                        {{/each}}
+                      </ul>
+                    {{/if}}
+                  </div>
+                </li>
+              {{/each}}
+            </ul>
+            {{!-- <div class="card-nested" itemprop="description">
               <div class="skill-table">
                 {{#each resume.skills}}
                     <div class='name'>{{name}}</div>
-                    <div>
+                    <div class="content has-sidebar">
                       {{#if desc}}
-                        <ul class='desc'>
+                        <ul class='desc highlight'>
                           {{#each desc}}
                             <li> {{.}} </li>
                           {{/each}}
@@ -180,7 +196,7 @@
                     </div>
                 {{/each}}
               </div>
-            </div>
+            </div> --}}
             <div class='px10'></div>
 
             <div id="education">
