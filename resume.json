@@ -16,8 +16,8 @@
       },
       {
         "network": "Portfolio",
-        "username": "justdev.cn",
-        "url": "https://justdev.cn"
+        "username": "blog.justdev.cn",
+        "url": "https://blog.justdev.cn"
       }
     ]
   },
@@ -155,5 +155,58 @@
   ],
   "references": [
     
+  ],
+  "workProject": [
+    {
+      "projectName": "抖音任务中心",
+      "position": "前端/node 开发",
+      "desc": [
+        "封装 JSBridge 方法，兼容 Web 端、Native 端和 Iframe 内嵌场景，并兼容老旧 JSBridge 实现 Iframe 与 RN 通信，封装统一方法，增加项目可维护性",
+        "使用 WebHook 实现站内信 push",
+        "对低端手机进行分辨率适配",
+        "Node 侧使用 RPC 协议，减少网络延迟",
+        "使用 Gulu 框架聚合多个接口，进行鉴权、前端业务处理",
+        "使用 SSR、SSG、ISR 技术进行页面静态化、页面预渲染提升用户体验",
+        "使用 Slardar 进行前端性能监控，实现 JSError 异常上报，配合飞书 SDK 进行异常提醒",
+        "使用 Tea 平台进行用户行为埋点，分析用户行为，为项目迭代做铺垫"
+      ],
+      "startDate": "2019-08-06",
+      "endDate": "2021-07-10"
+    },
+    {
+      "projectName": "飞轮自动化营销平台",
+      "position": "前端/node 开发",
+      "desc": [
+        "使用 thread-loader 优化编译速度",
+        "优化开发环境 chunk-vendors 包体积",
+        "使用 cache-loader 优化 Webpack HMR 速度",
+        "基于 Vue extends 特性，继承组件库 Table 组件，实现进度条预览 优化首屏加载速度",
+        "使用 Slardar 进行前端性能监控",
+        "使用 Tea 进行用户行为埋点"
+      ]
+    },
+    {
+      "projectName": "巨量引擎官网",
+      "position": "前端开发",
+      "desc": [
+        "基于开源 DoraCMS 二次开发 cms 系统",
+        "官网常量文案抽离 JSON 文件，利用 CDN 优化用户体验，日常文案修改由运营处理，节省研发人力",
+        "Sentry 监控系统迁移至 Slardar 监控系统",
+        "302 替换为 301 重定向，优化 SEO",
+        "生成 Sitemap，优化 SEO",
+        "接入 Slardar 异常监控系统"
+      ]
+    },
+    {
+      "projectName": "Tripalink Tenant Portal",
+      "position": "前端开发",
+      "desc": [
+        "封装 AWS S3 文件上传组件",
+        "封装 Stripe 支付 Hook",
+        "封装通用表单组件，增加代码可维护性",
+        "使用 forwardRef 转发 Ref，实现 Stripe 作用域外，调用支付方法",
+        "使用 Apollo GraphQL 进行分页请求"
+      ]
+    }
   ]
 }

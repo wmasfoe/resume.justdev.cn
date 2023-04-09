@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC|Nunito+Sans:400,700&display=swap" rel="stylesheet">
     <style>{{{css}}}</style>
-    <style>
+    {{!-- <style>
       @media (prefers-color-scheme: dark) {
         html, img { 
           filter: invert(1) hue-rotate(180deg);
@@ -32,7 +32,7 @@
           font-weight: 600;
         }
       }
-    </style>
+    </style> --}}
   </head>
 
   <body itemscope itemtype="http://schema.org/Person">
@@ -110,6 +110,82 @@
               <p> {{breaklines resume.basics.summary}} </p>
             </div>
 
+
+            <h4 id="skills"><span class="title">技术栈</span> </h4>
+            <ul class="list-unstyled">
+              {{#each resume.skills}}
+                <li class="card-nested relax">
+                  <div class="content has-sidebar">
+                    <p class='name'>{{name}}</p>
+                    {{#if desc}}
+                      <ul class='highlight'>
+                        {{#each desc}}
+                          <li> {{.}} </li>
+                        {{/each}}
+                      </ul>
+                    {{/if}}
+                  </div>
+                </li>
+              {{/each}}
+            </ul>
+
+            <div id="work-experience">
+              <h4> <span class="title">工作经历</span> </h4>
+              <ul class="list-unstyled">
+                {{#each resume.work}}
+                  <li class="card-nested relax">
+                    <div class="content has-sidebar">
+                      <p class="clear-margin-sm">
+                        <strong>{{#if website}}<a href="{{website}}" target="_blank">{{company}}</a>{{else}}{{company}}{{/if}}</strong>
+                        <span class="text-muted" style="margin-left: 0.3em">{{position}}</span>
+                      </p>
+                      <p class="text-muted">
+                        <small>
+                          <span class="space-right"> {{startDate}} - {{#if endDate}}{{endDate}}{{else}}Present{{/if}} | {{location}}</span>
+                        </small>
+                      </p>
+                      <p>{{summary}}</p>
+                      {{#if highlights}}
+                        <ul class='highlight'>
+                          {{#each highlights}}
+                            <li> {{.}} </li>
+                          {{/each}}
+                        </ul>
+                      {{/if}}
+                    </div>
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+
+            <div id="workProject">
+              <h4 id="skills"><span class="title">项目经历</span> </h4>
+              <ul class="list-unstyled">
+                {{#each resume.workProject}}
+                  <li class="card-nested relax">
+                    <div class="content has-sidebar">
+                      <p class="clear-margin-sm">
+                        <strong>{{projectName}}</strong>
+                        <span class="text-muted" style="margin-left: 0.3em">{{position}}</span>
+                      </p>
+                      {{!-- <p class="text-muted">
+                        <small>
+                          <span class="space-right"> {{startDate}} - {{#if endDate}}{{endDate}}{{else}}Present{{/if}}</span>
+                        </small>
+                      </p> --}}
+                      {{#if desc}}
+                        <ul class='highlight'>
+                          {{#each desc}}
+                            <li style="margin: 5px 0;"> {{.}} </li>
+                          {{/each}}
+                        </ul>
+                      {{/if}}
+                    </div>
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+
             <div id="work-projects-group">
               {{#if resume.projects}}
               <div id="projects">
@@ -154,71 +230,8 @@
                 </div>
               </div>
               {{/if}}
-
-              <div id="work-experience">
-                <h4> <span class="title">工作经历</span> </h4>
-                <ul class="list-unstyled">
-                  {{#each resume.work}}
-                    <li class="card-nested relax">
-                      <div class="content has-sidebar">
-                        <p class="clear-margin-sm">
-                          <strong>{{#if website}}<a href="{{website}}" target="_blank">{{company}}</a>{{else}}{{company}}{{/if}}</strong>
-                          <span class="text-muted" style="margin-left: 0.3em">{{position}}</span>
-                        </p>
-                        <p class="text-muted">
-                          <small>
-                            <span class="space-right"> {{startDate}} - {{#if endDate}}{{endDate}}{{else}}Present{{/if}} | {{location}}</span>
-                          </small>
-                        </p>
-                        <p>{{summary}}</p>
-                        {{#if highlights}}
-                          <ul class='highlight'>
-                            {{#each highlights}}
-                              <li> {{.}} </li>
-                            {{/each}}
-                          </ul>
-                        {{/if}}
-                      </div>
-
-                    </li>
-                  {{/each}}
-                </ul>
-              </div>
             </div>
 
-            <h4 id="skills"><span class="title">技术栈</span> </h4>
-            <ul class="list-unstyled">
-              {{#each resume.skills}}
-                <li class="card-nested relax">
-                  <div class="content has-sidebar">
-                    <p class='name'>{{name}}</p>
-                    {{#if desc}}
-                      <ul class='highlight'>
-                        {{#each desc}}
-                          <li> {{.}} </li>
-                        {{/each}}
-                      </ul>
-                    {{/if}}
-                  </div>
-                </li>
-              {{/each}}
-            </ul>
-            {{!-- <div class="card-nested" itemprop="description">
-              <div class="skill-table">
-                {{#each resume.skills}}
-                    <div class='name'>{{name}}</div>
-                    <div class="content has-sidebar">
-                      {{#if desc}}
-                        <ul class='desc highlight'>
-                          {{#each desc}}
-                            <li> {{.}} </li>
-                          {{/each}}
-                        </ul>
-                      {{/if}}
-                    </div>
-                {{/each}}
-              </div>
-            </div> --}}
             <div class='px10'></div>
 
             <div id="education">
