@@ -7,8 +7,8 @@
     {{!-- <link rel="icon" href="https://antfu.me/favicon.svg" type="image/svg+xml"> --}}
     <link rel="icon" href="https://blog.justdev.cn/static/favicons/favicon-32x32.png" type="image/png">
     <title>{{#resume.basics}}{{name}}{{/resume.basics}} - Résumé</title>
-    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script defer src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+SC|Nunito+Sans:400,700&display=swap" rel="stylesheet">
     <style>{{{css}}}</style>
     <style>
@@ -391,7 +391,7 @@
     </div>
 
     
-    <script>
+    <script defer>
       async function updateStars(){
         await Promise.all(
           Array.from(document.querySelectorAll('[data-gh-api]'))
