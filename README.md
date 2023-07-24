@@ -4,6 +4,7 @@ This is my Résumé generator. You can check out my Résumé [here](https://resu
 
 The theme is heavy modified from [jsonresume-theme-kwan](https://github.com/icoloma/jsonresume-theme-kwan).
 
+
 ## How it works
 
 - The data is hosted by [Gist](https://gist.github.com/wmasfoe/cbc03b69de1af26b57af827709412a8c) with [JSON Resume](https://jsonresume.org/) standard.
