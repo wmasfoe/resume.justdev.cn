@@ -10,4 +10,5 @@ The theme is heavy modified from [jsonresume-theme-kwan](https://github.com/icol
 - The website is hosted by [Vercel](http://vercel.com/) with CI/CD.
 - HTML is generated with [Handlebars](https://handlebarsjs.com/) and PDF is printed with [puppeteer](https://github.com/puppeteer/puppeteer/).
 
+
 > Note: I did a lot quick hacks to make it suitable for my design, which may not be good to be general used as a theme. While I may not have time to improve it, PRs are great welcome!
