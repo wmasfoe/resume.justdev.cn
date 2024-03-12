@@ -47,10 +47,10 @@
                 <div class="contact-details">
                   <div class="name-and-profession">
                     <h3 class="text-bolder name" itemprop="name"> {{name}}</h3>
-                    <div class="text-muted job" itemprop="jobTitle">{{label}}</div>
+                    <div class="text-muted job no-print" itemprop="jobTitle">{{label}}</div>
                   </div>
                   {{#if address}}
-                    <div class="text-muted info" itemprop="address" style="font-size:0.9em">{{address}}</div>
+                    <div class="text-muted info no-print" itemprop="address" style="font-size:0.9em">{{address}}</div>
                   {{/if}}
 
                   {{#if email}}
@@ -183,7 +183,7 @@
                   {{#each resume.projects}}
                     <li class="card-nested {{domClasses}}">
                       <div class="content has-sidebar">
-                        <p class="clear-margin-sm" itemprop="award">
+                        <div class="clear-margin-sm" itemprop="award">
                           <strong>{{displayName}}</strong>&nbsp
                           {{#if githubUrl}}
                             <a href="{{githubUrl}}" class='icon' target="_blank">
@@ -195,16 +195,17 @@
                               <span class="iconify" data-icon="{{toSocialIcon 'link'}}"></span>
                             </a>
                           {{/if}}
-                        </p>
+                          
+                          {{#if githubUrl}}
+                            <a class="github-stars" href="javascript:void(0);">
+                              <span class="iconify" data-icon="ri:star-fill"></span>
+                              <span class="stars" data-gh-api="{{getGithubApi githubUrl}}">{{stars}}</span>
+                            </a>
+                          {{/if}}
+                        </div>
                         <p class="text-muted">
                           <small> {{summary}} </small>
                         </p>
-                        {{#if githubUrl}}
-                          <p class="github-stars">
-                            <span class="iconify" data-icon="ri:star-fill"></span>
-                            <span class="stars" data-gh-api="{{getGithubApi githubUrl}}">{{stars}}</span>
-                          </p>
-                        {{/if}}
                       </div>
                     </li>
                   {{/each}}
@@ -246,7 +247,6 @@
                 {{/each}}
               </ul>
             </div>
-
 
             {{#if resume.publications}}
             <h4 id="publications"><span class="title">Talks</span> </h4>
@@ -371,7 +371,7 @@
                   Online Version
                 </a>
               </div>
-              <div style="opacity:0.7; font-size:1.2rem;margin-top:1rem;">Last updated at {{getBuildDate ''}}</div>
+              <div class="no-print" style="opacity:0.7; font-size:1.2rem;margin-top:1rem;">Last updated at {{getBuildDate ''}}</div>
             </div>
           </div>
         </div>

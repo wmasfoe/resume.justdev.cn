@@ -18,6 +18,22 @@
   content: " + ";
 }
 
+#work-projects-group #projects .card-nested .clear-margin-sm {
+  display: flex;
+  align-items: center;
+}
+#work-projects-group #projects .card-nested .clear-margin-sm a {
+  display: inline-flex;
+  align-items: center;
+}
+.github-stars {
+  height: 21px !important;
+}
+
+.background-card h4 {
+  border-bottom: 2px solid #333;
+}
+
 @media only print {
   .print-only {
     display: block;

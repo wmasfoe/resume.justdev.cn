@@ -151,10 +151,8 @@ a:focus {
   font-size: 1em;
 }
 .background-card h4 .title {
-  background: black !important;
-  color: white !important;
   display: inline-block;
-  padding: 2px 12px 0 3px;
+  padding: 2px 12px 1px 0;
   font-weight: bold;
 }
 .background-card h4:not(:first-child) {
@@ -165,7 +163,7 @@ a:focus {
 }
 .card {
   background: white;
-  padding: 2em 1em 2em 3.5em;
+  padding: 2em 3.5em;
 }
 .card-nested {
   padding: 0.8rem 0 0.8rem 2rem;
@@ -314,7 +312,7 @@ a:focus {
     grid-gap: 0.8rem 0.5rem;
   }
   .background-card h4:not(:first-child) {
-    margin-top: 1em;
+    margin-top: 5px;
   }
   #work-projects-group {
     display: grid;
