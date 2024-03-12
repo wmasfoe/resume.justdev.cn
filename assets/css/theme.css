@@ -152,11 +152,11 @@ a:focus {
 }
 .background-card h4 .title {
   display: inline-block;
-  padding: 2px 12px 1px 0;
+  padding: 2px 12px 0 3px;
   font-weight: bold;
 }
 .background-card h4:not(:first-child) {
-  margin-top: 1em;
+  margin-top: 2em;
 }
 .content {
   line-height: 1.5;
