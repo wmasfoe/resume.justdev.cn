@@ -1,0 +1,63 @@
+#skills ~ .skills-list > li {
+  margin-block: 5px !important;
+}
+
+.card-nested .work-skill-list {
+  /* font-size: 14px; */
+  margin-block: 0.3em;
+  line-height: 1.2em;
+  font-weight: 500;
+}
+
+.card-nested .work-skill-list .strong {
+  font-weight: 600;
+  margin-block: 0.5em;
+}
+
+.card-nested .work-skill-list span:not(:last-of-type):not(.strong)::after {
+  content: " + ";
+}
+
+@media only print {
+  .print-only {
+    display: block;
+  }
+  .print-only-flex {
+    display: flex;
+  }
+  .print-only-inline {
+    display: inline;
+  }
+
+  .screen-only {
+    display: none;
+  }
+  .screen-only-flex {
+    display: none;
+  }
+  .screen-only-inline {
+    display: none;
+  }
+}
+
+@media only screen {
+  .screen-only {
+    display: block;
+  }
+  .screen-only-flex {
+    display: flex;
+  }
+  .screen-only-inline {
+    display: inline;
+  }
+
+  .print-only {
+    display: none;
+  }
+  .print-only-flex {
+    display: none;
+  }
+  .print-only-inline {
+    display: none;
+  }
+}

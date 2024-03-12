@@ -33,6 +33,7 @@
         }
       }
     </style>
+    <style>{{{newStyle}}}</style>
   </head>
 
   <body itemscope itemtype="http://schema.org/Person">
@@ -43,17 +44,11 @@
           {{#resume.basics}}
           <div class="card">
             <div class="profile-card">
-                <!--<div class="profile-pic">
-                  <img class="media-object img-circle center-block"  data-src="holder.js/100x100"
-                    alt="{{name}}" src="{{picture}}" itemprop="image">
-                </div>
-                -->
                 <div class="contact-details">
                   <div class="name-and-profession">
                     <h3 class="text-bolder name" itemprop="name"> {{name}}</h3>
                     <div class="text-muted job" itemprop="jobTitle">{{label}}</div>
                   </div>
-
                   {{#if address}}
                     <div class="text-muted info" itemprop="address" style="font-size:0.9em">{{address}}</div>
                   {{/if}}
@@ -110,25 +105,12 @@
               <p> {{breaklines resume.basics.summary}} </p>
             </div>
 
-
             <h4 id="skills"><span class="title">技术栈</span> </h4>
-            <ul class="list-unstyled">
+            <ul class='skills-list'>
               {{#each resume.skills}}
-                <li class="card-nested relax">
-                  <div class="content has-sidebar">
-                    <p class='name'>{{name}}</p>
-                    {{#if desc}}
-                      <ul class='highlight'>
-                        {{#each desc}}
-                          <li> {{.}} </li>
-                        {{/each}}
-                      </ul>
-                    {{/if}}
-                  </div>
-                </li>
+                <li class="highlight"> {{.}} </li>
               {{/each}}
             </ul>
-
             <div id="work-experience">
               <h4> <span class="title">工作经历</span> </h4>
               <ul class="list-unstyled">
@@ -141,7 +123,7 @@
                       </p>
                       <p class="text-muted">
                         <small>
-                          <span class="space-right"> {{startDate}} - {{#if endDate}}{{endDate}}{{else}}Present{{/if}} | {{location}}</span>
+                          <span class="space-right"> {{startDate}} - {{#if endDate}}{{endDate}}{{else}}至今{{/if}} | {{location}}</span>
                         </small>
                       </p>
                       <p>{{summary}}</p>
@@ -166,14 +148,20 @@
                     <div class="content has-sidebar">
                       <p class="clear-margin-sm">
                         <strong>{{projectName}}</strong>
-                        <span class="text-muted" style="margin-left: 0.3em">{{position}}</span>
+                        <span class="text-muted" style="margin-left: 0.3em">{{role}}</span>
                       </p>
-                      {{!-- <p class="text-muted">
-                        <small>
-                          <span class="space-right"> {{startDate}} - {{#if endDate}}{{endDate}}{{else}}Present{{/if}}</span>
-                        </small>
-                      </p> --}}
+                      {{#if workSkill}}
+                        <div class="work-skill-list">
+                          <p class="strong">技术栈：</p>
+                          {{#each workSkill}}
+                            <span style="margin: 5px 0;"> {{.}} </span>
+                          {{/each}}
+                        </div>
+                      {{/if}}
                       {{#if desc}}
+                        <div class="work-skill-list">
+                          <p class="strong">技术实现：</p>
+                        </div>
                         <ul class='highlight'>
                           {{#each desc}}
                             <li style="margin: 5px 0;"> {{.}} </li>
@@ -233,7 +221,7 @@
               {{/if}}
             </div>
 
-            <div id="education">
+            <div id="education" class="print-only">
               <h4><span class="title">教育经历</span></h4>
               <ul class="list-unstyled">
                 {{#each resume.education}}
@@ -313,7 +301,7 @@
                     </p>
                     <p class="text-muted">
                       <small>
-                        {{startDate}} - {{#if endDate}} {{endDate}} {{else}} Present {{/if}}
+                        {{startDate}} - {{#if endDate}} {{endDate}} {{else}} 至今 {{/if}}
                       </small>
                     </p>
                     <p>{{summary}}</p>
@@ -390,7 +378,6 @@
       </section>
     </div>
 
-    
     <script defer>
       async function updateStars(){
         await Promise.all(

@@ -1,0 +1,157 @@
+{
+  "basics": {
+    "name": "李嘉奇",
+    "picture": "https://blog.justdev.cn/static/favicons/favicon-32x32.png",
+    "label": "前端开发工程师",
+    "summary": "我是李嘉奇，4 年前端开发经验，技术栈是 React / Vue。",
+    "website": "https://justdev.cn",
+    "address": "中国·北京",
+    "username": "李嘉奇",
+    "email": "lijq1103@163.com",
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "wmasfoe",
+        "url": "https://github.com/wmasfoe"
+      },
+      {
+        "network": "Portfolio",
+        "username": "blog.justdev.cn",
+        "url": "https://blog.justdev.cn"
+      }
+    ]
+  },
+  "skills": [
+    "深入掌握 HTML / CSS / JS",
+    "熟练使用 Vue / React / Nuxt / Next 框架",
+    "熟练使用 TypeScript / Flow",
+    "熟悉 RN / Taro / uni-app 跨端开发，熟悉小程序开发",
+    "熟悉 Hybrid 混合开发，熟悉 JS-Bridge，熟悉 H5 和 Native 交互流程",
+    "熟悉 ECharts / G6 / F2 可视化开发，并封装公司级图表库",
+    "熟悉微前端架构",
+    "熟悉 Webpack / Vite 基础配置",
+    "熟悉常见的数据结构，了解简单的算法、设计模式",
+    "熟悉 HTTP 与 RPC 协议，有 GraphQL 开发经验",
+    "熟练使用 Egg / Koa2 等 Node.js 框架，有服务端开发经验",
+    "熟练使用 SequelizeORM / TypeORM 等 SQL 框架",
+    "熟练使用 Git",
+    "有性能优化和用户体验优化经验"
+  ],
+  "work": [
+    {
+      "company": "ByteDance Ltd.",
+      "position": "前端开发工程师",
+      "website": "https://www.bytedance.com/",
+      "location": "北京",
+      "summary": "Data - 商业化技术 - 中国区商业化 - 增长智能",
+      "isCurrentRole": true,
+      "highlights": [
+        "负责大数据平台的开发与维护",
+        "负责巨量引擎官网、千川官网的开发与维护",
+        "负责 dou+ 模块的开发",
+        "参加图表库的开发和维护"
+      ],
+      "startDate": "2021-08-06"
+    },
+    {
+      "company": "Tripalink.Corp",
+      "position": "前端开发工程师",
+      "website": "https://tripalink.com/",
+      "location": "石家庄",
+      "summary": "支付组",
+      "isCurrentRole": false,
+      "startDate": "2019-08-06",
+      "endDate": "2021-07-10",
+      "highlights": [
+        "负责支付业务线前端开发",
+        "参加内部组件库编写",
+        "参加 Tripalink 官网编写"
+      ]
+    }
+  ],
+  "workProject": [
+    {
+      "projectName": "抖音任务中心",
+      "role": "前端/node 开发",
+      "workSkill": [
+        "Next.js",
+        "JSBridge",
+        "axios",
+        "Nest",
+        "SequelizeORM",
+        "Thrift"
+      ],
+      "desc": [
+        "封装 JSBridge 方法，兼容 Web 端、Native 端和 Iframe 内嵌场景，并兼容老旧 JSBridge 实现 Iframe 与 RN 通信，封装统一方法，增加项目可维护性",
+        "使用 WebHook 实现站内信 push",
+        "对低端手机进行分辨率适配",
+        "Node 侧使用 RPC 协议，实现前后端交互",
+        "使用 Nest 框架聚合多个接口，进行鉴权、前端业务处理",
+        "使用 SSR、SSG、ISR 技术进行页面静态化、页面预渲染提升用户体验",
+        "使用 Slardar 进行前端性能监控，实现 JSError 异常上报，配合飞书 SDK 进行异常提醒",
+        "使用 Tea 平台进行用户行为埋点，分析用户行为，为项目迭代做铺垫"
+      ],
+      "startDate": "2019-08-06",
+      "endDate": "2021-07-10"
+    },
+    {
+      "projectName": "飞轮大数据平台",
+      "role": "前端/node 开发",
+      "workSkill": [
+        "Vue",
+        "axios",
+        "monorepo",
+        "Nest",
+        "Thrift"
+      ],
+      "desc": [
+        "前端性能优化",
+        "使用 monorepo 架构，将应用拆分成各个模块，优化模块依赖",
+        "优化开发环境打包速度",
+        "封装动态表单组件，提高开发效率",
+        "RBAC 权限控制",
+        "重构相关词洞察、模块，重新设计数据结构",
+        "和后端约定图表接口枚举，后续新增图表接口走公共配置，减少开发成本",
+        "抽离常量 JSON，可对一些筛选进行配置化",
+        "使用 Slardar 进行前端性能监控",
+        "使用 Tea 进行用户行为埋点"
+      ]
+    },
+    {
+      "projectName": "DelightCharts 图表库",
+      "role": "核心开发者",
+      "desc": [
+        "支持 Tree shaking",
+        "封装 chart.core 文件，初始化 ECharts 实例、事件管理；所有图表的核心方法",
+        "利用闭包实现散点图、桑基图点击高亮逻辑",
+        "封装 x y 轴、tooltip、label 格式化 hooks",
+        "使用 KBar + ChatGPT 优化文档搜索，提升用户体验"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "FightingDesign/fighting-design",
+      "displayName": "FightingDesign",
+      "summary": "一个 Vue3.0 组件库，支持 TS、Treeshaking。",
+      "website": "https://fighting.tianyuhao.cn/",
+      "githubUrl": "https://github.com/FightingDesign/fighting-design",
+      "primaryLanguage": "Vue"
+    }
+  ],
+  "education": [
+    {
+      "studyType": "软件工程",
+      "area": "湖北·荆门",
+      "institution": "荆门职业技术学院",
+      "startDate": "2016-09",
+      "endDate": "2019-07"
+    }
+  ],
+  "publications": [],
+  "volunteer": [],
+  "awards": [],
+  "languages": [],
+  "interests": [],
+  "references": []
+}

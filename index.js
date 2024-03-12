@@ -102,7 +102,9 @@ async function getRepoStars (url) {
 }
 
 async function render(resume) {
+  console.log('======= render =======');
   var css = fs.readFileSync(__dirname + '/assets/css/theme.css', 'utf-8'),
+    newStyle = fs.readFileSync(__dirname + '/assets/css/new-style.css', 'utf-8'),
     template = fs.readFileSync(__dirname + '/resume.hbs', 'utf-8'),
     profiles = resume.basics.profiles,
     social_sites = ["github", "linkedin", "stackoverflow", "twitter",
@@ -236,6 +238,7 @@ async function render(resume) {
 
   return Handlebars.compile(template)({
     css: css,
+    newStyle: newStyle,
     resume: resume
   });
 }

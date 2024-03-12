@@ -158,14 +158,14 @@ a:focus {
   font-weight: bold;
 }
 .background-card h4:not(:first-child) {
-  margin-top: 2em;
+  margin-top: 1em;
 }
 .content {
   line-height: 1.5;
 }
 .card {
   background: white;
-  padding: 2em 3.5em;
+  padding: 2em 1em 2em 3.5em;
 }
 .card-nested {
   padding: 0.8rem 0 0.8rem 2rem;
