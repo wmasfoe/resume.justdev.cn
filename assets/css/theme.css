@@ -50,7 +50,7 @@ body {
   margin-bottom: 0;
 }
 .name-and-profession .job {
-  margin-bottom: 0.5rem;
+  margin-block: 0.5rem;
 }
 @media only screen {
   .container {
@@ -61,7 +61,13 @@ body {
     max-width: 50em;
   }
 }
+.mobile-only {
+  display: none;
+}
 @media (max-width: 768px) {
+  .mobile-only {
+    display: unset;
+  }
   ul {
     padding-left: 25px;
   }
@@ -142,6 +148,9 @@ a {
 a:not(.icon) {
   border-bottom: 1px dashed #0005;
 }
+a.no-dashed {
+  border-bottom: none;
+}
 a:hover,
 a:focus {
   text-decoration: none;
@@ -212,7 +221,7 @@ a:focus {
   grid-gap: 1rem 1rem;
 }
 .print-only {
-  display: none;
+  display: none !important;
 }
 @media only screen and (max-width: 768px) {
   .profile-card,
@@ -285,7 +294,7 @@ a:focus {
     text-align: center;
   }
   .print-only {
-    display: inherit;
+    display: inherit !important;
   }
   .no-print {
     display: none;

@@ -21,7 +21,7 @@ body {
     margin-bottom: 0;
   }
   .job {
-    margin-bottom: 0.5rem;
+    margin-block: 0.5rem;
   }
 }
 
@@ -34,8 +34,13 @@ body {
     }
   }
 }
-
+.mobile-only {
+  display: none;
+}
 @media (max-width: @screen-tablet) {
+  .mobile-only {
+    display: unset;
+  }
   ul {
     padding-left: 25px;
   }

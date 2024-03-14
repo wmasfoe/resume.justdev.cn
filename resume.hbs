@@ -44,44 +44,64 @@
           {{#resume.basics}}
           <div class="card">
             <div class="profile-card">
-                <div class="contact-details">
-                  <div class="name-and-profession">
-                    <h3 class="text-bolder name" itemprop="name"> {{name}}</h3>
-                    <div class="text-muted job no-print" itemprop="jobTitle">{{label}}</div>
-                  </div>
-                  {{#if address}}
-                    <div class="text-muted info no-print" itemprop="address" style="font-size:0.9em">{{address}}</div>
-                  {{/if}}
+              <div class="contact-details">
+                <div class="name-and-profession">
+                  <h3 class="text-bolder name" itemprop="name"> {{name}}</h3>
+                  <div class="text-muted job no-print" itemprop="jobTitle">{{label}}</div>
+                </div>
+                {{#if address}}
+                  <div class="text-muted info no-print" itemprop="address" style="font-size:0.9em">{{address}}</div>
+                {{/if}}
 
-                  {{#if email}}
-                    <div class="detail">
-                      <span class="info">
-                        <a href="mailto:{{email}}" class="link-disguise" itemprop="email" target="_blank">{{email}}</a>
-                      </span>
-                    </div>
-                  {{/if}}
-
+                <div class="detail new-style-inline-block">
                   {{#if phone}}
-                    <div class="detail">
-                      <a href="tel://{{phone}}" class="link-disguise info" itemprop="telephone" target="_blank">
+                    <span class="info mobile-only">
+                      <a href="tel://{{phone}}" class="link-disguise" itemprop="telephone" target="_blank">
                         {{phone}}
                       </a>
-                    </div>
+                    </span>
                   {{/if}}
-
-                  {{#if location}}
-                    <div class="detail">
-                      {{#location}}
-                        <span class="info">
-                          {{city}}, {{region}},
-                          {{countryCode}}
-                        </span>
-                      {{/location}}
-                    </div>
+                  {{#if email}}
+                    <span class="info mobile-only">
+                      <span class="no-dashed link-disguise" itemprop="email" target="_blank"> | </span>
+                    </span>
+                    <span class="info">
+                      <a href="mailto:{{email}}" class="link-disguise" itemprop="email" target="_blank">{{email}}</a>
+                    </span>
                   {{/if}}
                 </div>
 
-              <div class="social-links">
+                <div class="detail new-style-inline-block print-only">
+                  {{#if status}}
+                    <span class="info mobile-only">
+                      <span class="link-disguise" itemprop="telephone" target="_blank">
+                        {{status}}
+                      </span>
+                    </span>
+                  {{/if}}
+                  {{#if workingYears}}
+                    <span class="info mobile-only">
+                      <span class="no-dashed link-disguise" itemprop="email" target="_blank"> | </span>
+                    </span>
+                    <span class="info">
+                      <span class="link-disguise" itemprop="email" target="_blank">{{workingYears}}</span>
+                    </span>
+                  {{/if}}
+                </div>
+
+                {{#if location}}
+                  <div class="detail">
+                    {{#location}}
+                      <span class="info">
+                        {{city}}, {{region}},
+                        {{countryCode}}
+                      </span>
+                    {{/location}}
+                  </div>
+                {{/if}}
+              </div>
+
+              <div class="new-style-social-links">
                 {{#profiles}}
                   <a class="social-link icon" href="{{url}}" target="_blank">
                     <span class="iconify" data-icon="{{toSocialIcon network}}"></span>
@@ -100,12 +120,14 @@
         <div class="card-wrapper">
           <div class="card background-card">
 
-            <h4 id="about"></span> <span class="title">简介</span> </h4>
-            <div class="card-nested" itemprop="description">
-              <p> {{breaklines resume.basics.summary}} </p>
+            <div class="no-print">
+              <h4 id="about"></span> <span class="title">简介</span> </h4>
+              <div class="card-nested" itemprop="description">
+                <p> {{breaklines resume.basics.summary}} </p>
+              </div>
             </div>
 
-            <h4 id="skills"><span class="title">技术栈</span> </h4>
+            <h4 id="skills"><span class="title">专业技能</span> </h4>
             <ul class='skills-list'>
               {{#each resume.skills}}
                 <li class="highlight"> {{.}} </li>

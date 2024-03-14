@@ -63,6 +63,9 @@ a {
   &:not(.icon) {
     border-bottom: 1px dashed #0005;
   }
+  &.no-dashed {
+    border-bottom: none;
+  }
   &:hover,
   &:focus {
     text-decoration: none;
@@ -154,7 +157,7 @@ a {
 }
 
 .print-only {
-  display: none;
+  display: none !important;
 }
 
 @media only screen and (max-width: @screen-tablet) {

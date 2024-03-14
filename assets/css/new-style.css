@@ -81,3 +81,24 @@
     display: none;
   }
 }
+
+.detail.new-style-inline-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+@media (min-width: 780px) {
+  .detail.new-style-inline-block {
+    justify-content: flex-start;
+  }
+}
+
+.detail.new-style-inline-block > * {
+  flex-shrink: 1;
+}
+
+.new-style-social-links {
+  margin-top: 0.5rem;
+}
