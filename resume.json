@@ -132,6 +132,7 @@
         "Tree shaking，包体积优化",
         "封装 chart.core 文件，初始化 ECharts 实例、事件管理；所有图表的核心方法",
         "利用闭包实现散点图、桑基图点击高亮逻辑",
+        "编写 TypeScript 类型文件，提高代码可维护性以及用户体验",
         "封装 x y 轴、tooltip、label 格式化 hooks",
         "封装 Sandpack 实现在线编辑、预览、分享功能，利于用户 debug",
         "使用 KBar + ChatGPT 优化文档搜索，提升用户体验",
@@ -143,7 +144,7 @@
     {
       "name": "FightingDesign/fighting-design",
       "displayName": "FightingDesign",
-      "summary": "一个 Vue3 组件库，支持 TS、Treeshaking。",
+      "summary": "一个 Vue3 组件库，支持 TS、Tree shaking。",
       "website": "https://fighting.tianyuhao.cn/",
       "githubUrl": "https://github.com/FightingDesign/fighting-design",
       "primaryLanguage": "Vue"

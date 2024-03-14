@@ -175,6 +175,11 @@ a:focus {
   background: white;
   padding: 2em 3.5em;
 }
+@media print {
+  .card {
+    padding-bottom: 1em;
+  }
+}
 .card-nested {
   padding: 0.8rem 0 0.8rem 2rem;
 }

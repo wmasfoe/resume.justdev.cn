@@ -108,12 +108,12 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 0.5em;
+    gap: 0.8em;
   }
 
   #work-experience .print-flex .card-nested {
     flex-shrink: 0;
-    width: calc(50% - 0.25em);
+    width: calc(50% - 0.4em);
   }
 
   #work-experience .print-flex .highlight li {

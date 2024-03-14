@@ -385,12 +385,15 @@
             <div style="text-align:center">
               <div class="detail no-print" style="font-size:1.5rem;margin-top:2rem;">
                 <a href="https://resume.justdev.cn/resume.pdf" class="info" itemprop="pdf" target="_blank">
-                  PDF Version
+                  PDF 版本
+                  <span class="iconify" style="margin-left: -0.3em;" data-icon="{{toSocialIcon 'link'}}"></span>
                 </a>
               </div>
-               <div class="detail print-only" style="font-size:1.5rem;margin-top:2rem;" >
+               <div class="detail print-only" style="font-size:1.5rem;margin-top:1.5rem;" >
+                {{!-- <span class="info">PDF 为了保持精简，只列举了 3 个项目，更多可看：</span> --}}
                 <a href="https://resume.justdev.cn" class="info" itemprop="pdf" target="_blank">
-                  Online Version
+                  在线版本
+                  <span class="iconify" style="margin-left: -0.3em;" data-icon="{{toSocialIcon 'link'}}"></span>
                 </a>
               </div>
               <div class="no-print" style="opacity:0.7; font-size:1.2rem;margin-top:1rem;">Last updated at {{getBuildDate ''}}</div>
