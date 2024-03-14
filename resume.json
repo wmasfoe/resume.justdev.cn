@@ -49,9 +49,9 @@
       "summary": "Data - 商业化技术 - 中国区商业化 - 增长智能",
       "isCurrentRole": true,
       "highlights": [
-        "负责大数据平台的开发与维护",
-        "负责巨量引擎官网、千川官网的开发与维护",
-        "负责 dou+ 模块的开发",
+        "参与公司项目的讨论，需求评审，技术评审",
+        "负责飞轮大数据平台、巨量引擎官网、千川官网以及 dou+ 的开发与维护",
+        "以前端视角对产品进行体验优化，设计需求",
         "参加图表库的开发和维护"
       ],
       "startDate": "2021-08-06"
@@ -66,9 +66,10 @@
       "startDate": "2019-08-06",
       "endDate": "2021-07-10",
       "highlights": [
+        "参与需求评审，排期，分配工作",
+        "开发过程中，与每个板块负责人员保持交流沟通",
         "负责支付业务线前端开发",
-        "参加内部组件库编写",
-        "参加 Tripalink 官网编写"
+        "参加内部组件库、官网编写"
       ]
     }
   ],
@@ -88,7 +89,7 @@
         "封装 JSBridge 方法，兼容 Web 端、Native 端和 Iframe 内嵌场景，并兼容老旧 JSBridge 实现 Iframe 与 RN 通信，封装统一方法，增加项目可维护性",
         "使用 WebHook 实现站内信 push",
         "对低端手机进行分辨率适配",
-        "Node 侧使用 RPC 协议，实现前后端交互",
+        "Node 侧使用 RPC 调用，实现前后端交互",
         "使用 Nest 框架聚合多个接口，进行鉴权、前端业务处理",
         "使用 SSR、SSG、ISR 技术进行页面静态化、页面预渲染提升用户体验",
         "使用 Slardar 进行前端性能监控，实现 JSError 异常上报，配合飞书 SDK 进行异常提醒",
@@ -108,14 +109,15 @@
         "Thrift"
       ],
       "desc": [
-        "前端性能优化",
         "使用 monorepo 架构，将应用拆分成各个模块，优化模块依赖",
-        "优化开发环境打包速度",
-        "封装动态表单组件，提高开发效率",
-        "RBAC 权限控制",
-        "重构相关词洞察等模块，重新设计数据结构，封装 hook，逻辑解耦",
+        "引入 RBAC 权限模型，分权限点控制模块展示",
+        "重构相关词洞察等模块，重新设计数据结构，封装 hook，解耦逻辑，降低后续维护成本",
         "和后端约定图表接口枚举，后续新增图表接口走公共配置，减少开发成本",
-        "抽离常量 JSON，可对一些筛选进行配置化",
+        "抽离常量 JSON，产品可对一些筛选进行配置化，简单配置无需上线",
+        "前端性能优化",
+        "抽离 shared 模块，提取公共逻辑，减少重复代码",
+        "优化 Webpack 开发环境打包速度",
+        "封装动态表单组件，提高开发效率",
         "使用 Slardar 进行前端性能监控",
         "使用 Tea 进行用户行为埋点"
       ]
@@ -124,11 +126,12 @@
       "projectName": "DelightCharts 图表库",
       "role": "核心开发者",
       "desc": [
-        "支持 Tree shaking",
+        "Tree shaking",
         "封装 chart.core 文件，初始化 ECharts 实例、事件管理；所有图表的核心方法",
         "利用闭包实现散点图、桑基图点击高亮逻辑",
         "封装 x y 轴、tooltip、label 格式化 hooks",
-        "使用 KBar + ChatGPT 优化文档搜索，提升用户体验"
+        "使用 KBar + ChatGPT 优化文档搜索，提升用户体验",
+        "封装 Sandpack 实现在线编辑、预览、分享功能，利于用户 debug"
       ]
     }
   ],
@@ -136,7 +139,7 @@
     {
       "name": "FightingDesign/fighting-design",
       "displayName": "FightingDesign",
-      "summary": "一个 Vue3.0 组件库，支持 TS、Treeshaking。",
+      "summary": "一个 Vue3 组件库，支持 TS、Treeshaking。",
       "website": "https://fighting.tianyuhao.cn/",
       "githubUrl": "https://github.com/FightingDesign/fighting-design",
       "primaryLanguage": "Vue"

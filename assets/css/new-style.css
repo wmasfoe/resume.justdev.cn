@@ -102,3 +102,22 @@
 .new-style-social-links {
   margin-top: 0.5rem;
 }
+
+@media print {
+  #work-experience .print-flex {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.5em;
+  }
+
+  #work-experience .print-flex .card-nested {
+    flex-shrink: 0;
+    width: calc(50% - 0.25em);
+  }
+
+  #work-experience .print-flex .highlight li {
+    margin-block: 0.4em;
+    line-height: 1.4em;
+  }
+}
