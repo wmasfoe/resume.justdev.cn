@@ -138,6 +138,43 @@
         "使用 KBar + ChatGPT 优化文档搜索，提升用户体验",
         "使用 ChatGPT 辅助进行单测，提高效率"
       ]
+    },
+    {
+      "projectName": "巨量千川官网",
+      "role": "前端开发",
+      "hbsClass": "no-print",
+      "workSkill": [
+        "Next.js",
+        "axios",
+        "monorepo",
+        "Egg.js",
+        "MySQL"
+      ],
+      "desc": [
+        "基于开源 DoraCMS 进行二次开发 CMS 系统",
+        "官网常量文案抽离 JSON 文件，利用 CDN 优化用户体验，日常文案修改由运营处理，节省研发人力",
+        "使用 SSG、ISR 进行页面静态化，优化 SEO",
+        "302 替换为 301 重定向，生成 Sitemap，优化 SEO",
+        "next-i18n 实现多语言切换，提高用户体验"
+      ]
+    },
+    {
+      "projectName": "Tripalink Tenant Portal",
+      "role": "前端开发",
+      "hbsClass": "no-print",
+      "workSkill": [
+        "React",
+        "Apollo GraphQL",
+        "AntDesign",
+        "Stripe"
+      ],
+      "desc": [
+        "封装 AWS S3 文件上传组件",
+        "封装 Stripe 支付 Hook",
+        "封装通用表单组件，增加代码可维护性",
+        "使用 forwardRef 转发 Ref，实现 Stripe 作用域外，调用支付方法",
+        "优化 Apollo GraphQL 请求，使用 fetchMore 进行分页请求"
+      ]
     }
   ],
   "projects": [
