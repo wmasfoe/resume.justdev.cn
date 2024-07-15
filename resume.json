@@ -25,20 +25,13 @@
     ]
   },
   "skills": [
-    "深入掌握 HTML / CSS / JS",
     "熟练使用 Vue / React / Nuxt / Next 框架",
-    "熟练使用 TypeScript / Flow",
     "熟悉 RN / Taro / uni-app 跨端开发，熟悉小程序开发",
     "熟悉 Hybrid 混合开发，熟悉 JS-Bridge，熟悉 H5 和 Native 交互流程",
     "熟悉 ECharts / G6 / F2 可视化开发，并封装公司级图表库",
-    "熟悉微前端架构",
-    "熟悉 Webpack / Vite 基础配置",
-    "熟悉常见的数据结构，了解简单的算法、设计模式",
+    "熟悉常见的数据结构，了解常用的算法、设计模式",
     "熟悉 HTTP 与 RPC 协议，有 GraphQL 开发经验",
-    "熟练使用 Egg / Koa2 等 Node.js 框架，有服务端开发经验",
-    "熟练使用 SequelizeORM / TypeORM 等 SQL 框架",
-    "熟练使用 Git",
-    "有性能优化和用户体验优化经验"
+    "有服务端开发经验和性能优化和用户体验优化经验"
   ],
   "work": [
     {
