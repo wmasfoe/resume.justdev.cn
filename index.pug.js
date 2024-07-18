@@ -1,5 +1,8 @@
-var pug = require('pug');
+const pug = require('pug');
+const jsonData = require('./resume.json');
 
-var html = pug.renderFile('./resume.pug', merge({}, {}));
+const html = pug.renderFile('./resume.pug', {
+  resume: jsonData
+});
 
 console.log(html)

@@ -12,6 +12,7 @@
     "handlebars": "^4.7.7",
     "moment": "^2.29.4",
     "optimist": "^0.6.1",
+    "pug": "^3.0.3",
     "resume-schema": "1.0.0",
     "tarball-extract": "0.0.6",
     "underscore": "^1.13.4"
