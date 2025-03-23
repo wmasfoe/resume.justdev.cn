@@ -70,6 +70,7 @@
   "workProject": [
     {
       "projectName": "IDEA 大数据平台",
+      "mode": "all",
       "role": "前端/node 开发",
       "workSkill": [
         "Vue",
@@ -108,6 +109,7 @@
     },
     {
       "projectName": "DelightCharts 图表库",
+      "mode": "all",
       "role": "核心开发者，主要负责通用图表库开发及架构优化",
       "desc": [
         {
@@ -148,6 +150,7 @@
     },
     {
       "projectName": "抖音任务中心",
+      "mode": "all",
       "role": "前端/node 开发，主要负责支付业务线及任务中心页优化",
       "workSkill": [
         "Next.js",
@@ -187,6 +190,53 @@
       ],
       "startDate": "2019-08-06",
       "endDate": "2021-07-10"
+    },
+    {
+      "projectName": "巨量千川官网",
+      "mode": "online",
+      "role": "前端开发",
+      "workSkill": [
+        "Next.js",
+        "axios",
+        "monorepo",
+        "Egg.js",
+        "MySQL"
+      ],
+      "desc": [
+        {
+          "type": "主要做的事情",
+          "content": [
+            "基于开源 DoraCMS 进行二次开发 CMS 系统",
+            "官网常量文案抽离 JSON 文件，利用 CDN 优化用户体验，日常文案修改由运营处理，节省研发人力",
+            "使用 SSG、ISR 进行页面静态化，优化 SEO",
+            "302 替换为 301 重定向，生成 Sitemap，优化 SEO",
+            "next-i18n 实现多语言切换，提高用户体验"
+          ]
+        }
+      ]
+    },
+    {
+      "projectName": "Tripalink Tenant Portal",
+      "mode": "online",
+      "role": "前端开发",
+      "workSkill": [
+        "React",
+        "Apollo GraphQL",
+        "AntDesign",
+        "Stripe"
+      ],
+      "desc": [
+        {
+          "type": "主要做的事情",
+          "content": [
+            "封装 AWS S3 文件上传组件",
+            "封装 Stripe 支付 Hook",
+            "封装通用表单组件，增加代码可维护性",
+            "使用 forwardRef 转发 Ref，实现 Stripe 作用域外，调用支付方法",
+            "优化 Apollo GraphQL 请求，使用 fetchMore 进行分页请求"
+          ]
+        }
+      ]
     }
   ],
   "openSourceProject": [
