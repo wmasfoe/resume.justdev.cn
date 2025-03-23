@@ -60,7 +60,7 @@ const LocaleLayout = ({
               '@type': 'Person',
               name: '李嘉奇',
               jobTitle: '前端开发工程师',
-              url: 'https://resume.xhub.xin',
+              url: 'https://resume.justdev.cn',
               sameAs: [
                 'https://github.com/wsasfoe',
               ]

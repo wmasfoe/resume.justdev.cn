@@ -38,7 +38,7 @@ const TargetVersion: React.FC = () => {
       <div className={styles.pdfOnly}>
         <p className={styles.versionText}>
           <Link
-            href="https://resume.xhub.xin"
+            href="https://resume.justdev.cn"
             target="_blank"
             className={styles.versionLink}
           >
