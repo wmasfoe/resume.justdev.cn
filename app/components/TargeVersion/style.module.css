@@ -1,6 +1,5 @@
 .versionContainer {
   position: relative;
-  margin: 1rem 0;
   font-size: 0.9rem;
 }
 
@@ -13,12 +12,9 @@
 
 .versionLink {
   color: var(--foreground);
-  border-bottom: 1px dashed var(--foreground) !important;
-  padding-bottom: 0.2rem;
   width: fit-content;
   font-weight: 600;
   font-size: 1rem;
-  line-height: 1;
   cursor: pointer;
   display: flex;
   align-items: center;

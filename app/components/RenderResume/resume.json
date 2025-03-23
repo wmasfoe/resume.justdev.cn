@@ -11,18 +11,18 @@
     "address": "中国·北京",
     "username": "李嘉奇",
     "email": "lijq1103@163.com",
-    "profiles": [
-      {
+    "profiles": {
+      "gitHub": {
         "network": "GitHub",
         "username": "wmasfoe",
         "url": "https://github.com/wmasfoe"
       },
-      {
+      "portfolio": {
         "network": "Portfolio",
         "username": "blog.justdev.cn",
         "url": "https://blog.justdev.cn"
       }
-    ]
+    }
   },
   "skills": [
     "熟练使用 Vue / React / Nuxt / Next 框架",
@@ -58,10 +58,10 @@
       "summary": "Data - 商业化技术 - 中国区商业化 - 增长智能",
       "isCurrentRole": false,
       "highlights": [
-        "参与公司项目的讨论、需求评审、技术评审，并细化排期，确保按期交付需求",
-        "负责飞轮大数据平台、巨量引擎官网、千川官网以及 dou+ 的开发与维护",
+        "负责飞轮投放平台、巨量引擎官网、千川官网以及 dou+ 的开发与维护",
         "参加 Okee 组件库、橙子建站平台物料的开发与维护",
-        "以前端视角对产品进行体验优化，设计需求"
+        "参与公司项目的讨论、需求评审、技术评审，按期交付需求",
+        "以前端视角对产品进行体验优化"
       ],
       "startDate": "2021-08-06",
       "endDate": "2022-06-10"

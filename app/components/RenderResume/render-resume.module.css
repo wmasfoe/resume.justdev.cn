@@ -1,18 +1,32 @@
-.resumeContainer {
+.variables {
   /*模块之间的间距，比如工作经历、简介这种大的模块*/
-  --resume-module-gap: 2rem;
+  --resume-module-gap: 1.2rem;
   /*模块顶部title和下方正文之间的间距*/
-  --resume-section-title-gap: 1rem;
+  --resume-section-title-gap: 0.6rem;
   /*模块每行text之间的间距，比如工作内容部分1、2、3*/
-  --resume-text-gap: 0.3rem;
+  --resume-text-gap: 0.2rem;
   /*模块中的内联模块的间距，比如项目1、项目2*/
-  --resume-module-group-gap: 1.2rem;
-
+  --resume-module-group-gap: 1rem;
+}
+.resumeContainer {
   max-width: 800px;
   margin: 0 auto;
   padding: 2rem;
   font-family: 'Nunito Sans', "Helvetica Neue", Helvetica, Arial, 'Noto Sans SC', sans-serif;
   color: var(--foreground);
+}
+.resumeContainer ul {
+  margin-left: 1rem !important;
+  list-style: outside !important;
+  padding-left: 0.5rem !important;
+}
+.resumeContainer ul li::marker {
+  margin-right: 0.1rem !important;
+}
+@media print {
+  .resumeContainer {
+    padding: 0;
+  }
 }
 
 .resumeContainer ul {
@@ -29,6 +43,9 @@
     text-align: center;
 }
 
+.nameAndProfession {
+  position: relative;
+}
 .nameAndProfession h1 {
     font-size: 2rem;
     font-weight: 600;
@@ -37,8 +54,11 @@
 .jobTitle {
     color: var(--foreground);
     font-size: 1.25rem;
-    margin: 0.5rem 0;
+    margin: 0.1rem 0 0;
     opacity: 0.8;
+}
+.notBorderBottom {
+  border-bottom: none !important;
 }
 
 .contactDetails {
@@ -46,23 +66,39 @@
     justify-content: center;
     gap: 0.5rem;
     flex-wrap: wrap;
-    margin-top: 0.5rem;
+    margin-top: 0.3rem;
+}
+@media print {
+  .contactDetails {
+    margin-top: 0 !important;
+  }
+}
+.profilesDetail {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
 .split {
-    color: var(--font-color);
-    font-size: 0.8rem;
+  color: var(--font-color);
+  font-size: 0.8rem;
+  opacity: 0.3;
 }
 
 .detail {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 /* 背景卡片样式 */
 .backgroundCard {
     margin-bottom: var(--resume-module-gap);
+}
+.backgroundCard:last-of-type {
+    margin-bottom: 0;
 }
 
 .sectionTitle {
@@ -74,6 +110,12 @@
 
 .cardNested {
     margin-bottom: var(--resume-module-group-gap);
+}
+.cardNested:last-of-type {
+  margin-bottom: 0;
+}
+.cardNested.notMargin {
+  margin-bottom: 0;
 }
 
 .cardNested h3 {
@@ -98,11 +140,28 @@
 }
 
 .highlightList {
-    margin-top: 0.75rem;
+    margin-top: var(--resume-text-gap);
 }
 
 .highlightList li {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--resume-text-gap);
+}
+
+.workExperience {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.cardNested,
+.workExperience {
+  padding-left: var(--resume-section-title-gap);
+  padding-right: var(--resume-section-title-gap);
+}
+@media print {
+  .workExperience {
+    flex-direction: row;
+    gap: var(--resume-module-group-gap);
+  }
 }
 
 /* 项目卡片样式 */
@@ -133,7 +192,7 @@
 .techStack {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 0.3rem;
     margin-bottom: 1rem;
     margin-top: 0.5rem;
 }
@@ -165,21 +224,12 @@
 
 .contentList li {
     position: relative;
-    margin-bottom: 0.3rem;
-    font-size: 1.1rem;
+    margin-bottom: var(--resume-text-gap);
+    font-size: 1rem;
 }
 
 .contentList li:last-of-type {
     margin-bottom: 0;
-}
-
-.contentList li::before {
-    content: "•";
-    color: var(--foreground);
-    display: inline-block;
-    width: 1em;
-    margin-left: -1em;
-    position: absolute;
 }
 
 @media (max-width: 768px) {
@@ -190,9 +240,64 @@
     .nameAndProfession h1 {
         font-size: 2rem;
     }
-    
-    .metaInfo {
-        flex-direction: column;
-        gap: 0.25rem;
-    }
+}
+
+.onlineOnly {
+  display: block;
+}
+.pdfOnly {
+  display: none;
+}
+
+@media print {
+  .onlineOnly {
+    display: none !important;
+  }
+  .pdfOnly {
+    display: block !important;
+  }
+}
+
+.blockToInline {
+  display: inline-block;
+}
+.pcVersionChange {
+  position: absolute;
+  right: 1rem;
+  top: 0.8rem;
+}
+
+.mobileOnly {
+  display: none;
+}
+.pcOnly {
+  display: block;
+}
+.pcOnlyInlineFlex {
+  display: inline-flex;
+}
+
+@media (max-width: 768px) {
+  .pcOnly {
+    display: none;
+  }
+  .pcOnlyInlineFlex {
+    display: none;
+  }
+  .mobileOnly {
+    display: block;
+  }
+  .pcOrPDFOnly {
+    display: none !important;
+  }
+}
+
+@media print {
+  .pcOrPDFOnly {
+    display: inline-flex !important;
+  }
+}
+
+.pcOrPDFOnly {
+  display: inline-flex;
 }
