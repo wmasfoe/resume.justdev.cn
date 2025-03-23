@@ -67,11 +67,11 @@
 }
 
 .contactDetails {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    margin-top: 0.3rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-top: 0.3rem;
 }
 .profilesDetail {
   display: flex;
@@ -86,7 +86,7 @@
     margin-top: 0 !important;
   }
   .profilesDetail {
-    margin-top: -0.4rem;
+    margin-top: -0.2rem;
   }
 }
 
