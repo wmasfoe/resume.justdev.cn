@@ -52,6 +52,6 @@ pnpm-lock.yaml
 
 .env.local
 
-/public/pdfs/resume.pdf
+# /public/pdfs/resume.pdf
 /public/pdfs/resume.html
 /debug-screenshot.png
