@@ -1,0 +1,198 @@
+.resumeContainer {
+  /*模块之间的间距，比如工作经历、简介这种大的模块*/
+  --resume-module-gap: 2rem;
+  /*模块顶部title和下方正文之间的间距*/
+  --resume-section-title-gap: 1rem;
+  /*模块每行text之间的间距，比如工作内容部分1、2、3*/
+  --resume-text-gap: 0.3rem;
+  /*模块中的内联模块的间距，比如项目1、项目2*/
+  --resume-module-group-gap: 1.2rem;
+
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Nunito Sans', "Helvetica Neue", Helvetica, Arial, 'Noto Sans SC', sans-serif;
+  color: var(--foreground);
+}
+
+.resumeContainer ul {
+    padding-left: 20px;
+    margin: 0 0 0.5rem;
+}
+.resumeContainer a {
+    border-bottom: 1px dashed var(--foreground);
+}
+
+/* 头部信息样式 */
+.profileCard {
+    margin-bottom: var(--resume-module-gap);
+    text-align: center;
+}
+
+.nameAndProfession h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.jobTitle {
+    color: var(--foreground);
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+    opacity: 0.8;
+}
+
+.contactDetails {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.split {
+    color: var(--font-color);
+    font-size: 0.8rem;
+}
+
+.detail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* 背景卡片样式 */
+.backgroundCard {
+    margin-bottom: var(--resume-module-gap);
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: var(--resume-section-title-gap);
+    border-bottom: 2px solid var(--foreground);
+}
+
+.cardNested {
+    margin-bottom: var(--resume-module-group-gap);
+}
+
+.cardNested h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.metaInfo {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--foreground);
+    opacity: 0.7;
+}
+
+.textMuted {
+    opacity: 0.8;
+}
+
+.highlightList {
+    margin-top: 0.75rem;
+}
+
+.highlightList li {
+    margin-bottom: 0.5rem;
+}
+
+/* 项目卡片样式 */
+.projectCard {
+    margin-bottom: var(--resume-module-group-gap);
+}
+.openSourceProject {
+  margin-bottom: var(--resume-module-group-gap);
+}
+
+.projectHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.openSourceProjectHeader {
+  margin-bottom: 0.7rem;
+}
+
+.projectHeader h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.normalText {
+    font-size: 1.1rem;
+    color: var(--font-color);
+}
+.techStack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+
+.techTag {
+    display: inline-block;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+.techTag.techTagAfter:not(:last-of-type):not(.strong)::after {
+    content: " + ";
+}
+
+.descSection {
+    margin-bottom: 0.3rem;
+    margin-top: 0.7rem;
+}
+
+.descSection h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.contentList {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.contentList li {
+    position: relative;
+    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+}
+
+.contentList li:last-of-type {
+    margin-bottom: 0;
+}
+
+.contentList li::before {
+    content: "•";
+    color: var(--foreground);
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+    position: absolute;
+}
+
+@media (max-width: 768px) {
+    .resumeContainer {
+        padding: 1rem;
+    }
+    
+    .nameAndProfession h1 {
+        font-size: 2rem;
+    }
+    
+    .metaInfo {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+}

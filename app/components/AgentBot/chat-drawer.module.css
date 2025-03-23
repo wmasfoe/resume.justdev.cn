@@ -1,0 +1,393 @@
+.drawerOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1)
+}
+
+.drawerOverlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawerOverlay.closing {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.drawer {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  width: 600px;
+  background: var(--modal-background);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  z-index: 1001;
+  border-radius: 16px;
+  overflow: hidden
+}
+
+.drawer.open {
+  opacity: 1;
+  transform: translateY(0);
+  /* 完全显示 */
+  transition: all 0.3s cubic-bezier(.72, .6, .9, .77);
+}
+
+.drawer.closing {
+  transform: translate(calc(100vw - 620px), calc(100vh - 40px)) scale(0.5);
+  transform-origin: bottom right;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(.72, .6, .9, .77);
+}
+
+.mobile.drawer.closing {
+  animation: mobile-modal-close 0.3s cubic-bezier(.72, .6, .9, .77);
+}
+
+/* 打开动画：从下到上浮现 */
+@keyframes mobile-modal-open {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 关闭动画：先缩放变小，再缓慢移出屏幕 */
+@keyframes mobile-modal-close {
+  from {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(0.2) translate(50%, 120%);
+    opacity: 0;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.closeButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.drawerContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  height: 100%;
+  overflow: hidden;
+  color: var(--font-color);
+}
+
+.drawerTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--font-color);
+}
+
+.messageList {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 10px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.messageList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.messageList::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.messageList::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+
+.messageList::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.message {
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  color: #333;
+  line-height: 1.5;
+  max-width: 85%;
+
+  align-self: flex-start;
+}
+
+.message.user {
+  background-color: #1976d2;
+  color: white;
+  align-self: flex-end;
+}
+
+.message.retrieval,
+.message.ping {
+  background-color: #e3f2fd;
+  color: #1976d2;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+.message.node_finished,
+.message.node_started,
+.message.workflow_finished,
+.message.workflow_started {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+.message.error {
+  background-color: #ffebee;
+  color: #c62828;
+  font-size: 14px;
+  padding: 8px 12px;
+}
+
+.messagePre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.inputForm {
+  display: flex;
+  gap: 12px;
+  padding-top: 20px;
+  margin-top: auto;
+}
+
+.input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #1976d2;
+}
+
+.input:disabled {
+  background-color: #f5f5f5;
+  color: #9e9e9e;
+  cursor: not-allowed;
+  border-color: #e0e0e0;
+}
+
+.submitButton {
+  padding: 12px 24px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.submitButton:hover {
+  background-color: #1565c0;
+}
+
+.submitButton:disabled {
+  background-color: #90caf9;
+  cursor: not-allowed;
+}
+
+/* 移动端样式 */
+.mobile {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  bottom: 0;
+  right: 0;
+  top: unset;
+  height: 70%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  transition: height 0.3s ease;
+}
+
+/* 移动端输入框获取焦点时的样式 */
+.mobile .input:focus {
+  outline: none;
+  border-color: #1976d2;
+}
+
+/* 当输入框获取焦点时，调整移动端抽屉高度 */
+.mobile.inputFocused {
+  height: 30%;
+}
+
+.mobile .drawerContent {
+  padding: 16px;
+}
+
+.mobile .drawerTitle {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.mobile .message {
+  max-width: 90%;
+  padding: 10px 14px;
+}
+
+.mobile .inputForm {
+  padding-top: 16px;
+}
+
+.mobile .input {
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+.mobile .submitButton {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+.mobile .closeButton {
+  top: 12px;
+  right: 12px;
+  padding: 6px;
+}
+
+.messageScrollContainer {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.messageContainer {
+  height: fit-content;
+}
+
+/* 暗黑模式样式 */
+:global(.dark) .drawer {
+  background-color: #1f2937;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+:global(.dark) .drawerTitle {
+  color: #f3f4f6;
+}
+
+:global(.dark) .closeButton {
+  color: #d1d5db;
+}
+
+:global(.dark) .closeButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+:global(.dark) .input {
+  background-color: #374151;
+  border-color: #4b5563;
+  color: #f3f4f6;
+}
+
+:global(.dark) .input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+:global(.dark) .input::placeholder {
+  color: #9ca3af;
+}
+
+:global(.dark) .submitButton {
+  background-color: #6366f1;
+}
+
+:global(.dark) .submitButton:hover {
+  background-color: #4f46e5;
+}
+
+:global(.dark) .submitButton:disabled {
+  background-color: #4b5563;
+}
+
+:global(.dark) .messageList {
+  background-color: #111827;
+}
+
+:global(.dark) .message {
+  color: #e5e7eb;
+}
+
+:global(.dark) .message.message {
+  background-color: #1f2937;
+}
+
+
+:global(.dark) .message.user {
+  background-color: #6366f1;
+  color: white;
+}
+
+:global(.dark) .message.retrieval,
+:global(.dark) .message.ping {
+
+  background-color: #172554;
+  border-left-color: #3b82f6;
+}
+
+
+:global(.dark) .message.node_finished,
+:global(.dark) .message.node_started,
+:global(.dark) .message.workflow_finished,
+:global(.dark) .message.workflow_started {
+
+  background-color: #064e3b;
+  border-left-color: #10b981;
+}
+
+:global(.dark) .message.error {
+  background-color: #7f1d1d;
+  border-left-color: #ef4444;
+  color: #fecaca;
+}

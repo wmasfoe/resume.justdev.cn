@@ -1,0 +1,42 @@
+.versionContainer {
+  position: relative;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.versionText {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.versionLink {
+  color: var(--foreground);
+  border-bottom: 1px dashed var(--foreground) !important;
+  padding-bottom: 0.2rem;
+  width: fit-content;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.pdfOnly {
+  display: none;
+}
+
+@media print {
+  .onlineOnly {
+    display: none;
+  }
+  .pdfOnly {
+    display: block;
+    padding: 0.75rem 0;
+    font-size: 0.8rem;
+    color: #4b5563;
+  }
+} 
