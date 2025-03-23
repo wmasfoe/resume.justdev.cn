@@ -1,0 +1,160 @@
+.answerIcon {
+  position: relative;
+  background: url(./icons/robot.png);
+  background-size: contain;
+}
+
+.typeingIcon {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 16px;
+  height: 16px;
+  background: #FFFFFF;
+  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+  border-radius: 16px;
+}
+
+
+.questionIcon {
+  background: url(./icons/default-avatar.png);
+  background-size: contain;
+  border-radius: 50%;
+}
+
+.answer::before,
+.question::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 8px;
+  height: 12px;
+}
+
+.answer::before {
+  left: 0;
+  background: url(./icons/answer.svg) no-repeat;
+}
+
+.answerWrap {
+  margin-right: 2.2rem;
+}
+
+.answerWrap .itemOperation {
+  display: none;
+}
+
+.answerWrap:hover .itemOperation {
+  display: flex;
+}
+
+.question::before {
+  right: 0;
+  background: url(./icons/question.svg) no-repeat;
+}
+
+.textArea {
+  padding-top: 13px;
+  padding-bottom: 13px;
+  padding-right: 90px;
+  border-radius: 12px;
+  line-height: 20px;
+  background-color: #fff;
+}
+
+.textArea:hover {
+  background-color: #fff;
+}
+
+/* .textArea:focus {
+  box-shadow: 0px 3px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px rgba(0, 0, 0, 0.05);
+} */
+
+.count {
+  /* display: none; */
+  padding: 0 2px;
+}
+
+.sendBtn {
+  background: url(./icons/send.svg) center center no-repeat;
+}
+
+.sendBtn:hover {
+  background-image: url(./icons/send-active.svg);
+  background-color: #EBF5FF;
+}
+
+.textArea:focus+div .count {
+  display: block;
+}
+
+.textArea:focus+div .sendBtn {
+  background-image: url(./icons/send-active.svg);
+}
+
+.submitButton {
+  height: 100%;
+  max-height: 43px;
+  padding: 0 1rem;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+}
+
+.submitButton:hover {
+  background-color: #1565c0;
+}
+
+.submitButton:disabled {
+  background-color: #90caf9;
+  cursor: not-allowed;
+}
+
+.formWrapper {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.inputArea {
+  flex: 1;
+  max-height: 60px;
+}
+
+.chatWrapper {
+  /* 1rem: gap; 30px: 弹窗的标题文本; */
+  height: calc(100% - 1rem - 30px);
+  display: flex;
+  flex-flow: column;
+}
+
+.chatScrollContainer {
+  /* 48px: 底部输入框; 10px: 底部padding; */
+  flex: 1;
+  overflow-y: auto;
+  margin-right: -20px;
+  padding-right: 20px;
+}
+
+.chatContentList {
+  height: fit-content;
+  min-height: 100%;
+  padding-top: 2rem;
+}
+
+.chatContentLoading {
+  transform: translateY(100%);
+}
+
+.mobileInput {
+  margin-bottom: 0.7rem;
+}

@@ -1,0 +1,75 @@
+name: 生成简历PDF
+
+on:
+  push:
+    branches: 
+      - main
+      # - 'feature/**'
+      # - 'fix/**'
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+# 添加权限配置
+permissions:
+  contents: write
+
+jobs:
+  build:
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    
+    - name: 设置Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: 安装 pnpm
+      uses: pnpm/action-setup@v2
+      with:
+        version: 8
+        run_install: false
+    
+    - name: 获取 pnpm 缓存目录
+      id: pnpm-cache
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+    
+    - name: 设置 pnpm 缓存
+      uses: actions/cache@v3
+      with:
+        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
+    
+    - name: 安装依赖
+      run: pnpm install
+    
+    - name: 安装字体
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y fonts-noto-cjk fonts-noto-cjk-extra fonts-wqy-microhei fonts-wqy-zenhei
+        # 下载并安装思源黑体
+        mkdir -p ~/.fonts
+        wget -q https://github.com/adobe-fonts/source-han-sans/releases/download/2.004R/SourceHanSansSC.zip
+        unzip -q SourceHanSansSC.zip -d ~/.fonts/
+        fc-cache -f -v
+    
+    - name: 生成PDF
+      run: pnpm run build:pdf
+    
+    - name: 提交PDF
+      if: success()
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add public/pdfs/resume.pdf
+        git diff --quiet && git diff --staged --quiet || git commit -m "自动更新简历PDF [skip ci]"
+        git push

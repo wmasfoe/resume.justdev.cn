@@ -1,14 +1,22 @@
-# Résumé d'Jiaqi
+# resume.justdev.cn
 
-This is my Résumé generator. You can check out my Résumé [here](https://resume.justdev.cn).
+## 简介
 
-The theme is heavy modified from [jsonresume-theme-kwan](https://github.com/icoloma/jsonresume-theme-kwan).
+这是一个 Next.js 项目，用于展示我的个人简历。并且接入了大模型可以向我发起提问。
 
+本项目目前采用 Vercel 部署，感谢 Vercel 提供的 serverless 服务。
 
-## How it works
+## 技术栈
 
-- The data is hosted by [Gist](https://gist.github.com/wmasfoe/cbc03b69de1af26b57af827709412a8c) with [JSON Resume](https://jsonresume.org/) standard.
-- The website is hosted by [Vercel](http://vercel.com/) with CI/CD.
-- HTML is generated with [Handlebars](https://handlebarsjs.com/) and PDF is printed with [puppeteer](https://github.com/puppeteer/puppeteer/).
+- Next.js
+- Tailwind CSS
+- TypeScript
+- Vercel
 
-> Note: I did a lot quick hacks to make it suitable for my design, which may not be good to be general used as a theme. While I may not have time to improve it, PRs are great welcome!
+## TODO
+
+- [ ] 增加开源项目板块
+- [ ] 外链增加 个人博客、Github 地址
+- [ ] LLM workflow 支持阅读当前页面
+- [ ] 在线版主题优化
+- [ ] 项目构建、部署统一采用 Github workflow

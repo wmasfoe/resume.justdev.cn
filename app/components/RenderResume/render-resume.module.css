@@ -1,0 +1,303 @@
+.variables {
+  /*模块之间的间距，比如工作经历、简介这种大的模块*/
+  --resume-module-gap: 1.2rem;
+  /*模块顶部title和下方正文之间的间距*/
+  --resume-section-title-gap: 0.6rem;
+  /*模块每行text之间的间距，比如工作内容部分1、2、3*/
+  --resume-text-gap: 0.2rem;
+  /*模块中的内联模块的间距，比如项目1、项目2*/
+  --resume-module-group-gap: 1rem;
+}
+.resumeContainer {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Nunito Sans', "Helvetica Neue", Helvetica, Arial, 'Noto Sans SC', sans-serif;
+  color: var(--foreground);
+}
+.resumeContainer ul {
+  margin-left: 1rem !important;
+  list-style: outside !important;
+  padding-left: 0.5rem !important;
+}
+.resumeContainer ul li::marker {
+  margin-right: 0.1rem !important;
+}
+@media print {
+  .resumeContainer {
+    padding: 0;
+  }
+}
+
+.resumeContainer ul {
+    padding-left: 20px;
+    margin: 0 0 0.5rem;
+}
+.resumeContainer a {
+    border-bottom: 1px dashed var(--foreground);
+}
+
+/* 头部信息样式 */
+.profileCard {
+    margin-bottom: var(--resume-module-gap);
+    text-align: center;
+}
+
+.nameAndProfession {
+  position: relative;
+}
+.nameAndProfession h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.jobTitle {
+    color: var(--foreground);
+    font-size: 1.25rem;
+    margin: 0.1rem 0 0;
+    opacity: 0.8;
+}
+.notBorderBottom {
+  border-bottom: none !important;
+}
+
+.contactDetails {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.3rem;
+}
+@media print {
+  .contactDetails {
+    margin-top: 0 !important;
+  }
+}
+.profilesDetail {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.split {
+  color: var(--font-color);
+  font-size: 0.8rem;
+  opacity: 0.3;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* 背景卡片样式 */
+.backgroundCard {
+    margin-bottom: var(--resume-module-gap);
+}
+.backgroundCard:last-of-type {
+    margin-bottom: 0;
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: var(--resume-section-title-gap);
+    border-bottom: 2px solid var(--foreground);
+}
+
+.cardNested {
+    margin-bottom: var(--resume-module-group-gap);
+}
+.cardNested:last-of-type {
+  margin-bottom: 0;
+}
+.cardNested.notMargin {
+  margin-bottom: 0;
+}
+
+.cardNested h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.metaInfo {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--foreground);
+    opacity: 0.7;
+}
+
+.textMuted {
+    opacity: 0.8;
+}
+
+.highlightList {
+    margin-top: var(--resume-text-gap);
+}
+
+.highlightList li {
+    margin-bottom: var(--resume-text-gap);
+}
+
+.workExperience {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.cardNested,
+.workExperience {
+  padding-left: var(--resume-section-title-gap);
+  padding-right: var(--resume-section-title-gap);
+}
+@media print {
+  .workExperience {
+    flex-direction: row;
+    gap: var(--resume-module-group-gap);
+  }
+}
+
+/* 项目卡片样式 */
+.projectCard {
+    margin-bottom: var(--resume-module-group-gap);
+}
+.openSourceProject {
+  margin-bottom: var(--resume-module-group-gap);
+}
+
+.projectHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.openSourceProjectHeader {
+  margin-bottom: 0.7rem;
+}
+
+.projectHeader h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.normalText {
+    font-size: 1.1rem;
+    color: var(--font-color);
+}
+.techStack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+}
+
+.techTag {
+    display: inline-block;
+    font-size: 1rem;
+    line-height: 1rem;
+}
+.techTag.techTagAfter:not(:last-of-type):not(.strong)::after {
+    content: " + ";
+}
+
+.descSection {
+    margin-bottom: 0.3rem;
+    margin-top: 0.7rem;
+}
+
+.descSection h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+}
+
+.contentList {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.contentList li {
+    position: relative;
+    margin-bottom: var(--resume-text-gap);
+    font-size: 1rem;
+}
+
+.contentList li:last-of-type {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .resumeContainer {
+        padding: 1rem;
+    }
+    
+    .nameAndProfession h1 {
+        font-size: 2rem;
+    }
+}
+
+.onlineOnly {
+  display: block;
+}
+.pdfOnly {
+  display: none;
+}
+
+@media print {
+  .onlineOnly {
+    display: none !important;
+  }
+  .pdfOnly {
+    display: block !important;
+  }
+}
+
+.blockToInline {
+  display: inline-block;
+}
+.pcVersionChange {
+  position: absolute;
+  right: 1rem;
+  top: 0.8rem;
+}
+
+.mobileOnly {
+  display: none;
+}
+.pcOnly {
+  display: block;
+}
+.pcOnlyInlineFlex {
+  display: inline-flex;
+}
+
+@media (max-width: 768px) {
+  .pcOnly {
+    display: none;
+  }
+  .pcOnlyInlineFlex {
+    display: none;
+  }
+  .mobileOnly {
+    display: block;
+  }
+  .pcOrPDFOnly {
+    display: none !important;
+  }
+}
+
+@media print {
+  .pcOrPDFOnly {
+    display: inline-flex !important;
+  }
+}
+
+.pcOrPDFOnly {
+  display: inline-flex;
+}

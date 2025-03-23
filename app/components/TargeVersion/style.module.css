@@ -1,0 +1,38 @@
+.versionContainer {
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.versionText {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.versionLink {
+  color: var(--foreground);
+  width: fit-content;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.pdfOnly {
+  display: none;
+}
+
+@media print {
+  .onlineOnly {
+    display: none;
+  }
+  .pdfOnly {
+    display: block;
+    padding: 0.75rem 0;
+    font-size: 0.8rem;
+    color: #4b5563;
+  }
+} 

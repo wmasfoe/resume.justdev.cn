@@ -1,0 +1,21 @@
+{
+  "name": "李嘉奇的个人简历",
+  "short_name": "简历",
+  "description": "前端开发工程师个人简历",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/png"
+    }
+  ]
+}
