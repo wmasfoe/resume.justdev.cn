@@ -144,7 +144,7 @@ export default function AgentBot() {
         </div>
 
         {(isNearby || isExpanded) && !isDrawerOpen && !isHiding && (
-          <div className={styles.prompt}>要帮忙嘛？</div>
+          <div className={styles.prompt}>需要帮忙嘛？</div>
         )}
       </div>
       <ChatDrawer isOpen={isDrawerOpen} onClose={handleCloseDrawer} isMobile={isMobile} />
