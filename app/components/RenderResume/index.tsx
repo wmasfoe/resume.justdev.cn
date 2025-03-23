@@ -113,7 +113,7 @@ export default function ResumeViewer() {
               <TargetVersion/>
             </div>
           </div>
-          <div className={styles.mobileArea}>
+          <div className={`${styles.mobileArea} ${styles.onlineOnly} ${styles.mobileOnly}`}>
             <GithubWebSite applyMode={'mobile'} githubInfo={resumeData.basics.profiles.gitHub} websiteInfo={resumeData.basics.profiles.portfolio}/>
             <span className={`${styles.onlineOnly} ${styles.mobileOnly} ${styles.detail} ${styles.split}`}>|</span>
             <div className={`${styles.onlineOnly} ${styles.mobileOnly}`}>
