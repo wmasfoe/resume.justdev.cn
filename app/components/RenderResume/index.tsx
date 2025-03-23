@@ -27,7 +27,11 @@ function GithubWebSite(props: {
     {
       githubInfo && (
         <>
-          <span className={firstSpanClassList}>|</span>
+          {
+            applyMode === 'mobile'
+              ? <></>
+              : <span className={firstSpanClassList}>|</span>
+          }
           <span className={secondSpanClassList}>
             <a href={githubInfo.url} className={styles.notBorderBottom} target="_blank"
               rel="noopener noreferrer">
