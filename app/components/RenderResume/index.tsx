@@ -14,13 +14,13 @@ function GithubWebSite(props: {
   const firstSpanClassList = `
     ${styles.detail}
     ${styles.split}
-    ${applyMode === 'mobile' ? styles.mobileOnly : ''}
-    ${applyMode === 'pc' ? styles.pcOnly : ''}
+    ${applyMode === 'mobile' ? `${styles.mobileOnly} ${styles.onlineOnly}` : ''}
+    ${applyMode === 'pc' ? `${styles.pdfOnly} ${styles.pcOnlyInlineFlex}` : ''}
   `
   const secondSpanClassList = `
     ${styles.detail}
-    ${applyMode === 'mobile' ? styles.mobileOnly : ''}
-    ${applyMode === 'pc' ? styles.pcOnly : ''}
+    ${applyMode === 'mobile' ? `${styles.mobileOnly} ${styles.onlineOnly}` : ''}
+    ${applyMode === 'pc' ? `${styles.pdfOnly} ${styles.pcOnlyInlineFlex}` : ''}
   `
   
   return <>
@@ -115,6 +115,7 @@ export default function ResumeViewer() {
           </div>
           <div className={styles.mobileArea}>
             <GithubWebSite applyMode={'mobile'} githubInfo={resumeData.basics.profiles.gitHub} websiteInfo={resumeData.basics.profiles.portfolio}/>
+            <span className={`${styles.onlineOnly} ${styles.mobileOnly} ${styles.detail} ${styles.split}`}>|</span>
             <div className={`${styles.onlineOnly} ${styles.mobileOnly}`}>
               <TargetVersion/>
             </div>
