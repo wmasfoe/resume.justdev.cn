@@ -24,7 +24,7 @@
       }
     }
   },
-  "skills": [
+  "skillList": [
     "熟练使用 Vue / React / Nuxt / Next 框架",
     "熟悉 RN / Taro / uni-app 跨端开发，熟悉小程序开发",
     "熟悉 Hybrid 混合开发，熟悉 JS-Bridge，熟悉 H5 和 Native 交互流程",
