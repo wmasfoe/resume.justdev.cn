@@ -141,7 +141,7 @@ function GithubWebSite(props: {
 // TODO 临时逻辑，将原本 li 的 title 内容加粗
 function getLiBoldContent(text: string) {
   return text.includes(": ") ? <>
-    <span style={{fontWeight: 500}}>{`${text.split(": ")[0]}: `}</span>
+    <span style={{fontWeight: 600}}>{`${text.split(": ")[0]}: `}</span>
     <span>{text.split(": ").slice(1).join('')}</span>
   </> : text
 }
