@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import React from 'react'
-import imageSource from './img.png'
+import imageSource from './surfing.svg'
 
 interface EmptyProps {
   className?: string

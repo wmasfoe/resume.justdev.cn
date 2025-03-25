@@ -210,8 +210,6 @@ export default function ResumeViewer() {
         </ul>
       </section>
 
-      {/* 以下四个部分抽离成 SectionList 组件 */}
-
       {/* 工作经历 */}
       <SectionList
         title="工作经历"
@@ -317,11 +315,10 @@ export default function ResumeViewer() {
         )}
       />
 
-      {/* 教育经历，注意：教育经历仅在在线预览中展示 */}
+      {/* 教育经历 */}
       <SectionList
         title="教育经历"
         data={resumeData.education}
-        extraSectionClass={styles.onlineOnly}
         renderItem={(education) => (
           <div className={`${styles.cardNested} ${styles.projectCard} ${styles.openSourceProject}`}>
             <div className={`${styles.projectHeader} ${styles.educationHeader}`}>
