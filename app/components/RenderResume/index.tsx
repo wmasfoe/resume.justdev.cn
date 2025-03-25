@@ -45,19 +45,23 @@ const IconLink = ({
  * @param data 数组数据
  * @param renderItem 渲染每个数据项的函数
  * @param extraSectionClass 额外传入的 section 样式（例如在线展示专用）
+ * @param wrapperClass renderItem 外部容器的样式
  */
 interface SectionListProps {
   title: string
   data: any[]
   renderItem: (item: any, index: number) => React.ReactNode
   extraSectionClass?: string
+  wrapperClass?: string
 }
-const SectionList: React.FC<SectionListProps> = ({ title, data, renderItem, extraSectionClass = '' }) => (
+const SectionList: React.FC<SectionListProps> = ({ title, data, renderItem, extraSectionClass = '', wrapperClass = '' }) => (
   <section className={`${styles.backgroundCard} ${extraSectionClass}`}>
     <h2 className={styles.sectionTitle}>{title}</h2>
-    {data.map((item, index) => (
-      <React.Fragment key={index}>{renderItem(item, index)}</React.Fragment>
-    ))}
+    <div className={wrapperClass}>
+      {data.map((item, index) => (
+        <React.Fragment key={index}>{renderItem(item, index)}</React.Fragment>
+      ))}
+    </div>
   </section>
 )
 
@@ -206,10 +210,13 @@ export default function ResumeViewer() {
         </ul>
       </section>
 
+      {/* 以下四个部分抽离成 SectionList 组件 */}
+
       {/* 工作经历 */}
       <SectionList
         title="工作经历"
         data={resumeData.work}
+        wrapperClass={styles.workExperience}
         renderItem={(job) => (
           <div className={`${styles.cardNested} ${styles.notMargin}`}>
             <h3>
