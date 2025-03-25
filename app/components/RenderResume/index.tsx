@@ -138,6 +138,14 @@ function GithubWebSite(props: {
   )
 }
 
+// TODO 临时逻辑，将原本 li 的 title 内容加粗
+function getLiBoldContent(text: string) {
+  return text.includes(": ") ? <>
+    <span style={{fontWeight: 500}}>{`${text.split(": ")[0]}: `}</span>
+    <span>{text.split(": ").slice(1).join('')}</span>
+  </> : text
+}
+
 export default function ResumeViewer() {
   return (
     <div className={`${styles.resumeContainer} ${styles.variables}`}>
@@ -205,7 +213,9 @@ export default function ResumeViewer() {
         <h2 className={styles.sectionTitle}>掌握的技能</h2>
         <ul className={styles.contentList}>
           {resumeData.skillList.map((skill, index) => (
-            <li key={skill}>{skill}</li>
+            <li key={skill}>{
+              getLiBoldContent(skill)
+            }</li>
           ))}
         </ul>
       </section>
@@ -234,7 +244,7 @@ export default function ResumeViewer() {
             {job.highlights && (
               <ul className={styles.highlightList}>
                 {job.highlights.map((highlight: string, i: number) => (
-                  <li key={i}>{highlight}</li>
+                  <li key={i}>{getLiBoldContent(highlight)}</li>
                 ))}
               </ul>
             )}
@@ -270,7 +280,7 @@ export default function ResumeViewer() {
                 <h4>{section.type}</h4>
                 <ul className={styles.contentList}>
                   {section.content.map((item: string, j: number) => (
-                    <li key={j}>{item}</li>
+                    <li key={j}>{getLiBoldContent(item)}</li>
                   ))}
                 </ul>
               </div>

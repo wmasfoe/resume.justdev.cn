@@ -7,6 +7,14 @@
   --resume-text-gap: 0.2rem;
   /*模块中的内联模块的间距，比如项目1、项目2*/
   --resume-module-group-gap: 1rem;
+
+
+  /* 大标题字体 */
+  --big-title: 1.4rem;
+  /* 次级标题字体 */
+  --title: 1.25rem;
+  /* 工作经历职责字体 */
+  --sub-title: 1.1rem;
 }
 .resumeContainer {
   max-width: 800px;
@@ -52,7 +60,7 @@
   position: relative;
 }
 .nameAndProfession h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 600;
 }
 
