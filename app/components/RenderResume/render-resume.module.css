@@ -111,14 +111,15 @@
 }
 
 .sectionTitle {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: var(--resume-section-title-gap);
-    border-bottom: 2px solid var(--foreground);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: var(--resume-section-title-gap);
+  border-bottom: 2px solid var(--foreground);
 }
 
 .cardNested {
-    margin-bottom: var(--resume-module-group-gap);
+  margin-bottom: var(--resume-module-group-gap);
+  flex: 1;
 }
 .cardNested:last-of-type {
   margin-bottom: 0;
@@ -166,12 +167,12 @@
   padding-left: var(--resume-section-title-gap);
   padding-right: var(--resume-section-title-gap);
 }
-@media print {
+/* @media print { */
   .workExperience {
     flex-direction: row;
     gap: var(--resume-module-group-gap);
   }
-}
+/* } */
 
 /* 项目卡片样式 */
 .projectCard {

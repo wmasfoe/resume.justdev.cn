@@ -135,29 +135,29 @@ const Chat: FC<IChatProps> = ({
       {/* Chat List */}
       <div className={styles.chatScrollContainer} ref={chatContainerRef}>
         <div className={cn(styles.chatContentList, 'space-y-[30px]')}>
-          {chatList?.length > 0 ? chatList.map((item) => {
-            if (item.isAnswer) {
-              const isLast = item.id === chatList[chatList.length - 1].id
-              return <Answer
-                key={item.id}
-                item={item}
-                feedbackDisabled={feedbackDisabled}
-                onFeedback={onFeedback}
-                isResponding={isResponding && isLast}
-              />
-            }
-            return (
-              <Question
-                key={item.id}
-                id={item.id}
-                content={item.content}
-                useCurrentUserAvatar={useCurrentUserAvatar}
-                imgSrcs={(item.message_files && item.message_files?.length > 0) ? item.message_files.map(item => item.url) : []}
-              />
-            )
-          })
-            :
-            <div style={{ height: '15rem' }}>
+          {
+            chatList?.length > 0 ? chatList.map((item) => {
+              if (item.isAnswer) {
+                const isLast = item.id === chatList[chatList.length - 1].id
+                return <Answer
+                  key={item.id}
+                  item={item}
+                  feedbackDisabled={feedbackDisabled}
+                  onFeedback={onFeedback}
+                  isResponding={isResponding && isLast}
+                />
+              }
+              return (
+                <Question
+                  key={item.id}
+                  id={item.id}
+                  content={item.content}
+                  useCurrentUserAvatar={useCurrentUserAvatar}
+                  imgSrcs={(item.message_files && item.message_files?.length > 0) ? item.message_files.map(item => item.url) : []}
+                />
+              )
+            })
+            : <div style={{ height: '15rem' }}>
               <Empty />
             </div>
           }
