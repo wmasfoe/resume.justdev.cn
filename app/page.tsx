@@ -3,7 +3,7 @@ import React from 'react'
 
 import type { IMainProps } from '@/app/components/Chat'
 import RenderResume from '@/app/components/RenderResume'
-import AgentBot from '@/app/components/AgentBot'
+import Ask from '@/app/components/Ask'
 
 const App: FC<IMainProps> = ({
   params,
@@ -11,7 +11,7 @@ const App: FC<IMainProps> = ({
 
   return <>
     <RenderResume />
-    <AgentBot />
+    <Ask />
   </>
 }
 
