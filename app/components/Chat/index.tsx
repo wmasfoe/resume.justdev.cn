@@ -17,12 +17,13 @@ import { replaceVarWithValues, userInputsFormToPromptVariables } from '@/utils/p
 import { API_KEY, APP_ID, APP_INFO, isShowPrompt, promptTemplate } from '@/config'
 import type { Annotation as AnnotationType } from '@/types/log'
 import { addFileInfos, sortAgentSorts } from '@/utils/tools'
+import { useSharedState } from '../common' 
 
 export type IMainProps = {
-  params: any
+  query: string
 }
 
-const Main: FC<IMainProps> = () => {
+const Main: FC<IMainProps> = ({ query }) => {
   const { t } = useTranslation()
   const hasSetAppConfig = APP_ID && API_KEY
 
@@ -242,7 +243,10 @@ const Main: FC<IMainProps> = () => {
     })()
   }, [])
 
-  const [isResponding, { setTrue: setRespondingTrue, setFalse: setRespondingFalse }] = useBoolean(false)
+  const [isResponding, setSharedResponding] = useSharedState(false)
+  const setRespondingTrue = () => setSharedResponding(true)
+  const setRespondingFalse = () => setSharedResponding(false)
+  // const [isResponding, { setTrue: setRespondingTrue, setFalse: setRespondingFalse }] = useBoolean(false)
   const [abortController, setAbortController] = useState<AbortController | null>(null)
   const { notify } = Toast
   const logError = (message: string) => {
@@ -300,7 +304,7 @@ const Main: FC<IMainProps> = () => {
     }
     const data: Record<string, any> = {
       inputs: currInputs,
-      query: message,
+      query,
       conversation_id: isNewConversation ? null : currConversationId,
     }
 
@@ -320,7 +324,7 @@ const Main: FC<IMainProps> = () => {
     const questionId = `question-${Date.now()}`
     const questionItem = {
       id: questionId,
-      content: message,
+      content: query,
       isAnswer: false,
       message_files: files,
     }

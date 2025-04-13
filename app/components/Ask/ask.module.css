@@ -23,7 +23,7 @@
   transform: translateX(50%);
   border-radius: 16px;
   overflow: hidden;
-  width: fit-content;
+  width: 230px;
   height: 3rem;
   display: flex;
   flex-direction: column;
@@ -170,12 +170,16 @@
 .inputContainer:has(.expanded) {
   height: 22rem;
   max-height: calc(100vh - 10rem);
+  width: 600px;
 }
 
 /* 移动端适配 */
 @media (max-width: 768px) {
   .inputContainer {
     bottom: env(safe-area-inset-bottom, 0.7rem);
+  }
+  .inputContainer:has(.expanded) {
+    width: calc(100vw - 1.4rem);
   }
   
   .chatContainer {
