@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import { useEffect, useState, useMemo } from 'react'
 
 export enum MediaType {
   mobile = 'mobile',
@@ -8,16 +8,16 @@ export enum MediaType {
 }
 
 const useBreakpoints = () => {
-  const [width, setWidth] = React.useState(globalThis.innerWidth)
-  const media = (() => {
+  const [width, setWidth] = useState(globalThis.innerWidth)
+  const media = useMemo(() => {
     if (width <= 640)
       return MediaType.mobile
     if (width <= 768)
       return MediaType.tablet
     return MediaType.pc
-  })()
+  }, [width])
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleWindowResize = () => setWidth(window.innerWidth)
     window.addEventListener('resize', handleWindowResize)
     return () => window.removeEventListener('resize', handleWindowResize)

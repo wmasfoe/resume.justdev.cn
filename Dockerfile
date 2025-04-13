@@ -4,9 +4,9 @@ WORKDIR /app
 
 COPY . .
 
-RUN yarn install
-RUN yarn build
+RUN pnpm install
+RUN pnpm build
 
 EXPOSE 3000
 
-CMD ["yarn","start"]
+CMD ["pnpm","start"]

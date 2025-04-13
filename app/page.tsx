@@ -1,18 +1,16 @@
-import type { FC } from 'react'
 import React from 'react'
-
-import type { IMainProps } from '@/app/components/Chat'
+import type { FC } from 'react'
 import RenderResume from '@/app/components/RenderResume'
-import AgentBot from '@/app/components/AgentBot'
+import Ask from '@/app/components/Ask'
 
-const App: FC<IMainProps> = ({
-  params,
-}: any) => {
+const App: FC = () => {
 
-  return <>
-    <RenderResume />
-    <AgentBot />
-  </>
+  return (
+    <main className="relative min-h-screen">
+      <RenderResume />
+      <Ask />
+    </main>
+  )
 }
 
 export default React.memo(App)
