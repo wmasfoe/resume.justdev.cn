@@ -35,6 +35,7 @@ export default function Ask({ className }: Props) {
     let documentRef: Document | undefined;
     const handleClickOutside = (e: MouseEvent) => {
       setIsExpanded(false);
+      document.body.style.overflow = 'auto'
     };
 
     if (typeof document !== 'undefined') {
@@ -79,23 +80,8 @@ export default function Ask({ className }: Props) {
     }
 
     e.nativeEvent.stopImmediatePropagation();
+    document.body.style.overflow = 'hidden'
   }
-
-  // const handleSubmit = async () => {
-  //   if (message.trim()) {
-  //     // 添加用户问题到列表
-  //     const newQuestion: ChatItem = {
-  //       id: `question-${Date.now()}`,
-  //       content: message,
-  //       isAnswer: false
-  //     }
-      
-  //     setChatList(prev => [...prev, newQuestion])
-  //     onSend(message)
-  //     setMessage('')
-      
-  //   }
-  // }
 
   const { t } = useTranslation()
     const hasSetAppConfig = APP_ID && API_KEY
