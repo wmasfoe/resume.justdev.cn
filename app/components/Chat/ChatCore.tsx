@@ -131,10 +131,10 @@ const Chat: FC<IChatProps> = ({
   }, [chatList, isResponding])
 
   return (
-    <div className={cn(!feedbackDisabled && 'h-full', styles.chatWrapper)}>
+    <div className={styles.chatWrapper} style={{ pointerEvents: 'auto' }}>
       {/* Chat List */}
-      <div className={styles.chatScrollContainer} ref={chatContainerRef}>
-        <div className={cn(styles.chatContentList, 'space-y-[30px]')}>
+      <div className="chatScrollContainer" ref={chatContainerRef} onMouseDown={(e) => e.stopPropagation()}>
+        <div className="space-y-[30px]">
           {
             chatList?.length > 0 ? chatList.map((item) => {
               if (item.isAnswer) {

@@ -21,22 +21,46 @@
   bottom: 0.7rem;
   right: 50%;
   transform: translateX(50%);
+  border-radius: 16px;
+  overflow: hidden;
   width: fit-content;
+  height: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 100;
-  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition: all 0.2s;
+  cursor: pointer;
+  box-shadow: 0 4px 12px var(--box-shadow);
 }
 
-@media print {
-  .inputContainer {
-    display: none;
-  }
+.chatContainer {
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 -4px 12px var(--box-shadow);
+  max-height: calc(100vh - 120px);
+  flex: 1;
+}
+
+.chatWrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--modal-background);
+  color: var(--text-color);
+  position: relative;
+}
+
+.chatWrapper :global(.chatScrollContainer) {
+  height: 100%;
+  overflow-y: auto;
+  padding: 1rem;
+  padding-top: 3rem;
 }
 
 .inputFieldWrapper {
+  flex-shrink: 0;
   position: relative;
   width: 230px;
   height: 3rem;
@@ -45,32 +69,16 @@
   justify-content: space-between;
   gap: 0.75rem;
   padding: 0.5rem 0.75rem 0.5rem 0.25rem;
-  transition: transform 500ms, opacity 200ms, left 200ms, width 400ms;
+  transition: all 0.2s;
   background-color: var(--modal-background);
   color: var(--text-color);
-  border-radius: 16px;
-  box-shadow: 0 4px 12px var(--box-shadow);
-  backdrop-filter: blur(8px);
   font-size: 0.95rem;
   overflow: hidden;
 }
 
-.inputFieldWrapper:hover {
-  transform: scale(1.05);
-}
-
-.inputFieldWrapper:focus-within {
+/* 展开状态 */
+.inputFieldWrapper.expanded {
   width: 600px;
-}
-
-.inputFieldWrapper:focus-within:hover {
-  transform: scale(1);
-}
-
-@media (max-width: 768px) {
-  .inputFieldWrapper:focus-within {
-    width: calc(100vw - 1.4rem);
-  }
 }
 
 .inputField {
@@ -80,7 +88,6 @@
   line-height: 1.5;
   padding: 0.5rem 0.75rem;
   border: none;
-  border-radius: 12px;
   background-color: var(--modal-background);
   color: var(--text-color);
   font-size: 0.95rem;
@@ -121,7 +128,7 @@
   padding: 0;
   background-color: #6366f1;
   color: #f3f4f6;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   border: none;
 }
 
@@ -158,5 +165,42 @@
   .sendButton:disabled {
     background-color: #4b5563;
     color: #9ca3af;
+  }
+}
+.inputContainer:has(.expanded) {
+  height: 22rem;
+  max-height: calc(100vh - 10rem);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+  .inputContainer {
+    bottom: env(safe-area-inset-bottom, 0.7rem);
+  }
+  
+  .chatContainer {
+    max-height: 100%;
+    width: 100%;
+    margin: 0;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  .chatWrapper {
+    height: 100% !important;
+  }
+
+  .chatWrapper :global(.chatScrollContainer) {
+    padding: 0.7rem;
+    padding-top: 2.5rem;
+  }
+
+  .inputFieldWrapper.expanded {
+    width: calc(100vw - 1.4rem);
+  }
+}
+
+@media print {
+  .inputContainer {
+    display: none;
   }
 }
