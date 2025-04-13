@@ -35,7 +35,7 @@ export default function Ask({ className }: Props) {
     let documentRef: Document | undefined;
     const handleClickOutside = (e: MouseEvent) => {
       setIsExpanded(false);
-      document.body.style.overflow = 'auto'
+      document.body.style.overflow = 'unset'
     };
 
     if (typeof document !== 'undefined') {
