@@ -1,18 +1,10 @@
 .variables {
-  --modal-background: #ffffff;
-  --text-color: #333333;
   --box-shadow: rgba(0, 0, 0, 0.1);
-  --scrollbar-thumb: #888;
-  --scrollbar-thumb-hover: #555;
 }
 
 @media (prefers-color-scheme: dark) {
   .variables {
-    --modal-background: #2d3748;
-    --text-color: #f7fafc;
     --box-shadow: rgba(0, 0, 0, 0.3);
-    --scrollbar-thumb: #4b5563;
-    --scrollbar-thumb-hover: #6b7280;
   }
 }
 
@@ -48,7 +40,7 @@
   display: flex;
   flex-direction: column;
   background-color: var(--modal-background);
-  color: var(--text-color);
+  color: var(--foreground);
   position: relative;
 }
 
@@ -71,7 +63,7 @@
   padding: 0.5rem 0.75rem 0.5rem 0.25rem;
   transition: all 0.2s;
   background-color: var(--modal-background);
-  color: var(--text-color);
+  color: var(--foreground);
   font-size: 0.95rem;
   overflow: hidden;
 }
@@ -89,31 +81,13 @@
   padding: 0.5rem 0.75rem;
   border: none;
   background-color: var(--modal-background);
-  color: var(--text-color);
+  color: var(--foreground);
   font-size: 0.95rem;
   cursor: pointer;
   outline: none;
   resize: none;
   transition: all 0.3s ease;
   overflow-y: auto;
-}
-
-/* 自定义滚动条样式 */
-.inputField::-webkit-scrollbar {
-  width: 4px;
-}
-
-.inputField::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.inputField::-webkit-scrollbar-thumb {
-  background: var(--scrollbar-thumb);
-  border-radius: 2px;
-}
-
-.inputField::-webkit-scrollbar-thumb:hover {
-  background: var(--scrollbar-thumb-hover);
 }
 
 .sendButton {
@@ -167,6 +141,7 @@
     color: #9ca3af;
   }
 }
+
 .inputContainer:has(.expanded) {
   height: 22rem;
   max-height: calc(100vh - 10rem);
@@ -178,6 +153,7 @@
   .inputContainer {
     bottom: env(safe-area-inset-bottom, 0.7rem);
   }
+  
   .inputContainer:has(.expanded) {
     width: calc(100vw - 1.4rem);
   }

@@ -6,7 +6,7 @@ import Ask from '@/app/components/Ask'
 const App: FC = () => {
 
   return (
-    <main className="relative min-h-screen bg-gray-50 dark:bg-gray-900">
+    <main className="relative min-h-screen">
       <RenderResume />
       <Ask />
     </main>
