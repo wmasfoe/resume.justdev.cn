@@ -1,4 +1,4 @@
-import {useState, useCallback} from 'react'
+import { useState, useCallback, useRef } from 'react'
 
 export function useSharedState<T>(initialValue: T): [T, (newValue: T) => void] {
   const [state, setState] = useState(initialValue)

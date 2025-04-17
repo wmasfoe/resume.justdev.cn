@@ -47,7 +47,6 @@
   flex-flow: column;
   background: transparent;
   color: var(--text-color);
-  backdrop-filter: blur(8px);
 }
 
 .formWrapper {

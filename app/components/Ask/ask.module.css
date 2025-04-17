@@ -27,6 +27,10 @@
   box-shadow: 0 4px 12px var(--box-shadow);
 }
 
+.inputContainer.hoverScale:hover {
+  transform: translateX(50%) scale(1.1);
+}
+
 .chatContainer {
   width: 100%;
   overflow: hidden;
