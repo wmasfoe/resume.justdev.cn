@@ -56,11 +56,50 @@ export default function Ask({ className }: Props) {
     setIsExpanded(false);
   };
 
-  // 新增自动聚焦逻辑
+  // 处理软键盘和视口调整
   useEffect(() => {
-    if (isExpanded && inputRef.current) {
-      inputRef.current.focus();
+    if (!isExpanded) return;
+
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const textarea = inputRef.current;
+    if (!isMobile || !textarea) return;
+
+    const handleVisualViewport = () => {
+      const viewport = window.visualViewport;
+      if (!viewport) return;
+      
+      requestAnimationFrame(() => {
+        const rect = textarea.getBoundingClientRect();
+        if (rect.bottom > viewport.height) {
+          textarea.scrollIntoView({
+            block: 'center',
+            behavior: 'smooth'
+          });
+        }
+      });
+    };
+
+    // Focus the input after a short delay to ensure the viewport is ready
+    const focusTimeout = setTimeout(() => {
+      textarea.focus();
+    }, 100);
+
+    const viewport = window.visualViewport;
+    if (viewport) {
+      viewport.addEventListener('resize', handleVisualViewport);
+      viewport.addEventListener('scroll', handleVisualViewport);
     }
+
+    // Handle initial position
+    handleVisualViewport();
+
+    return () => {
+      clearTimeout(focusTimeout);
+      if (viewport) {
+        viewport.removeEventListener('resize', handleVisualViewport);
+        viewport.removeEventListener('scroll', handleVisualViewport);
+      }
+    };
   }, [isExpanded]);
 
   function handleFocus<T>(e: SyntheticEvent<T, Event>) {
@@ -633,8 +672,8 @@ export default function Ask({ className }: Props) {
   // if (appUnavailable)
   //   return <AppUnavailable isUnknownReason={isUnknownReason} errMessage={!hasSetAppConfig ? 'Please set APP_ID and API_KEY in config/index.tsx' : ''} />
   
-  if (!APP_ID || !APP_INFO || !promptConfig || appUnavailable)
-    return <Loading type='app' />
+  // if (!APP_ID || !APP_INFO || !promptConfig || appUnavailable)
+  //   return <Loading type='app' />
   
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
