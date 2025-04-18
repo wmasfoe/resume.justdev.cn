@@ -174,12 +174,12 @@
   padding-left: var(--resume-section-title-gap);
   padding-right: var(--resume-section-title-gap);
 }
-@media print {
+/* @media print {
   .workExperience {
     flex-direction: row;
     gap: var(--resume-module-group-gap);
   }
-}
+} */
 
 /* 项目卡片样式 */
 .projectCard {

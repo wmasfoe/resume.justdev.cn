@@ -66,6 +66,20 @@
       ],
       "startDate": "2021-08-06",
       "endDate": "2022-06-10"
+    },
+    {
+      "company": "石家庄新益保科技",
+      "position": "前端开发工程师",
+      "location": "石家庄",
+      "summary": "技术部",
+      "isCurrentRole": false,
+      "highlights": [
+        "负责公司WEB、移动端的前后端交互开发，高保真还原设计图",
+        "与UI设计及后台开发人员团队协作，高效优质完成产品界面和功能的实现。",
+        "参与公司项目的讨论、需求评审、技术评审，按期交付需求"
+      ],
+      "startDate": "2019-09",
+      "endDate": "2021-07"
     }
   ],
   "workProject": [
@@ -233,7 +247,7 @@
     },
     {
       "projectName": "巨量引擎官网",
-      "mode": "online",
+      "mode": "all",
       "role": "前端开发",
       "workSkill": [
         "Nuxt.js",
@@ -257,7 +271,7 @@
     },
     {
       "projectName": "Tenant Portal",
-      "mode": "online",
+      "mode": "all",
       "role": "前端开发",
       "workSkill": [
         "React",
@@ -267,8 +281,15 @@
       ],
       "desc": [
         {
+          "type": "主要职责",
+          "content": [
+            "支付系统前端开发，常用组件封装"
+          ]
+        },
+        {
           "type": "主要做的事情",
           "content": [
+            "使用 gql-loader 支持导入 gql 文件",
             "封装 AWS S3 文件上传组件",
             "封装 Stripe 支付 Hook",
             "封装通用表单组件，增加代码可维护性",
@@ -277,6 +298,48 @@
           ]
         }
       ]
+    },
+    {
+      "projectName": "Cool Music",
+      "mode": "all",
+      "role": "前端开发",
+      "workSkill": [
+        "uniapp",
+        "Vuex",
+        "scss"
+      ],
+      "desc": [
+        {
+          "type": "主要职责",
+          "content": [
+            "负责核心播放器、歌手展示页、个人中心的开发"
+          ]
+        },
+        {
+          "type": "主要做的事情",
+          "content": [
+            "通过 uni.login 拉起第三方应用登录",
+            "通过 setStorageSync 进行用户信息的保存",
+            "使用安卓的 WakeLock 机制使应用锁屏之后保持运行",
+            "使用 uni.share 实现分享歌单功能",
+            "封装歌单组件，进行歌单详情的展示",
+            "封装模态框组件做清空播放列表时的提醒",
+            "使用 throttle-debounce 实现搜索歌曲时的节流",
+            "根据 swiper 封装轮播图组件，进行首页轮播图的展示",
+            "通过 scroll-view 的 scroll-top 进行歌词的自动滚动",
+            "通过 animate.css 实现 mini 播放器显示、隐藏时的动画效果",
+            "使用 swiper 实现左右滑动切歌",
+            "使用 lazy-load 懒加载技术优化歌手列表",
+            "使用 token 实现用户状态的保存，并使用 base64.js 进行加密",
+            "二次封装 Scroll 组件，使 mini 播放器存在时，歌单详情进行高度的自适应",
+            "封装播放列表组件，实现组件复用，并且使用 Vuex + localstorage 进行离线缓存",
+            "通过 lyric-parser 进行歌词的解析"
+          ]
+        }
+      ]
+    },
+    {
+      
     }
   ],
   "openSourceProject": [
