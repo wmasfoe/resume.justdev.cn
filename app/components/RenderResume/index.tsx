@@ -252,6 +252,27 @@ export default function ResumeViewer() {
         )}
       />
 
+      {/* 教育经历 */}
+      <SectionList
+        title="教育经历"
+        data={resumeData.education}
+        renderItem={(education) => (
+          <div className={`${styles.cardNested} ${styles.projectCard} ${styles.openSourceProject}`}>
+            <div className={`${styles.projectHeader} ${styles.educationHeader}`}>
+              <div className={styles.educationBold}>
+                <span>{education.area}</span>
+                <span className={`${styles.detail} ${styles.split}`}>|</span>
+                <span>{education.studyType}</span>
+              </div>
+              <span className={styles.educationNormal}>{education.institution}</span>
+            </div>
+            <p className={styles.educationTime}>
+              {education.startDate} - {education.endDate}
+            </p>
+          </div>
+        )}
+      />
+
       {/* 项目经验 */}
       <SectionList
         title="项目经验"
@@ -321,27 +342,6 @@ export default function ResumeViewer() {
             <div>
               <p>{project.summary}</p>
             </div>
-          </div>
-        )}
-      />
-
-      {/* 教育经历 */}
-      <SectionList
-        title="教育经历"
-        data={resumeData.education}
-        renderItem={(education) => (
-          <div className={`${styles.cardNested} ${styles.projectCard} ${styles.openSourceProject}`}>
-            <div className={`${styles.projectHeader} ${styles.educationHeader}`}>
-              <div className={styles.educationBold}>
-                <span>{education.area}</span>
-                <span className={`${styles.detail} ${styles.split}`}>|</span>
-                <span>{education.studyType}</span>
-              </div>
-              <span className={styles.educationNormal}>{education.institution}</span>
-            </div>
-            <p className={styles.educationTime}>
-              {education.startDate} - {education.endDate}
-            </p>
           </div>
         )}
       />
