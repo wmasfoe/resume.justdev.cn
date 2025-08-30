@@ -2,7 +2,6 @@
 'use client'
 import type { FC } from 'react'
 import React, { useEffect, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import produce, { setAutoFreeze } from 'immer'
 import { useBoolean, useGetState } from 'ahooks'
 import useConversation from '@/hooks/use-conversation'
@@ -11,7 +10,6 @@ import { fetchAppParams, fetchChatList, fetchConversations, generationConversati
 import type { ChatItem, ConversationItem, Feedbacktype, PromptConfig, VisionFile, VisionSettings } from '@/types/app'
 import { Resolution, TransferMethod, WorkflowRunningStatus } from '@/types/app'
 import ChatCore from '@/app/components/Chat/ChatCore'
-import { setLocaleOnClient } from '@/i18n/client'
 import Loading from '@/app/components/base/loading'
 import { replaceVarWithValues, userInputsFormToPromptVariables } from '@/utils/prompt'
 import { API_KEY, APP_ID, APP_INFO, isShowPrompt, promptTemplate } from '@/config'
@@ -24,7 +22,6 @@ export type IMainProps = {
 }
 
 const Main: FC<IMainProps> = ({ query }) => {
-  const { t } = useTranslation()
   const hasSetAppConfig = APP_ID && API_KEY
 
   /*
@@ -161,7 +158,7 @@ const Main: FC<IMainProps> = ({ query }) => {
     setConversationList(produce(conversationList, (draft) => {
       draft.unshift({
         id: '-1',
-        name: t('app.chat.newChatDefaultName'),
+        name: '新的对话',
         inputs: newConversationInputs,
         introduction: conversationIntroduction,
       })
@@ -210,9 +207,8 @@ const Main: FC<IMainProps> = ({ query }) => {
 
         // 获取新会话信息
         const { user_input_form, opening_statement: introduction, file_upload, system_parameters }: any = appParams
-        setLocaleOnClient(APP_INFO.default_language, true)
         setNewConversationInfo({
-          name: t('app.chat.newChatDefaultName'),
+          name: '新的对话',
           introduction,
         })
         const prompt_variables = userInputsFormToPromptVariables(user_input_form)
@@ -265,7 +261,7 @@ const Main: FC<IMainProps> = ({ query }) => {
 
     const emptyInput = inputLens < promptVariablesLens || Object.values(currInputs).find(v => !v)
     if (emptyInput) {
-      logError(t('app.errorMessage.valueOfVarRequired'))
+      logError('变量值必填')
       return false
     }
     return true
@@ -299,7 +295,7 @@ const Main: FC<IMainProps> = ({ query }) => {
 
   const handleSend = async (message: string, files?: VisionFile[]) => {
     if (isResponding) {
-      notify({ type: 'info', message: t('app.errorMessage.waitForResponse') })
+      notify({ type: 'info', message: '请等待上条信息响应完成' })
       return
     }
     const data: Record<string, any> = {
@@ -568,7 +564,7 @@ const Main: FC<IMainProps> = ({ query }) => {
       return item
     })
     setChatList(newChatList)
-    notify({ type: 'success', message: t('common.api.success') })
+    notify({ type: 'success', message: '成功' })
   }
 
   // TODO 暂时去掉，后续需要加入挂载失败重试功能

@@ -2,7 +2,6 @@
 import type { FC } from 'react'
 import React, { useEffect, useRef, useMemo } from 'react'
 import cn from 'classnames'
-import { useTranslation } from 'react-i18next'
 import Textarea from 'rc-textarea'
 import Answer from '@/app/components/Chat/answer'
 import Question from '@/app/components/Chat/question'
@@ -48,7 +47,6 @@ const Chat: FC<IChatProps> = ({
   controlClearQuery,
   visionConfig,
 }) => {
-  const { t } = useTranslation()
   const { notify } = Toast
   const isUseInputMethod = useRef(false)
   const chatContainerRef = useRef<HTMLDivElement>(null)

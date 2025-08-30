@@ -1,11 +1,9 @@
 import { useMemo, useRef, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { imageUpload } from './utils'
 import Toast from '@/app/components/base/toast'
 import type { ImageFile } from '@/types/app'
 
 export const useImageFiles = () => {
-  const { t } = useTranslation()
   const { notify } = Toast
   const [files, setFiles] = useState<ImageFile[]>([])
   const filesRef = useRef<ImageFile[]>([])
@@ -78,7 +76,7 @@ export const useImageFiles = () => {
           setFiles(newFiles)
         },
         onErrorCallback: () => {
-          notify({ type: 'error', message: t('common.imageUploader.uploadFromComputerUploadError') })
+          notify({ type: 'error', message: '图片上传失败，请重新上传。' })
           const newFiles = [...files.slice(0, index), { ...currentImageFile, progress: -1 }, ...files.slice(index + 1)]
           filesRef.current = newFiles
           setFiles(newFiles)

@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import Uploader from './uploader'
 import ImageLinkInput from './image-link-input'
 import ImagePlus from '@/app/components/base/icons/line/image-plus'
@@ -51,7 +50,6 @@ const UploaderButton: FC<UploaderButtonProps> = ({
   disabled,
   limit,
 }) => {
-  const { t } = useTranslation()
   const [open, setOpen] = useState(false)
 
   const hasUploadFromLocal = methods.find(method => method === TransferMethod.local_file)
@@ -101,7 +99,7 @@ const UploaderButton: FC<UploaderButtonProps> = ({
                         ${hovering && 'bg-primary-50'}
                       `}>
                         <Upload03 className='mr-1 w-4 h-4' />
-                        {t('common.imageUploader.uploadFromComputer')}
+                        从本地上传
                       </div>
                     )
                   }

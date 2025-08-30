@@ -2,7 +2,6 @@
 
 import type { ChangeEvent, FC } from 'react'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { imageUpload } from './utils'
 import type { ImageFile } from '@/types/app'
 import { TransferMethod } from '@/types/app'
@@ -23,7 +22,6 @@ const Uploader: FC<UploaderProps> = ({
 }) => {
   const [hovering, setHovering] = useState(false)
   const { notify } = Toast
-  const { t } = useTranslation()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
@@ -32,7 +30,7 @@ const Uploader: FC<UploaderProps> = ({
       return
 
     if (limit && file.size > limit * 1024 * 1024) {
-      notify({ type: 'error', message: t('common.imageUploader.uploadFromComputerLimit', { size: limit }) })
+      notify({ type: 'error', message: `上传图片不能超过 ${limit} MB` })
       return
     }
 
@@ -59,7 +57,7 @@ const Uploader: FC<UploaderProps> = ({
             onUpload({ ...imageFile, fileId: res.id, progress: 100 })
           },
           onErrorCallback: () => {
-            notify({ type: 'error', message: t('common.imageUploader.uploadFromComputerUploadError') })
+            notify({ type: 'error', message: '图片上传失败，请重新上传。' })
             onUpload({ ...imageFile, progress: -1 })
           },
         })
@@ -69,7 +67,7 @@ const Uploader: FC<UploaderProps> = ({
     reader.addEventListener(
       'error',
       () => {
-        notify({ type: 'error', message: t('common.imageUploader.uploadFromComputerReadError') })
+        notify({ type: 'error', message: '图片读取失败，请重新选择。' })
       },
       false,
     )

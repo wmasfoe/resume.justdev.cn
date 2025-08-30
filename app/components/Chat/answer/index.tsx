@@ -2,7 +2,6 @@
 import type { FC } from 'react'
 import React from 'react'
 import { HandThumbDownIcon, HandThumbUpIcon } from '@heroicons/react/24/outline'
-import { useTranslation } from 'react-i18next'
 import LoadingAnim from '@/app/components/Chat/loading-anim'
 import type { FeedbackFunc } from '@/app/components/Chat/type'
 import s from '@/app/components/Chat/style.module.css'
@@ -73,7 +72,6 @@ const Answer: FC<IAnswerProps> = ({
   const { id, content, feedback, agent_thoughts, workflowProcess } = item
   const isAgentMode = !!agent_thoughts && agent_thoughts.length > 0
 
-  const { t } = useTranslation()
 
   /**
  * Render feedback results (distinguish between users and administrators)
@@ -118,10 +116,10 @@ const Answer: FC<IAnswerProps> = ({
       return feedback?.rating
         ? null
         : <div className='flex gap-1'>
-          <Tooltip selector={`user-feedback-${randomString(16)}`} content={t('common.operation.like') as string}>
+          <Tooltip selector={`user-feedback-${randomString(16)}`} content="赞同">
             {OperationBtn({ innerContent: <IconWrapper><RatingIcon isLike={true} /></IconWrapper>, onClick: () => onFeedback?.(id, { rating: 'like' }) })}
           </Tooltip>
-          <Tooltip selector={`user-feedback-${randomString(16)}`} content={t('common.operation.dislike') as string}>
+          <Tooltip selector={`user-feedback-${randomString(16)}`} content="反对">
             {OperationBtn({ innerContent: <IconWrapper><RatingIcon isLike={false} /></IconWrapper>, onClick: () => onFeedback?.(id, { rating: 'dislike' }) })}
           </Tooltip>
         </div>

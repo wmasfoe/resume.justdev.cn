@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import Loading02 from '@/app/components/base/icons/line/loading-02'
 import XClose from '@/app/components/base/icons/line/x-close'
 import RefreshCcw01 from '@/app/components/base/icons/line/refresh-ccw-01'
@@ -27,7 +26,6 @@ const ImageList: FC<ImageListProps> = ({
   onImageLinkLoadSuccess,
   onImageLinkLoadError,
 }) => {
-  const { t } = useTranslation()
   const [imagePreviewUrl, setImagePreviewUrl] = useState('')
 
   const handleImageLinkLoadSuccess = (item: ImageFile) => {
@@ -81,7 +79,7 @@ const ImageList: FC<ImageListProps> = ({
                   }
                   {
                     item.progress === -1 && (
-                      <TooltipPlus popupContent={t('common.imageUploader.pasteImageLinkInvalid')}>
+                      <TooltipPlus popupContent="图片链接无效">
                         <AlertTriangle className='w-4 h-4 text-[#DC6803]' />
                       </TooltipPlus>
                     )
