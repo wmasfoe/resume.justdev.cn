@@ -1,7 +1,6 @@
 'use client'
 import type { FC } from 'react'
 import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 import cn from 'classnames'
 import type { ToolInfoInThought } from '@/app/components/Chat/type'
@@ -48,9 +47,8 @@ const Tool: FC<Props> = ({
   payload,
   allToolIcons = {},
 }) => {
-  const { t } = useTranslation()
   const { name, input, isFinished, output } = payload
-  const toolName = name.startsWith('dataset-') ? t('dataset.knowledge') : name
+  const toolName = name.startsWith('dataset-') ? '知识库' : name
   const [isShowDetail, setIsShowDetail] = useState(false)
   const icon = getIcon(toolName, allToolIcons) as any
   return (
@@ -70,7 +68,7 @@ const Tool: FC<Props> = ({
             icon
           )}
           <span className='mx-1 text-xs font-medium text-gray-500 shrink-0'>
-            {t(`tools.thought.${isFinished ? 'used' : 'using'}`)}
+            {isFinished ? '已使用' : '使用中'}
           </span>
           <span
             className='text-xs font-medium text-gray-700 truncate'

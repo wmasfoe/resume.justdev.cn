@@ -1,4 +1,3 @@
-import { getLocaleOnServer } from '@/i18n/server'
 import { Metadata } from 'next'
 import Script from 'next/script'
 
@@ -46,9 +45,8 @@ const LocaleLayout = ({
 }: {
   children: React.ReactNode
 }) => {
-  const locale = getLocaleOnServer()
   return (
-    <html lang={locale ?? 'en'} className="h-full">
+    <html lang="zh-CN" className="h-full">
       <body className="h-full">
         <Script
           id="schema-jsonld"

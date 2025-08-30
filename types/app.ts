@@ -1,5 +1,4 @@
 import type { Annotation } from './log'
-import type { Locale } from '@/i18n'
 import type { ThoughtItem } from '@/app/components/Chat/type'
 
 export type PromptVariable = {
@@ -105,7 +104,7 @@ export type ConversationItem = {
 export type AppInfo = {
   title: string
   description: string
-  default_language: Locale
+  default_language: string
   copyright?: string
   privacy_policy?: string
 }

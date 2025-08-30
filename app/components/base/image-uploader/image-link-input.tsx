@@ -1,6 +1,5 @@
 import type { FC } from 'react'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import Button from '@/app/components/base/button'
 import type { ImageFile } from '@/types/app'
 import { TransferMethod } from '@/types/app'
@@ -12,7 +11,6 @@ const regex = /^(https?|ftp):\/\//
 const ImageLinkInput: FC<ImageLinkInputProps> = ({
   onUpload,
 }) => {
-  const { t } = useTranslation()
   const [imageLink, setImageLink] = useState('')
 
   const handleClick = () => {
@@ -33,7 +31,7 @@ const ImageLinkInput: FC<ImageLinkInputProps> = ({
         className='grow mr-0.5 px-1 h-[18px] text-[13px] outline-none appearance-none'
         value={imageLink}
         onChange={e => setImageLink(e.target.value)}
-        placeholder={t('common.imageUploader.pasteImageLinkInputPlaceholder') || ''}
+        placeholder='将图像链接粘贴到此处'
       />
       <Button
         type='primary'
@@ -41,7 +39,7 @@ const ImageLinkInput: FC<ImageLinkInputProps> = ({
         disabled={!imageLink}
         onClick={handleClick}
       >
-        {t('common.operation.ok')}
+        好的
       </Button>
     </div>
   )

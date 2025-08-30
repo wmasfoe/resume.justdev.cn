@@ -1,0 +1,153 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# resume.justdev.cn Cursor Rules
+
+你是一个专业的前端开发专家，专注于 Next.js、React、TypeScript 和现代前端技术栈。
+
+## 项目概述
+这是一个基于 Next.js 的智能个人简历展示与AI聊天系统，融合了静态简历展示和动态AI交互功能。
+
+## 技术栈
+- Next.js 14 (App Router)
+- React 18
+- TypeScript
+- Tailwind CSS + CSS Modules
+- Dify Client (AI集成)
+- Monaco Editor
+- i18next (国际化)
+- SWR (数据获取)
+
+## 代码风格规范
+
+### TypeScript
+- 严格使用 TypeScript，避免使用 any
+- 优先使用 interface 而不是 type (除非需要联合类型)
+- 为所有组件 props、API 响应、函数参数定义清晰的类型
+- 使用枚举 (enum) 定义常量选项
+
+### 组件规范
+- 使用函数组件和 React Hooks
+- 组件名使用 PascalCase
+- 文件名与组件名保持一致
+- 每个组件单独一个文件
+- 优先使用组合模式而不是继承
+- 使用 React.memo 优化性能敏感组件
+
+### 命名约定
+- 组件: PascalCase (UserProfile.tsx)
+- 变量/函数: camelCase (getUserData)
+- 常量: SCREAMING_SNAKE_CASE (API_BASE_URL)
+- 文件/目录: kebab-case (user-profile.tsx) 或 PascalCase (UserProfile.tsx)
+- Hook: 以 use 开头 (useUserData)
+
+### 样式规范
+- 优先使用 Tailwind CSS 类名
+- 复杂样式使用 CSS Modules
+- 避免内联样式，除非是动态计算的值
+- 使用语义化的类名
+
+## 项目结构指导
+
+### 目录组织
+```
+app/                  # Next.js App Router
+├── api/             # API 路由
+├── components/      # React 组件
+│   ├── base/        # 基础/通用组件
+│   ├── Chat/        # 聊天功能组件
+│   ├── RenderResume/ # 简历渲染组件
+│   └── Ask/         # AI交互组件
+├── styles/          # 全局样式
+config/              # 配置文件
+hooks/               # 自定义 Hooks
+i18n/                # 国际化配置
+service/             # API 服务层
+types/               # TypeScript 类型定义
+utils/               # 工具函数
+```
+
+### 导入顺序
+1. React 相关导入
+2. 第三方库导入
+3. 本地组件导入
+4. 类型导入
+5. 样式导入
+
+## 开发最佳实践
+
+### 组件开发
+- 保持组件单一职责
+- 使用自定义 Hook 抽取复杂逻辑
+- 为组件添加适当的 PropTypes 或 TypeScript 接口
+- 使用 Error Boundary 处理错误
+- 实现加载状态和错误状态
+
+### 状态管理
+- 优先使用 React 内置状态管理 (useState, useReducer)
+- 使用 SWR 管理服务端状态
+- 通过 Context 或自定义 Hook 共享状态
+- 避免不必要的状态提升
+
+### 性能优化
+- 使用 React.memo 防止不必要的重渲染
+- 使用 useMemo 和 useCallback 优化计算和函数
+- 实现代码分割 (Dynamic Imports)
+- 优化图片和资源加载
+
+### API 设计
+- 使用 RESTful API 设计原则
+- 统一错误处理格式
+- 为 AI 聊天实现流式响应 (Server-Sent Events)
+- 实现请求重试和错误恢复机制
+
+## 特定功能指导
+
+### 简历展示 (RenderResume)
+- 基于 JSON 数据渲染
+- 支持响应式设计 (PC/移动端)
+- 实现 PDF 导出功能
+- 支持多语言国际化
+
+### AI 聊天 (Ask/Chat)
+- 集成 Dify Client
+- 实现流式对话体验
+- 支持会话历史管理
+- 展示 AI 思考过程和工具调用
+
+### 国际化 (i18n)
+- 使用 i18next 配置
+- 支持动态语言切换
+- 按需加载语言包
+- 实现语言回退机制
+
+## 错误处理
+- 使用 Error Boundary 捕获组件错误
+- 为异步操作提供友好的错误提示
+- 实现全局错误监控
+- 避免暴露敏感系统信息
+
+## 代码质量
+- 使用 ESLint 和 Prettier 保持代码风格一致
+- 编写有意义的注释和文档
+- 实现单元测试覆盖核心逻辑
+- 使用 TypeScript 严格模式
+
+## AI 助手指导原则
+- 始终遵循项目的架构模式和编码规范
+- 优先使用项目已有的组件和工具函数
+- 保持代码的可读性和可维护性
+- 提供完整的类型定义
+- 考虑性能和用户体验
+- 遵循 React 和 Next.js 最佳实践
+- 在修改现有代码时保持向后兼容性
+
+当编写或修改代码时，请确保：
+1. 代码符合项目的 TypeScript 配置
+2. 使用项目中已定义的类型和接口
+3. 遵循现有的组件结构和模式
+4. 考虑移动端兼容性
+5. 实现适当的错误处理和加载状态
+6. 添加必要的注释和文档 

@@ -1,6 +1,12 @@
-// scrollManager.js
+// scrollManager.ts
 let savedScrollPosition = 0;
-let originalStyles = {};
+let originalStyles: {
+  overflow?: string;
+  position?: string;
+  top?: string;
+  width?: string;
+  paddingRight?: string;
+} = {};
 
 /**
  * 禁用页面滚动
