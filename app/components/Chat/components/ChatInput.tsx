@@ -1,8 +1,8 @@
 import { forwardRef, useCallback } from 'react'
+import styles from '../chat.module.css'
 import { LoadingIcon, SendIcon } from './Icons'
-import styles from '../ask.module.css'
 
-interface ChatInputProps {
+type ChatInputProps = {
   message: string
   isExpanded: boolean
   isResponding: boolean
