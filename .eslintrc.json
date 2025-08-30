@@ -1,6 +1,5 @@
 {
   "extends": [
-    "@antfu",
     "plugin:react-hooks/recommended"
   ],
   "rules": {
