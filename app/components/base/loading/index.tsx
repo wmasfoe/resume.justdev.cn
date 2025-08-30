@@ -11,7 +11,7 @@ const Loading = (
   { type = 'area', size = 60 }: ILoadingProps = { type: 'area', size: 60 },
 ) => {
   return (
-    <div className={`flex w-full h-full justify-center items-center ${type === 'app' ? 'h-full' : ''}`}>
+    <div className={`flex w-full h-full justify-center items-center ${type === 'app' ? 'h-full print:hidden' : ''}`}>
       <svg width={size} height={size} version="1.1" id="L6" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
         viewBox="0 0 100 100" enableBackground="new 0 0 100 100" xmlSpace="preserve">
         <rect fill="none" stroke="var(--foreground)" strokeWidth="4" x="25" y="25" width="50" height="50">
