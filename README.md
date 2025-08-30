@@ -4,7 +4,7 @@
 
 这是一个 Next.js 项目，用于展示我的个人简历。并且接入了大模型可以向我发起提问。
 
-本项目目前采用 Vercel 部署，感谢 Vercel 提供的 serverless 服务。
+本项目目前采用 Vercel 部署，感谢 Vercel 提供的 Serverless 服务。
 
 ## 技术栈
 
