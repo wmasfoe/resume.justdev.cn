@@ -10,7 +10,7 @@
     "website": "https://justdev.cn",
     "address": "中国·北京",
     "username": "李嘉奇",
-    "email": "hi@jackyli.me",
+    "email": "lijq1103@gmail.com",
     "profiles": {
       "gitHub": {
         "network": "GitHub",
@@ -74,13 +74,7 @@
       "projectName": "IDEA 大数据平台 - 小红书",
       "mode": "all",
       "role": "前端/node 开发",
-      "workSkill": [
-        "Vue3",
-        "axios",
-        "monorepo",
-        "Nest.js",
-        "Thrift"
-      ],
+      "workSkill": ["Vue3", "axios", "monorepo", "Nest.js", "Thrift"],
       "desc": [
         {
           "type": "主要职责",
@@ -201,13 +195,7 @@
       "projectName": "橙子建站 - 字节跳动",
       "mode": "all",
       "role": "前端开发",
-      "workSkill": [
-        "React",
-        "Nest.js",
-        "axios",
-        "Koa",
-        "MongoDB"
-      ],
+      "workSkill": ["React", "Nest.js", "axios", "Koa", "MongoDB"],
       "desc": [
         {
           "type": "主要职责",
@@ -236,13 +224,7 @@
       "projectName": "巨量引擎官网 - 字节跳动",
       "mode": "online",
       "role": "前端开发",
-      "workSkill": [
-        "Nuxt.js",
-        "axios",
-        "monorepo",
-        "Egg.js",
-        "MySQL"
-      ],
+      "workSkill": ["Nuxt.js", "axios", "monorepo", "Egg.js", "MySQL"],
       "desc": [
         {
           "type": "主要做的事情",
@@ -260,12 +242,7 @@
       "projectName": "Tenant Portal",
       "mode": "online",
       "role": "前端开发",
-      "workSkill": [
-        "React",
-        "Apollo GraphQL",
-        "AntDesign",
-        "Stripe"
-      ],
+      "workSkill": ["React", "Apollo GraphQL", "AntDesign", "Stripe"],
       "desc": [
         {
           "type": "主要做的事情",
