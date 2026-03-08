@@ -48,6 +48,31 @@ export type IMainProps = {
   isFloatingMode?: boolean;
 };
 
+type ChatErrorNotice = {
+  type: "rate_limit" | "service_error" | "busy";
+  message: string;
+};
+
+const RATE_LIMIT_PATTERN =
+  /(rate[\s_-]*limit|too many requests|429|请求过于频繁|速率限制|频率限制)/i;
+
+const getChatErrorNotice = (
+  message?: string,
+  code?: string
+): ChatErrorNotice => {
+  const source = `${message || ""} ${code || ""}`;
+  const isRateLimit = RATE_LIMIT_PATTERN.test(source);
+  return isRateLimit
+    ? {
+        type: "rate_limit",
+        message: "速率限制：请求过于频繁，请稍后重试。",
+      }
+    : {
+        type: "service_error",
+        message: "服务异常，请稍后重试。",
+      };
+};
+
 const Main: FC<IMainProps> = ({
   query = "",
   className,
@@ -117,6 +142,9 @@ const Main: FC<IMainProps> = ({
    * 聊天信息。聊天从属于会话。
    */
   const [chatList, setChatList, getChatList] = useGetState<ChatItem[]>([]);
+  const [chatErrorNotice, setChatErrorNotice] = useState<ChatErrorNotice | null>(
+    null
+  );
   const [isHistoryLoading, setIsHistoryLoading] = useState(false);
   const [
     conversationIdChangeBecauseOfNew,
@@ -176,6 +204,20 @@ const Main: FC<IMainProps> = ({
     setCurrInputs,
     setExistConversationInfo,
   ]);
+
+  useEffect(() => {
+    setChatErrorNotice(null);
+  }, [currConversationId, isNewConversation]);
+
+  useEffect(() => {
+    if (chatErrorNotice?.type !== "busy") return;
+    const timeoutId = window.setTimeout(() => {
+      setChatErrorNotice((prev) => (prev?.type === "busy" ? null : prev));
+    }, 2200);
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [chatErrorNotice]);
 
   // Use ref to track the last processed conversation to avoid infinite loops
   const lastProcessedConversationId = useRef<string>("");
@@ -508,9 +550,13 @@ const Main: FC<IMainProps> = ({
   const handleSend = useCallback(
     async (message: string, files?: VisionFile[]) => {
       if (isResponding) {
-        notify({ type: "info", message: "请等待上条信息响应完成" });
+        setChatErrorNotice({
+          type: "busy",
+          message: "正在生成上一条回复，请稍后再试。",
+        });
         return;
       }
+      setChatErrorNotice(null);
       const data: Record<string, any> = {
         inputs: currInputs || {},
         query: message || query,
@@ -732,7 +778,8 @@ const Main: FC<IMainProps> = ({
             })
           );
         },
-        onError() {
+        onError(errorMessage?: string, errorCode?: string) {
+          setChatErrorNotice(getChatErrorNotice(errorMessage, errorCode));
           setRespondingFalse();
           // 回滚占位符答案
           setChatList(
@@ -822,6 +869,7 @@ const Main: FC<IMainProps> = ({
       visionConfig,
       getChatList,
       setChatList,
+      setChatErrorNotice,
       setRespondingTrue,
       updateCurrentQA,
       getConversationIdChangeBecauseOfNew,
@@ -967,6 +1015,7 @@ const Main: FC<IMainProps> = ({
                 visionConfig={visionConfig}
                 isHideSendInput
                 isHistoryLoading={isHistoryLoading}
+                errorNotice={chatErrorNotice}
               />
             </div>
           </div>
@@ -996,6 +1045,7 @@ const Main: FC<IMainProps> = ({
         checkCanSend={handleCanSend}
         visionConfig={visionConfig}
         isHistoryLoading={isHistoryLoading}
+        errorNotice={chatErrorNotice}
       />
     </div>
   );

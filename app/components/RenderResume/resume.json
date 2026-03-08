@@ -5,8 +5,8 @@
     "label": "前端开发工程师",
     "status": "在职, 2周内到岗",
     "phone": "18532377382",
-    "workingYears": "五年工作经验",
-    "summary": "5年前端开发经验，专注于大型复杂应用架构设计与性能优化。熟悉 React/Vue 技术栈，具备跨端开发经验，对前端工程化、性能优化有深入理解。",
+    "workingYears": "六年工作经验",
+    "summary": "6年前端开发经验，专注于大型复杂应用架构设计与性能优化。熟悉 React/Vue 技术栈，具备跨端开发经验，对前端工程化、性能优化有深入理解。",
     "website": "https://justdev.cn",
     "address": "中国·北京",
     "username": "李嘉奇",
@@ -37,39 +37,97 @@
   ],
   "work": [
     {
+      "company": "钛动科技",
+      "mode": "all",
+      "position": "前端开发工程师",
+      "website": "https://www.tec-do.com/",
+      "location": "北京",
+      "summary": "AdTech",
+      "isCurrentRole": true,
+      "startDate": "2025-05-10",
+      "highlights": [
+        "主导 DSP 投放平台迁移，重新设计系统架构，提升系统稳定性和性能；",
+        "负责公司 AICR 项目开发，节省研发 review 代码成本，提升代码质量；",
+        "在公司内部进行技术分享、Vibe Coding 分享，提高团队技术能力；",
+        "推动前端技术栈升级，引入新技术提升开发效率和用户体验。"
+      ]
+    },
+    {
       "company": "小红书",
+      "mode": "all",
       "position": "前端开发工程师",
       "website": "https://xiaohongshu.com/",
       "location": "北京",
       "summary": "业务技术部-商业技术部-商业平台五组",
-      "isCurrentRole": true,
+      "isCurrentRole": false,
       "startDate": "2022-08-11",
+      "endDate": "2025-04-30",
       "highlights": [
         "主导 IDEA 大数据平台架构重构，采用 Monorepo 架构提升系统可维护性，性能提升 27%；",
         "负责公司通用图表库 Delight-Charts 的架构设计与核心开发，提升团队开发效率；",
         "主导性能优化专项，通过代码分割、懒加载等技术手段显著提升应用性能；",
-        "推动前端技术栈升级，引入新技术提升开发效率和用户体验。",
-        "开发过程中，与每个板块负责人员保持交流沟通，确保需求按期交付"
+        "开发过程中，与每个板块负责人员保持交流沟通，确保需求按期交付。"
       ]
     },
     {
       "company": "ByteDance Ltd.",
+      "mode": "online",
       "position": "前端开发工程师",
       "website": "https://www.bytedance.com/",
       "location": "北京",
       "summary": "Data - 商业化技术 - 中国区商业化 - 增长智能",
       "isCurrentRole": false,
       "highlights": [
-        "负责飞轮投放平台、巨量引擎官网、千川官网以及 dou+ 的开发与维护",
-        "参加 Okee 组件库、橙子建站平台物料的开发与维护",
-        "参与公司项目的讨论、需求评审、技术评审，并细化排期，确保按期交付需求",
-        "以前端视角对产品进行体验优化"
+        "负责飞轮投放平台、巨量引擎官网、千川官网以及 dou+ 的开发与维护；",
+        "参加 Okee 组件库、橙子建站平台物料的开发与维护；",
+        "参与公司项目的讨论、需求评审、技术评审，并细化排期，确保按期交付需求；",
+        "以前端视角对产品进行体验优化。"
       ],
       "startDate": "2021-08-06",
       "endDate": "2022-06-10"
     }
   ],
   "workProject": [
+    {
+      "projectName": "Nexus AI CodeReview - 钛动科技",
+      "mode": "all",
+      "role": "全栈开发",
+      "workSkill": ["FastMCP", "Flask", "Nest.js", "React", "monorepo"],
+      "desc": [
+        {
+          "type": "MCP 能力建设",
+          "content": [
+            "OpenAPI 封装: 基于 FastMCP 开发 Zadig MCP Agent，封装 Zadig OpenAPI，统一环境查询、部署详情检索与跨环境部署矩阵生成能力；",
+            "AI 交互链路: 设计自然语言到 Tool 调用流程，支持通过 Claude 等 AI 助手直接发起部署与运维查询，降低重复操作成本；",
+            "执行闭环与通知: 实现“触发部署 + 轮询等待”异步流程，自动识别成功/失败/超时终态，并结合飞书卡片与 SQLite Token 管理保证调用稳定。"
+          ]
+        },
+        {
+          "type": "审查引擎设计",
+          "content": [
+            "增量审查: 设计智能增量 diff 策略，满足条件时仅审查新增变更，减少无效上下文输入；",
+            "预算分批: 实现基于 Token 预算的分批审查机制，支持大型 MR 自动拆批与结果合并，保障超长变更可执行；",
+            "多维评估与回写: 接入智普/OpenAI 模型进行安全、性能、可维护性评估，并将结论以 GitLab 行内评论自动回写。"
+          ]
+        },
+        {
+          "type": "后端业务逻辑",
+          "content": [
+            "平台后端: 基于 NestJS + Prisma 构建 AICR 后端服务，提供项目配置、审查记录、用户反馈等管理 API；",
+            "事件驱动: 接入 GitLab Webhook 自动触发 MR 审查任务，打通“事件接收 - 任务入队 - 审查回写”链路；",
+            "任务与鉴权: 通过 BullMQ + Redis 实现异步队列、防抖去重与幂等控制，并在后台接入 CAS + JWT 统一鉴权。"
+          ]
+        },
+        {
+          "type": "产出成果",
+          "content": [
+            "成本收益: 智能增量策略落地后，Token 消耗降低约 60%，显著降低模型调用成本；",
+            "效率收益: 建立 MR 自动审查与行内回写闭环，减少人工 Review 重复劳动并提升反馈时效；",
+            "平台复用: 沉淀 MCP + 审查引擎能力，支撑后续内部工具接入与流程复用。"
+          ]
+        }
+      ]
+    },
     {
       "projectName": "IDEA 大数据平台 - 小红书",
       "mode": "all",
@@ -222,7 +280,7 @@
     },
     {
       "projectName": "巨量引擎官网 - 字节跳动",
-      "mode": "online",
+      "mode": "all",
       "role": "前端开发",
       "workSkill": ["Nuxt.js", "axios", "monorepo", "Egg.js", "MySQL"],
       "desc": [
@@ -240,7 +298,7 @@
     },
     {
       "projectName": "Tenant Portal",
-      "mode": "online",
+      "mode": "all",
       "role": "前端开发",
       "workSkill": ["React", "Apollo GraphQL", "AntDesign", "Stripe"],
       "desc": [

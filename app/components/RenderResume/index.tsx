@@ -146,6 +146,10 @@ function getLiBoldContent(text: string) {
   </> : text
 }
 
+function getModeClassName(mode?: 'online' | 'pdf' | 'all') {
+  return `${mode === 'online' ? styles.onlineOnly : ''} ${mode === 'pdf' ? styles.pdfOnly : ''}`.trim()
+}
+
 export default function ResumeViewer() {
   return (
     <div className={`${styles.resumeContainer} ${styles.variables}`}>
@@ -226,7 +230,7 @@ export default function ResumeViewer() {
         data={resumeData.work}
         wrapperClass={styles.workExperience}
         renderItem={(job) => (
-          <div className={`${styles.cardNested} ${styles.notMargin}`}>
+          <div className={`${styles.cardNested} ${styles.notMargin} ${getModeClassName(job.mode)}`}>
             <h3>
               {job.company} - {job.position}
               {job.website && (
@@ -279,9 +283,7 @@ export default function ResumeViewer() {
         data={resumeData.workProject}
         renderItem={(project) => (
           <div
-            className={`${styles.cardNested} ${styles.projectCard} ${
-              project.mode === 'online' ? styles.onlineOnly : ''
-            } ${project.mode === 'pdf' ? styles.pdfOnly : ''}`}
+            className={`${styles.cardNested} ${styles.projectCard} ${getModeClassName(project.mode)}`}
           >
             <div className={styles.projectHeader}>
               <h3>{project.projectName}</h3>

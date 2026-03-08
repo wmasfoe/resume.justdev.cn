@@ -392,27 +392,36 @@ export const ssePost = (
   globalThis.fetch(urlWithPrefix, options)
     .then((res: any) => {
       if (!/^(2|3)\d{2}$/.test(res.status)) {
-        // eslint-disable-next-line no-new
-        new Promise(() => {
-          res.json().then((data: any) => {
-            Toast.notify({ type: 'error', message: data.message || 'Server Error' })
+        res.json()
+          .then((data: any) => {
+            const message = data?.message || 'Server Error'
+            const code = data?.code ? String(data.code) : String(res.status)
+            Toast.notify({ type: 'error', message })
+            onError?.(message, code)
+            onCompleted?.(true)
           })
-        })
-        onError?.('Server Error')
+          .catch(() => {
+            const code = String(res.status)
+            Toast.notify({ type: 'error', message: 'Server Error' })
+            onError?.('Server Error', code)
+            onCompleted?.(true)
+          })
         return
       }
       return handleStream(res, (str: string, isFirstMessage: boolean, moreInfo: IOnDataMoreInfo) => {
         if (moreInfo.errorMessage) {
           Toast.notify({ type: 'error', message: moreInfo.errorMessage })
+          onError?.(moreInfo.errorMessage, moreInfo.errorCode)
           return
         }
         onData?.(str, isFirstMessage, moreInfo)
-      }, () => {
-        onCompleted?.()
+      }, (hasError?: boolean) => {
+        onCompleted?.(hasError)
       }, onThought, onMessageEnd, onMessageReplace, onFile, onWorkflowStarted, onWorkflowFinished, onNodeStarted, onNodeFinished)
     }).catch((e) => {
       Toast.notify({ type: 'error', message: e })
-      onError?.(e)
+      onError?.(`${e}`)
+      onCompleted?.(true)
     })
 }
 

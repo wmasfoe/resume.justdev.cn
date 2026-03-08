@@ -16,6 +16,12 @@ import { useImageFiles } from '@/app/components/base/image-uploader/hooks'
 import styles from '@/app/components/Chat/style.module.css'
 import useBreakpoints, { MediaType } from '@/hooks/use-breakpoints'
 import Empty from '@/app/components/base/Empty'
+import AlertTriangle from '@/app/components/base/icons/line/alert-triangle'
+
+type ChatErrorNotice = {
+  type: 'rate_limit' | 'service_error' | 'busy'
+  message: string
+}
 export type IChatProps = {
   chatList: ChatItem[]
   /**
@@ -34,6 +40,7 @@ export type IChatProps = {
   controlClearQuery?: number
   visionConfig?: VisionSettings
   isHistoryLoading?: boolean
+  errorNotice?: ChatErrorNotice | null
 }
 
 const Chat: FC<IChatProps> = ({
@@ -48,6 +55,7 @@ const Chat: FC<IChatProps> = ({
   controlClearQuery,
   visionConfig,
   isHistoryLoading = false,
+  errorNotice = null,
 }) => {
   const { notify } = Toast
   const isUseInputMethod = useRef(false)
@@ -133,7 +141,7 @@ const Chat: FC<IChatProps> = ({
   return (
     <div className={styles.chatWrapper} style={{ pointerEvents: 'auto' }}>
       {/* Chat List */}
-      <div className="chatScrollContainer" ref={chatContainerRef} onMouseDown={(e) => e.stopPropagation()}>
+      <div className={cn('chatScrollContainer', styles.chatScrollContainer)} ref={chatContainerRef} onMouseDown={(e) => e.stopPropagation()}>
         <div className="space-y-[30px]">
           {
             chatList?.length > 0 ? chatList.map((item) => {
@@ -163,6 +171,18 @@ const Chat: FC<IChatProps> = ({
           }
         </div>
       </div>
+      {errorNotice && (
+        <div className={styles.chatNoticeWrap}>
+          <div
+            className={`${styles.chatNotice} ${errorNotice.type === 'rate_limit' ? styles.chatNoticeRateLimit : styles.chatNoticeServiceError}`}
+            role="alert"
+            aria-live="polite"
+          >
+            <AlertTriangle className={styles.chatNoticeIcon} />
+            <span>{errorNotice.message}</span>
+          </div>
+        </div>
+      )}
       {/* 输入框 */}
       {
         !isHideSendInput && (
