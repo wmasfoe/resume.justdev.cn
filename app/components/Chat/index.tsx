@@ -4,10 +4,12 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import produce, { setAutoFreeze } from "immer";
 import { useBoolean, useGetState } from "ahooks";
 import { useSharedState } from "../common";
-import styles from "./chat.module.css";
-import ChatInput from "./components/ChatInput";
-import useMobileViewport from "./hooks/useMobileViewport";
+import styles from "./floating.module.css";
+import ChatInput from "./ui/ChatInput";
+import { CloseIcon } from "./ui/Icons";
 import useUIState from "./hooks/useUIState";
+import useVisualViewport from "./hooks/useVisualViewport";
+import useBreakpoints, { MediaType } from "@/hooks/use-breakpoints";
 import {
   checkCanSend,
   generateNewChatListWithOpenStatement,
@@ -54,8 +56,10 @@ const Main: FC<IMainProps> = ({
 
   // UI state for floating mode
   const uiState = useUIState();
-  const { inputRef } = useMobileViewport(uiState.isExpanded);
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const { offsetBottom } = useVisualViewport();
+  const media = useBreakpoints();
+  const isMobile = [MediaType.mobile, MediaType.tablet].includes(media);
 
   /*
    * 应用信息
@@ -831,27 +835,54 @@ const Main: FC<IMainProps> = ({
     return <Loading type="app" />;
 
   if (isFloatingMode) {
+    const isOpen = uiState.isExpanded;
+    const isClosing = uiState.isClosing;
+
+    // Determine chat content animation class
+    const chatAnimClass = isClosing
+      ? styles.chatContainerClosing
+      : isOpen
+      ? styles.chatContainerVisible
+      : "";
+
+    const inputExpanded = isOpen;
+
+    // Push panel above keyboard on mobile when keyboard is open
+    const mobileBottomStyle =
+      isMobile && isOpen && offsetBottom > 0
+        ? { bottom: `${offsetBottom + 8}px` }
+        : undefined;
+
     return (
       <div className={`${styles.variables} ${className ?? ""}`}>
         <div
           ref={chatContainerRef}
           className={`${styles.inputContainer} ${
-            uiState.isExpanded ? "" : styles.hoverScale
+            isOpen || isClosing ? "" : styles.hoverScale
           }`}
+          style={mobileBottomStyle}
           onClick={uiState.handleFocus}
         >
-          <div className={styles.chatContainer}>
-            <div
-              className={`
-                ${styles.chatWrapper}
-                relative
-                h-[500px]
-                opacity-100
-              `}
-              style={{
-                transition: uiState.isExpanding ? "all 500ms ease-out" : "none",
+          {/* Drag handle — CSS hides on desktop, shows on mobile */}
+          <div className={styles.drawerHandle} />
+
+          {/* Close button — animates in after panel opens */}
+          {isOpen && (
+            <button
+              className={styles.closeButton}
+              onClick={(e) => {
+                e.stopPropagation();
+                uiState.handleCollapse();
               }}
+              aria-label="关闭"
             >
+              <CloseIcon />
+            </button>
+          )}
+
+          {/* Chat content — always in DOM, animated by CSS */}
+          <div className={`${styles.chatContainer} ${chatAnimClass}`}>
+            <div className={`${styles.chatWrapper} relative h-[500px]`}>
               <ChatCore
                 chatList={chatList}
                 onSend={handleSend}
@@ -865,9 +896,9 @@ const Main: FC<IMainProps> = ({
           </div>
 
           <ChatInput
-            ref={inputRef}
+            ref={uiState.inputRef}
             message={uiState.message}
-            isExpanded={uiState.isExpanded}
+            isExpanded={inputExpanded}
             isResponding={isResponding}
             onMessageChange={uiState.setMessage}
             onSend={handleFloatingSend}

@@ -3,8 +3,8 @@ import type { FC } from 'react'
 import React, { useState } from 'react'
 
 import cn from 'classnames'
-import type { ToolInfoInThought } from '@/app/components/Chat/type'
-import Panel from '@/app/components/Chat/thought/panel'
+import type { ToolInfoInThought } from '../type'
+import ThoughtPanel from './ThoughtPanel'
 import Loading02 from '@/app/components/base/icons/line/loading-02'
 import ChevronDown from '@/app/components/base/icons/line/arrows/chevron-down'
 import CheckCircle from '@/app/components/base/icons/solid/general/check-circle'
@@ -43,7 +43,7 @@ const getIcon = (toolName: string, allToolIcons: Record<string, string | Emoji>)
       ))
 }
 
-const Tool: FC<Props> = ({
+const ThoughtTool: FC<Props> = ({
   payload,
   allToolIcons = {},
 }) => {
@@ -82,12 +82,12 @@ const Tool: FC<Props> = ({
         </div>
         {isShowDetail && (
           <div className='border-t border-black/5 p-2 space-y-2 '>
-            <Panel
+            <ThoughtPanel
               isRequest={true}
               toolName={toolName}
               content={input} />
             {output && (
-              <Panel
+              <ThoughtPanel
                 isRequest={false}
                 toolName={toolName}
                 content={output as string} />
@@ -98,4 +98,4 @@ const Tool: FC<Props> = ({
     </div>
   )
 }
-export default React.memo(Tool)
+export default React.memo(ThoughtTool)

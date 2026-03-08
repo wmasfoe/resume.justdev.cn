@@ -1,5 +1,5 @@
 import { forwardRef, useCallback } from 'react'
-import styles from '../chat.module.css'
+import styles from '../floating.module.css'
 import { LoadingIcon, SendIcon } from './Icons'
 
 type ChatInputProps = {

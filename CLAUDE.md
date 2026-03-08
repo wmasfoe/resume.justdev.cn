@@ -4,101 +4,44 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Next.js-based intelligent resume showcase with AI chat functionality. It combines static resume presentation with dynamic AI interaction capabilities using the Dify Client for conversational AI features.
+Next.js 14 resume showcase with floating AI chat. The page renders a static JSON resume alongside a floating chat widget powered by Dify (an external AI platform).
 
-## Common Development Commands
+## Commands
 
 ```bash
-# Development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-
-# Linting
-npm run lint        # Check for lint errors
-npm run fix         # Auto-fix lint errors
-npm run eslint-fix  # Alternative lint fix
-
-# PDF generation
-npm run build:pdf   # Generate resume PDF using Puppeteer
+npm run dev          # Start dev server (port 3000, with Node inspector)
+npm run build        # Production build
+npm run lint         # Check lint errors
+npm run fix          # Auto-fix lint errors
+npm run build:pdf    # Generate resume PDF via Puppeteer (requires running server on port 3001)
 ```
 
-## Architecture Overview
+## Environment Setup
 
-### Core Structure
-- **Next.js 14 App Router**: Modern routing with app directory structure
-- **AI Integration**: Dify Client integration for conversational AI features  
-- **Resume Rendering**: JSON-based resume data with PDF export capability
-- **Multi-modal Interface**: Chat interface with workflow visualization
-
-### Key Components
-- `app/components/RenderResume/`: Static resume rendering from JSON data
-- `app/components/Chat/`: Core chat functionality with streaming responses
-- `app/components/Ask/`: AI interaction interface with conversation management
-- `app/components/workflow/`: Workflow visualization for AI processes
-- `script/pdf.js`: Puppeteer-based PDF generation system
-
-### Data Flow
-1. Resume data stored in `app/components/RenderResume/resume.json`
-2. AI chat handled through Dify Client with streaming responses
-3. PDF generation uses Puppeteer to render live page at port 3001
-4. Internationalization previously supported (i18n files currently removed)
-
-## Technical Configuration
-
-### TypeScript Setup
-- Strict mode enabled with comprehensive type checking
-- Path aliases: `@/*` maps to project root
-- Custom global types in `app/global.d.ts`
-
-### Styling System
-- **Tailwind CSS**: Primary styling framework with custom color palette
-- **CSS Modules**: Component-specific styles (`.module.css` files)
-- **Custom Typography**: Extended typography configuration in `typography.js`
-- **Responsive Design**: Mobile-first with custom breakpoints (mobile: 100px, tablet: 640px, pc: 769px)
-
-### Build & Development
-- ESLint errors and TypeScript errors ignored during builds (configured for rapid development)
-- Husky pre-commit hooks with lint-staged
-- Supports MDX files alongside standard React components
-- Source maps disabled in production
-
-## PDF Generation System
-
-The project includes a sophisticated PDF generation system (`script/pdf.js`):
-- Spawns temporary Next.js server on port 3001
-- Uses Puppeteer to capture rendered page
-- Applies print-specific CSS optimizations
-- Generates both PDF and HTML versions
-- Includes font optimization for Chinese characters
-
-## Development Notes
-
-- Project uses Chinese language as primary locale (`zh-Hans`)
-- Monaco Editor integrated for code editing features
-- SWR for data fetching and caching
-- React Error Boundary implementation for error handling
-- Structured JSON resume data enables easy content updates
-- AI chat features require proper Dify Client configuration
-
-## File Organization
-
+Copy `.env.local` (already committed) or set these variables:
 ```
-app/
-├── api/              # Next.js API routes
-├── components/       # React components
-│   ├── Ask/         # AI interaction components
-│   ├── Chat/        # Core chat functionality
-│   ├── RenderResume/ # Resume rendering
-│   ├── workflow/    # AI workflow visualization
-│   └── base/        # Shared base components
-├── styles/          # Global styles
-script/              # Build and utility scripts
-service/             # API service layer
+NEXT_PUBLIC_APP_ID=       # Dify app ID
+NEXT_PUBLIC_APP_KEY=      # Dify API key
+NEXT_PUBLIC_API_URL=      # Dify API base URL (e.g. https://api.dify.ai/v1)
 ```
 
-When working with this codebase, prioritize understanding the resume JSON structure, AI integration patterns, and the PDF generation workflow.
+Central config is `config/index.ts` — app title, prompt template, and API prefix live here.
+
+## Architecture
+
+### Request Flow
+1. Frontend calls `/api/*` (Next.js route handlers in `app/api/`)
+2. Route handlers use `app/api/utils/common.ts` to create a `ChatClient` from `dify-client` and proxy requests to the Dify API
+3. Streaming responses use SSE via `service/base.ts` (`ssePost`) which parses `data:` events and dispatches typed callbacks (`onData`, `onThought`, `onWorkflowStarted`, etc.)
+
+### Key Patterns
+- **Resume content**: All resume data is in `app/components/RenderResume/resume.json` — edit this to update resume content
+- **Chat state**: `app/components/Chat/index.tsx` is the main orchestrator; it manages conversation list, chat history, and sends messages. `ChatCore.tsx` is the presentational inner component.
+- **Shared responding state**: `useSharedState` from `app/components/common.ts` shares `isResponding` across sibling components without prop drilling
+- **Floating chat mode**: `Chat` accepts `isFloatingMode` prop — when true it renders a collapsible floating widget over the resume; `useUIState` manages expand/collapse animation state
+- **Workflow visualization**: `app/components/workflow/` renders Dify workflow node tracing data shown in chat responses
+
+### Build Notes
+- ESLint and TypeScript errors are **ignored during builds** (`next.config.js`) — the project may have type errors that won't block building
+- Pre-commit hooks run ESLint via Husky + lint-staged on `.js(x)` and `.ts(x)` files
+- PDF generation (`script/pdf.js`) spawns a Next.js server on port 3001, uses Puppeteer to capture the page, then kills the server

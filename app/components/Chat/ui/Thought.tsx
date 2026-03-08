@@ -2,7 +2,7 @@
 import type { FC } from 'react'
 import React from 'react'
 import type { ThoughtItem, ToolInfoInThought } from '../type'
-import Tool from './tool'
+import ThoughtTool from './ThoughtTool'
 import type { Emoji } from '@/types/tools'
 
 export type IThoughtProps = {
@@ -49,7 +49,7 @@ const Thought: FC<IThoughtProps> = ({
   return (
     <div className='my-2 space-y-2'>
       {toolThoughtList.map((item: ToolInfoInThought, index) => (
-        <Tool
+        <ThoughtTool
           key={index}
           payload={item}
           allToolIcons={allToolIcons}
