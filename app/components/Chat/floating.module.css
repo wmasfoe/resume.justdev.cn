@@ -321,6 +321,71 @@
   }
 }
 
+/* ─── Scroll-hide: slide down + fade when page is at bottom ─── */
+@keyframes slideHide {
+  from {
+    opacity: 1;
+    transform: translateX(50%) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(50%) translateY(calc(100% + 1rem));
+  }
+}
+
+@keyframes slideShow {
+  from {
+    opacity: 0;
+    transform: translateX(50%) translateY(calc(100% + 1rem));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(50%) translateY(0);
+  }
+}
+
+.inputContainerHidden {
+  animation: slideHide 0.28s var(--spring-close) forwards;
+  pointer-events: none;
+}
+
+.inputContainerVisible {
+  animation: slideShow 0.38s var(--spring-open) forwards;
+}
+
+/* Mobile: keep horizontal centering while sliding on Y */
+@media (max-width: 768px) {
+  @keyframes slideHideMobile {
+    from {
+      opacity: 1;
+      transform: translateX(50%) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateX(50%) translateY(calc(100% + 1rem));
+    }
+  }
+
+  @keyframes slideShowMobile {
+    from {
+      opacity: 0;
+      transform: translateX(50%) translateY(calc(100% + 1rem));
+    }
+    to {
+      opacity: 1;
+      transform: translateX(50%) translateY(0);
+    }
+  }
+
+  .inputContainerHidden {
+    animation: slideHideMobile 0.28s var(--spring-close) forwards;
+  }
+
+  .inputContainerVisible {
+    animation: slideShowMobile 0.38s var(--spring-open) forwards;
+  }
+}
+
 @media print {
   .inputContainer {
     display: none;

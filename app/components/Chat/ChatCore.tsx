@@ -33,6 +33,7 @@ export type IChatProps = {
   isResponding?: boolean
   controlClearQuery?: number
   visionConfig?: VisionSettings
+  isHistoryLoading?: boolean
 }
 
 const Chat: FC<IChatProps> = ({
@@ -46,6 +47,7 @@ const Chat: FC<IChatProps> = ({
   isResponding,
   controlClearQuery,
   visionConfig,
+  isHistoryLoading = false,
 }) => {
   const { notify } = Toast
   const isUseInputMethod = useRef(false)
@@ -156,7 +158,7 @@ const Chat: FC<IChatProps> = ({
               )
             })
             : <div style={{ height: '15rem' }}>
-              <Empty />
+              {isHistoryLoading ? <Loading type='area' size={36} /> : <Empty />}
             </div>
           }
         </div>

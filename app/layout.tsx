@@ -46,8 +46,8 @@ const LocaleLayout = ({
   children: React.ReactNode
 }) => {
   return (
-    <html lang="zh-CN" className="h-full">
-      <body className="h-full">
+    <html lang="zh-CN">
+      <body>
         <Script
           id="schema-jsonld"
           type="application/ld+json"
@@ -65,7 +65,7 @@ const LocaleLayout = ({
             })
           }}
         />
-        <div className="w-screen h-screen min-w-[300px]">
+        <div className="w-screen min-h-screen min-w-[300px]">
           {children}
         </div>
       </body>

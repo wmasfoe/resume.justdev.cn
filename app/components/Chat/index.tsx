@@ -9,6 +9,7 @@ import ChatInput from "./ui/ChatInput";
 import { CloseIcon } from "./ui/Icons";
 import useUIState from "./hooks/useUIState";
 import useVisualViewport from "./hooks/useVisualViewport";
+import useScrollBottom from "./hooks/useScrollBottom";
 import useBreakpoints, { MediaType } from "@/hooks/use-breakpoints";
 import {
   checkCanSend,
@@ -60,6 +61,10 @@ const Main: FC<IMainProps> = ({
   const { offsetBottom } = useVisualViewport();
   const media = useBreakpoints();
   const isMobile = [MediaType.mobile, MediaType.tablet].includes(media);
+  const isAtBottom = useScrollBottom();
+  const wasHiddenRef = useRef(false);
+  const prevIsAtBottomRef = useRef(false);
+  const [shouldPlayShowAnimation, setShouldPlayShowAnimation] = useState(false);
 
   /*
    * 应用信息
@@ -112,6 +117,7 @@ const Main: FC<IMainProps> = ({
    * 聊天信息。聊天从属于会话。
    */
   const [chatList, setChatList, getChatList] = useGetState<ChatItem[]>([]);
+  const [isHistoryLoading, setIsHistoryLoading] = useState(false);
   const [
     conversationIdChangeBecauseOfNew,
     setConversationIdChangeBecauseOfNew,
@@ -174,6 +180,43 @@ const Main: FC<IMainProps> = ({
   // Use ref to track the last processed conversation to avoid infinite loops
   const lastProcessedConversationId = useRef<string>("");
   const hasFetchedChatList = useRef<boolean>(false);
+  const chatHistoryRequestIdRef = useRef(0);
+
+  // Trigger show animation only when page leaves bottom after being hidden there.
+  useEffect(() => {
+    const wasAtBottom = prevIsAtBottomRef.current;
+
+    if (!uiState.isExpanded && !uiState.isClosing) {
+      if (isAtBottom) {
+        wasHiddenRef.current = true;
+        setShouldPlayShowAnimation(false);
+      } else if (wasAtBottom && wasHiddenRef.current) {
+        setShouldPlayShowAnimation(true);
+      }
+    }
+
+    prevIsAtBottomRef.current = isAtBottom;
+  }, [isAtBottom, uiState.isExpanded, uiState.isClosing]);
+
+  // Clear any pending show animation state while popover is opening/closing.
+  useEffect(() => {
+    if (uiState.isExpanded || uiState.isClosing) {
+      setShouldPlayShowAnimation(false);
+    }
+  }, [uiState.isExpanded, uiState.isClosing]);
+
+  // Keep slideShow as a one-shot class even if animation events are renamed/scoped.
+  useEffect(() => {
+    if (!shouldPlayShowAnimation) return;
+
+    const timeoutId = window.setTimeout(() => {
+      setShouldPlayShowAnimation(false);
+    }, 420);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [shouldPlayShowAnimation]);
 
   // Handle chat list loading when conversation switches (only for existing conversations)
   useEffect(() => {
@@ -182,78 +225,96 @@ const Main: FC<IMainProps> = ({
       isNewConversation ||
       conversationIdChangeBecauseOfNew ||
       isResponding
-    )
+    ) {
+      setIsHistoryLoading(false);
       return;
+    }
 
     // Avoid duplicate fetches for the same conversation
     if (
       lastProcessedConversationId.current === currConversationId &&
       hasFetchedChatList.current
-    )
+    ) {
+      setIsHistoryLoading(false);
       return;
+    }
 
     const currentConversation = conversationList.find(
       (item) => item.id === currConversationId
     );
-    if (!currentConversation) return;
+    if (!currentConversation) {
+      setIsHistoryLoading(false);
+      return;
+    }
 
     lastProcessedConversationId.current = currConversationId;
     hasFetchedChatList.current = true;
+    const requestId = ++chatHistoryRequestIdRef.current;
+    setIsHistoryLoading(true);
 
-    fetchChatList(currConversationId).then((res: any) => {
-      const { data } = res;
-      const introduction = currentConversation.introduction || "";
-      const inputs = currentConversation.inputs || {};
+    fetchChatList(currConversationId)
+      .then((res: any) => {
+        const { data } = res;
+        const introduction = currentConversation.introduction || "";
+        const inputs = currentConversation.inputs || {};
 
-      const newChatList: ChatItem[] = generateNewChatListWithOpenStatement(
-        introduction,
-        inputs,
-        introduction,
-        inputs,
-        promptConfig
-      );
+        const newChatList: ChatItem[] = generateNewChatListWithOpenStatement(
+          introduction,
+          inputs,
+          introduction,
+          inputs,
+          promptConfig
+        );
 
-      data.forEach((item: any) => {
-        newChatList.push({
-          id: `question-${item.id}`,
-          content: item.query,
-          isAnswer: false,
-          message_files:
-            item.message_files?.filter(
-              (file: any) => file.belongs_to === "user"
-            ) || [],
+        data.forEach((item: any) => {
+          newChatList.push({
+            id: `question-${item.id}`,
+            content: item.query,
+            isAnswer: false,
+            message_files:
+              item.message_files?.filter(
+                (file: any) => file.belongs_to === "user"
+              ) || [],
+          });
+          newChatList.push({
+            id: item.id,
+            content: item.answer,
+            agent_thoughts: addFileInfos(
+              item.agent_thoughts
+                ? sortAgentSorts(item.agent_thoughts)
+                : item.agent_thoughts,
+              item.message_files
+            ),
+            feedback: item.feedback,
+            isAnswer: true,
+            message_files:
+              item.message_files?.filter(
+                (file: any) => file.belongs_to === "assistant"
+              ) || [],
+          });
         });
-        newChatList.push({
-          id: item.id,
-          content: item.answer,
-          agent_thoughts: addFileInfos(
-            item.agent_thoughts
-              ? sortAgentSorts(item.agent_thoughts)
-              : item.agent_thoughts,
-            item.message_files
-          ),
-          feedback: item.feedback,
-          isAnswer: true,
-          message_files:
-            item.message_files?.filter(
-              (file: any) => file.belongs_to === "assistant"
-            ) || [],
-        });
+        setChatList(newChatList);
+      })
+      .finally(() => {
+        if (chatHistoryRequestIdRef.current === requestId) {
+          setIsHistoryLoading(false);
+        }
       });
-      setChatList(newChatList);
-    });
   }, [
     inited,
     isNewConversation,
     currConversationId,
     conversationIdChangeBecauseOfNew,
     isResponding,
+    conversationList,
     promptConfig,
+    setChatList,
   ]);
 
   // Handle new conversation chat list initialization
   useEffect(() => {
     if (!isNewConversation || !isChatStarted || !promptConfig) return;
+    setIsHistoryLoading(false);
 
     // Reset the tracking refs for new conversations
     lastProcessedConversationId.current = "";
@@ -831,8 +892,11 @@ const Main: FC<IMainProps> = ({
   // if (appUnavailable)
   //   return <AppUnavailable isUnknownReason={isUnknownReason} errMessage={!hasSetAppConfig ? 'Please set APP_ID and API_KEY in config/index.tsx' : ''} />
 
-  if (!APP_ID || !APP_INFO || !promptConfig || appUnavailable)
+  if (!APP_ID || !APP_INFO || appUnavailable) return <Loading type="app" />;
+  if (!promptConfig) {
+    if (isFloatingMode) return null;
     return <Loading type="app" />;
+  }
 
   if (isFloatingMode) {
     const isOpen = uiState.isExpanded;
@@ -857,9 +921,20 @@ const Main: FC<IMainProps> = ({
       <div className={`${styles.variables} ${className ?? ""}`}>
         <div
           ref={chatContainerRef}
-          className={`${styles.inputContainer} ${
-            isOpen || isClosing ? "" : styles.hoverScale
-          }`}
+          className={[
+            styles.inputContainer,
+            isOpen || isClosing ? "" : styles.hoverScale,
+            // Hide when page is scrolled to bottom and chat is not open.
+            // Only apply the re-appear animation after having been hidden once
+            // (avoids slideShow starting from opacity:0 on initial render).
+            !isOpen && !isClosing
+              ? isAtBottom
+                ? styles.inputContainerHidden
+                : shouldPlayShowAnimation
+                ? styles.inputContainerVisible
+                : ""
+              : "",
+          ].join(" ")}
           style={mobileBottomStyle}
           onClick={uiState.handleFocus}
         >
@@ -891,6 +966,7 @@ const Main: FC<IMainProps> = ({
                 checkCanSend={handleCanSend}
                 visionConfig={visionConfig}
                 isHideSendInput
+                isHistoryLoading={isHistoryLoading}
               />
             </div>
           </div>
@@ -919,6 +995,7 @@ const Main: FC<IMainProps> = ({
         isResponding={isResponding}
         checkCanSend={handleCanSend}
         visionConfig={visionConfig}
+        isHistoryLoading={isHistoryLoading}
       />
     </div>
   );
