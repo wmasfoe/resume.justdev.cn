@@ -358,3 +358,28 @@
   align-items: center;
   margin-top: 0.5rem;
 }
+
+@media screen and (prefers-color-scheme: dark) {
+  .resumeContainer {
+    --foreground: #e8dfd4;
+    --font-color: #c9bfb3;
+    color-scheme: dark;
+  }
+
+  .resumeContainer a {
+    border-bottom-color: rgb(232 223 212 / 46%);
+  }
+
+  .sectionTitle {
+    border-bottom-color: rgb(232 223 212 / 42%);
+  }
+
+  .jobTitle,
+  .metaInfo {
+    opacity: 0.68;
+  }
+
+  .split {
+    opacity: 0.24;
+  }
+}

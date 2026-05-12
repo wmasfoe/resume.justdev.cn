@@ -137,10 +137,10 @@ a {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --font-color: #d0cfcf;
-    --modal-background: rgb(43, 45, 48);
+    --background: #15120f;
+    --foreground: #e6ded3;
+    --font-color: #c9bfb3;
+    --modal-background: #211d18;
   }
 }
 
