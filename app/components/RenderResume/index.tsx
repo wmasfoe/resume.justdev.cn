@@ -146,7 +146,7 @@ function getLiBoldContent(text: string) {
   </> : text
 }
 
-function getModeClassName(mode?: 'online' | 'pdf' | 'all') {
+function getModeClassName(mode?: 'online' | 'pdf' | 'all' | 'never') {
   return `${mode === 'online' ? styles.onlineOnly : ''} ${mode === 'pdf' ? styles.pdfOnly : ''}`.trim()
 }
 
@@ -227,7 +227,7 @@ export default function ResumeViewer() {
       {/* 工作经历 */}
       <SectionList
         title="工作经历"
-        data={resumeData.work}
+        data={resumeData.work.filter((j: any) => j.mode !== 'never')}
         wrapperClass={styles.workExperience}
         renderItem={(job) => (
           <div className={`${styles.cardNested} ${styles.notMargin} ${getModeClassName(job.mode)}`}>
@@ -280,7 +280,7 @@ export default function ResumeViewer() {
       {/* 项目经验 */}
       <SectionList
         title="项目经验"
-        data={resumeData.workProject}
+        data={resumeData.workProject.filter((p: any) => p.mode !== 'never')}
         renderItem={(project) => (
           <div
             className={`${styles.cardNested} ${styles.projectCard} ${getModeClassName(project.mode)}`}

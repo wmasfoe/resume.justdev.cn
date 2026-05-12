@@ -5,8 +5,8 @@
     "label": "前端开发工程师",
     "status": "在职, 2周内到岗",
     "phone": "18532377382",
-    "workingYears": "六年工作经验",
-    "summary": "6年前端开发经验，专注于大型复杂应用架构设计与性能优化。熟悉 React/Vue 技术栈，具备跨端开发经验，对前端工程化、性能优化有深入理解。",
+    "workingYears": "五年工作经验",
+    "summary": "5年前端开发经验，专注于大型复杂应用架构设计与性能优化。熟悉 React/Vue 技术栈，具备跨端开发经验，对前端工程化、性能优化有深入理解。",
     "website": "https://justdev.cn",
     "address": "中国·北京",
     "username": "李嘉奇",
@@ -91,15 +91,14 @@
     {
       "projectName": "Nexus AI CodeReview - 钛动科技",
       "mode": "all",
-      "role": "全栈开发",
-      "workSkill": ["FastMCP", "Flask", "Nest.js", "React", "monorepo"],
+      "role": "Vibe Coding",
+      "workSkill": ["FastMCP", "Flask", "NestJS", "React", "Monorepo"],
       "desc": [
         {
-          "type": "MCP 能力建设",
+          "type": "跨仓库联动审查",
           "content": [
-            "OpenAPI 封装: 基于 FastMCP 开发 Zadig MCP Agent，封装 Zadig OpenAPI，统一环境查询、部署详情检索与跨环境部署矩阵生成能力；",
-            "AI 交互链路: 设计自然语言到 Tool 调用流程，支持通过 Claude 等 AI 助手直接发起部署与运维查询，降低重复操作成本；",
-            "执行闭环与通知: 实现“触发部署 + 轮询等待”异步流程，自动识别成功/失败/超时终态，并结合飞书卡片与 SQLite Token 管理保证调用稳定。"
+            "环境感知: 基于 FastMCP 封装 Zadig OpenAPI，查询当前分支所属测试环境及后端服务部署分支；",
+            "联动审查: 结合前端 MR diff 与后端分支 diff 进行跨仓库 Review，识别接口字段、鉴权逻辑等契约不一致问题。"
           ]
         },
         {
@@ -107,7 +106,7 @@
           "content": [
             "增量审查: 设计智能增量 diff 策略，满足条件时仅审查新增变更，减少无效上下文输入；",
             "预算分批: 实现基于 Token 预算的分批审查机制，支持大型 MR 自动拆批与结果合并，保障超长变更可执行；",
-            "多维评估与回写: 接入智普/OpenAI 模型进行安全、性能、可维护性评估，并将结论以 GitLab 行内评论自动回写。"
+            "多维评估与回写: 接入智谱/OpenAI 模型进行安全、性能、可维护性评估，并将结论以 GitLab 行内评论自动回写。"
           ]
         },
         {
@@ -123,7 +122,23 @@
           "content": [
             "成本收益: 智能增量策略落地后，Token 消耗降低约 60%，显著降低模型调用成本；",
             "效率收益: 建立 MR 自动审查与行内回写闭环，减少人工 Review 重复劳动并提升反馈时效；",
-            "平台复用: 沉淀 MCP + 审查引擎能力，支撑后续内部工具接入与流程复用。"
+            "平台复用: 沉淀环境感知与审查引擎能力，支撑后续内部工具接入与流程复用。"
+          ]
+        }
+      ]
+    },
+    {
+      "projectName": "DSP投放平台 - 钛动科技",
+      "mode": "all",
+      "role": "前端开发",
+      "workSkill": ["FastMCP", "Flask", "NestJS", "React", "Monorepo"],
+      "desc": [
+        {
+          "type": "产出成果",
+          "content": [
+            "成本收益: 智能增量策略落地后，Token 消耗降低约 60%，显著降低模型调用成本；",
+            "效率收益: 建立 MR 自动审查与行内回写闭环，减少人工 Review 重复劳动并提升反馈时效；",
+            "平台复用: 沉淀环境感知与审查引擎能力，支撑后续内部工具接入与流程复用。"
           ]
         }
       ]
@@ -298,7 +313,7 @@
     },
     {
       "projectName": "Tenant Portal",
-      "mode": "all",
+      "mode": "never",
       "role": "前端开发",
       "workSkill": ["React", "Apollo GraphQL", "AntDesign", "Stripe"],
       "desc": [
