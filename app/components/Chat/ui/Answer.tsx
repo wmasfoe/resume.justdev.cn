@@ -69,8 +69,9 @@ const Answer: FC<IAnswerProps> = ({
   isResponding,
   allToolIcons,
 }) => {
-  const { id, content, feedback, agent_thoughts, workflowProcess } = item
+  const { id, content, feedback, agent_thoughts, workflowProcess, reasoning } = item
   const isAgentMode = !!agent_thoughts && agent_thoughts.length > 0
+  const hasReasoning = !!reasoning && reasoning.length > 0
 
 
   /**
@@ -179,7 +180,20 @@ const Answer: FC<IAnswerProps> = ({
               {workflowProcess && (
                 <WorkflowProcess data={workflowProcess} hideInfo />
               )}
-              {(isResponding && (isAgentMode ? (!content && (agent_thoughts || []).filter(item => !!item.thought || !!item.tool).length === 0) : !content))
+              {hasReasoning && (
+                <details
+                  className='mb-2 rounded-md border border-gray-200 bg-white/60 text-xs text-gray-600'
+                  open={isResponding && !content}
+                >
+                  <summary className='cursor-pointer select-none px-2 py-1 font-medium text-gray-500'>
+                    思考过程
+                  </summary>
+                  <div className='border-t border-gray-100 px-2 py-1 text-gray-600'>
+                    <Markdown content={reasoning!} />
+                  </div>
+                </details>
+              )}
+              {(isResponding && !hasReasoning && (isAgentMode ? (!content && (agent_thoughts || []).filter(item => !!item.thought || !!item.tool).length === 0) : !content))
                 ? (
                   <div className='flex items-center justify-center w-6 h-5'>
                     <LoadingAnim type='text' />

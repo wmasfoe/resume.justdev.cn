@@ -1,7 +1,5 @@
 import type { AppInfo } from '@/types/app'
-export const APP_ID = `${process.env.NEXT_PUBLIC_APP_ID}`
-export const API_KEY = `${process.env.NEXT_PUBLIC_APP_KEY}`
-export const API_URL = `${process.env.NEXT_PUBLIC_API_URL}`
+
 export const APP_INFO: AppInfo = {
   title: '李嘉奇的个人简历',
   description: '',
@@ -18,3 +16,12 @@ export const API_PREFIX = '/api'
 export const LOCALE_COOKIE_NAME = 'locale'
 
 export const DEFAULT_VALUE_MAX_LEN = 48
+
+export const DEFAULT_OPENING_STATEMENT = '你好，我是李嘉奇的简历助手，欢迎咨询任何与他工作经历、能力相关的问题。'
+
+export type ClientCapabilities = {
+  conversationList: boolean
+  fileUpload: boolean
+  feedback: boolean
+  appParameters: boolean
+}
