@@ -1,4 +1,4 @@
-import type { IOnCompleted, IOnData, IOnError, IOnFile, IOnMessageEnd, IOnMessageReplace, IOnNodeFinished, IOnNodeStarted, IOnThought, IOnWorkflowFinished, IOnWorkflowStarted } from './base'
+import type { IOnCompleted, IOnData, IOnError, IOnFile, IOnMessageEnd, IOnMessageReplace, IOnNodeFinished, IOnNodeStarted, IOnReasoning, IOnThought, IOnWorkflowFinished, IOnWorkflowStarted } from './base'
 import { get, post, ssePost } from './base'
 import type { Feedbacktype } from '@/types/app'
 
@@ -8,6 +8,7 @@ export const sendChatMessage = async (
     onData,
     onCompleted,
     onThought,
+    onReasoning,
     onFile,
     onError,
     getAbortController,
@@ -22,6 +23,7 @@ export const sendChatMessage = async (
     onCompleted: IOnCompleted
     onFile: IOnFile
     onThought: IOnThought
+    onReasoning?: IOnReasoning
     onMessageEnd: IOnMessageEnd
     onMessageReplace: IOnMessageReplace
     onError: IOnError
@@ -37,7 +39,7 @@ export const sendChatMessage = async (
       ...body,
       response_mode: 'streaming',
     },
-  }, { onData, onCompleted, onThought, onFile, onError, getAbortController, onMessageEnd, onMessageReplace, onNodeStarted, onWorkflowStarted, onWorkflowFinished, onNodeFinished })
+  }, { onData, onCompleted, onThought, onReasoning, onFile, onError, getAbortController, onMessageEnd, onMessageReplace, onNodeStarted, onWorkflowStarted, onWorkflowFinished, onNodeFinished })
 }
 
 export const fetchConversations = async () => {

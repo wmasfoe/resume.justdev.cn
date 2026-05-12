@@ -1,15 +1,23 @@
 import { type NextRequest } from 'next/server'
-import { client, getInfo } from '@/app/api/utils/common'
+import { getInfo } from '@/app/api/utils/common'
+import { originGuard } from '@/app/api/utils/origin'
+import { getProvider } from '@/app/api/providers/factory'
 
 export async function POST(request: NextRequest) {
+  const denied = originGuard(request)
+  if (denied) return denied
+
+  const provider = getProvider()
+  if (!provider.capabilities.fileUpload || !provider.fileUpload) {
+    return new Response('File upload is not supported by current provider', { status: 501 })
+  }
   try {
     const formData = await request.formData()
     const { user } = getInfo(request)
-    formData.append('user', user)
-    const res = await client.fileUpload(formData)
-    return new Response(res.data.id as any)
+    const res = await provider.fileUpload(formData, user)
+    return new Response(res.id as any)
   }
   catch (e: any) {
-    return new Response(e.message)
+    return new Response(e.message, { status: 500 })
   }
 }

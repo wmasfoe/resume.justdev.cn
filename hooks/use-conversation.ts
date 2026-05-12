@@ -4,26 +4,24 @@ import { useGetState } from 'ahooks'
 import type { ConversationItem } from '@/types/app'
 
 const storageConversationIdKey = 'conversationIdInfo'
+const APP_NAMESPACE = 'app'
 
 type ConversationInfoType = Omit<ConversationItem, 'inputs' | 'id'>
 function useConversation() {
   const [conversationList, setConversationList] = useState<ConversationItem[]>([])
   const [currConversationId, doSetCurrConversationId, getCurrConversationId] = useGetState<string>('-1')
-  // when set conversation id, we do not have set appId
-  const setCurrConversationId = (id: string, appId: string, isSetToLocalStroge = true, newConversationName = '') => {
+  const setCurrConversationId = (id: string, _legacyAppId?: string, isSetToLocalStroge = true, newConversationName = '') => {
     doSetCurrConversationId(id)
     if (isSetToLocalStroge && id !== '-1') {
-      // conversationIdInfo: {[appId1]: conversationId1, [appId2]: conversationId2}
       const conversationIdInfo = globalThis.localStorage?.getItem(storageConversationIdKey) ? JSON.parse(globalThis.localStorage?.getItem(storageConversationIdKey) || '') : {}
-      conversationIdInfo[appId] = id
+      conversationIdInfo[APP_NAMESPACE] = id
       globalThis.localStorage?.setItem(storageConversationIdKey, JSON.stringify(conversationIdInfo))
     }
   }
 
-  const getConversationIdFromStorage = (appId: string) => {
+  const getConversationIdFromStorage = (_legacyAppId?: string) => {
     const conversationIdInfo = globalThis.localStorage?.getItem(storageConversationIdKey) ? JSON.parse(globalThis.localStorage?.getItem(storageConversationIdKey) || '') : {}
-    const id = conversationIdInfo[appId]
-    return id
+    return conversationIdInfo[APP_NAMESPACE]
   }
 
   const isNewConversation = currConversationId === '-1'

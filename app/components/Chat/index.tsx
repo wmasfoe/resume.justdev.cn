@@ -29,7 +29,12 @@ import useConversation from "@/hooks/use-conversation";
 import Toast from "@/app/components/base/toast";
 import Loading from "@/app/components/base/loading";
 import { userInputsFormToPromptVariables } from "@/utils/prompt";
-import { API_KEY, APP_ID, APP_INFO, promptTemplate } from "@/config";
+import {
+  APP_INFO,
+  DEFAULT_OPENING_STATEMENT,
+  promptTemplate,
+} from "@/config";
+import type { ClientCapabilities } from "@/config";
 import { addFileInfos, sortAgentSorts } from "@/utils/tools";
 import {
   fetchAppParams,
@@ -40,6 +45,11 @@ import {
   updateFeedback,
 } from "@/service";
 import ChatCore from "@/app/components/Chat/ChatCore";
+import {
+  loadChatHistory,
+  saveChatHistory,
+} from "@/utils/chat-history-storage";
+import { chatListToMessages } from "@/utils/chat-to-messages";
 
 export type IMainProps = {
   query?: string;
@@ -78,7 +88,8 @@ const Main: FC<IMainProps> = ({
   className,
   isFloatingMode = false,
 }) => {
-  const hasSetAppConfig = APP_ID && API_KEY;
+  const [capabilities, setCapabilities] = useState<ClientCapabilities | null>(null);
+  const [providerName, setProviderName] = useState<string>("app");
 
   // UI state for floating mode
   const uiState = useUIState();
@@ -426,15 +437,70 @@ const Main: FC<IMainProps> = ({
     [getChatList, setChatList]
   );
 
-  // 核心初始化逻辑：提取为独立函数，消除useEffect依赖
+  // 核心初始化逻辑：先拉 /api/parameters 拿 capabilities + provider，再决定单/多会话路径
   const initializeApp = useCallback(async () => {
     try {
-      const [conversationData, appParams] = await Promise.all([
-        fetchConversations(),
-        fetchAppParams(),
-      ]);
+      const appParams: any = await fetchAppParams();
+      const caps: ClientCapabilities = appParams?.capabilities || {
+        conversationList: false,
+        fileUpload: false,
+        feedback: false,
+        appParameters: false,
+      };
+      const provider: string = appParams?.provider || "app";
+      setCapabilities(caps);
+      setProviderName(provider);
 
-      // 数据验证：统一错误处理
+      const {
+        user_input_form,
+        opening_statement,
+        file_upload,
+        system_parameters,
+      } = (appParams || {}) as {
+        user_input_form: any;
+        opening_statement: string;
+        file_upload: any;
+        system_parameters: any;
+      };
+
+      const prompt_variables = userInputsFormToPromptVariables(user_input_form);
+      const introduction = opening_statement || DEFAULT_OPENING_STATEMENT;
+
+      setNewConversationInfo({
+        name: "新的对话",
+        introduction,
+      });
+      setPromptConfig({
+        prompt_template: promptTemplate,
+        prompt_variables,
+      } as PromptConfig);
+      setVisionConfig({
+        ...(file_upload?.image || {
+          enabled: false,
+          number_limits: 0,
+          detail: Resolution.low,
+          transfer_methods: [TransferMethod.local_file],
+        }),
+        image_file_size_limit: system_parameters?.system_parameters || 0,
+      });
+
+      if (!caps.conversationList) {
+        // 单会话模式：从 localStorage 加载历史
+        const stored = loadChatHistory(provider);
+        const newChatList = generateNewChatListWithOpenStatement(
+          "",
+          null,
+          introduction,
+          null,
+          { prompt_template: promptTemplate, prompt_variables } as PromptConfig
+        );
+        setChatList([...newChatList, ...stored]);
+        setInited(true);
+        return;
+      }
+
+      // 多会话路径（当前仅 Dify）：拉取会话列表并恢复上次的会话
+      const conversationData: any = await fetchConversations();
       const { data: conversations, error } = conversationData as {
         data: ConversationItem[];
         error: string;
@@ -444,54 +510,17 @@ const Main: FC<IMainProps> = ({
         throw new Error(error);
       }
 
-      // 会话ID处理：简化逻辑
-      const storedConversationId = getConversationIdFromStorage(APP_ID);
+      const storedConversationId = getConversationIdFromStorage();
       const shouldRestoreConversation = conversations.some(
         (item) => item.id === storedConversationId
       );
-
-      // 配置设置：批量更新状态（减少重渲染）
-      const {
-        user_input_form,
-        opening_statement,
-        file_upload,
-        system_parameters,
-      } = appParams as {
-        user_input_form: any;
-        opening_statement: string;
-        file_upload: any;
-        system_parameters: any;
-      };
-
-      // 批量状态更新：一次性设置所有配置
-      const prompt_variables = userInputsFormToPromptVariables(user_input_form);
-
-      setNewConversationInfo({
-        name: "新的对话",
-        introduction: opening_statement,
-      });
-
-      setPromptConfig({
-        prompt_template: promptTemplate,
-        prompt_variables,
-      } as PromptConfig);
-
-      setVisionConfig({
-        ...file_upload?.image,
-        image_file_size_limit: system_parameters?.system_parameters || 0,
-      });
-
       setConversationList(conversations as ConversationItem[]);
-
-      // 恢复会话：简化条件逻辑
       if (shouldRestoreConversation) {
-        setCurrConversationId(storedConversationId, APP_ID, false);
+        setCurrConversationId(storedConversationId, undefined, false);
       }
-
       setInited(true);
     } catch (e: any) {
-      // 错误处理：消除特殊情况
-      const is404Error = e.status === 404;
+      const is404Error = e?.status === 404;
       setAppUnavailable(true);
       if (!is404Error) setIsUnknownReason(true);
     }
@@ -504,21 +533,18 @@ const Main: FC<IMainProps> = ({
     setPromptConfig,
     setVisionConfig,
     setConversationList,
+    setChatList,
     setInited,
     setAppUnavailable,
     setIsUnknownReason,
   ]);
 
-  // 初始化状态机：只依赖配置状态，不依赖任何setter
+  // 初始化：直接调用，由 /api/parameters 决定 capabilities/provider
   useEffect(() => {
-    if (!hasSetAppConfig) {
-      setAppUnavailable(true);
-      return;
-    }
-
-    // 单一职责：只负责启动初始化流程
     initializeApp();
-  }, [hasSetAppConfig]); // 只依赖配置状态
+    // 仅在挂载时运行一次
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const setRespondingTrue = useCallback(
     () => setSharedResponding(true),
@@ -562,6 +588,10 @@ const Main: FC<IMainProps> = ({
         query: message || query,
         conversation_id: isNewConversation ? null : currConversationId,
       };
+
+      if (capabilities && !capabilities.conversationList) {
+        data.messages = chatListToMessages(getChatList());
+      }
 
       if (visionConfig?.enabled && files && files?.length > 0) {
         data.files = files.map((item) => {
@@ -653,6 +683,12 @@ const Main: FC<IMainProps> = ({
         async onCompleted(hasError?: boolean) {
           if (hasError) return;
 
+          if (capabilities && !capabilities.conversationList) {
+            saveChatHistory(providerName, getChatList());
+            setRespondingFalse();
+            return;
+          }
+
           if (getConversationIdChangeBecauseOfNew()) {
             const { data: allConversations }: any = await fetchConversations();
             const newItem: any = await generationConversationName(
@@ -670,8 +706,18 @@ const Main: FC<IMainProps> = ({
           setConversationIdChangeBecauseOfNew(false);
           resetNewConversationInputs();
           setChatNotStarted();
-          setCurrConversationId(tempNewConversationId, APP_ID, true);
+          setCurrConversationId(tempNewConversationId, undefined, true);
           setRespondingFalse();
+        },
+        onReasoning(delta) {
+          if (!delta) return;
+          (responseItem as any).reasoning = ((responseItem as any).reasoning || "") + delta;
+          updateCurrentQA({
+            responseItem,
+            questionId,
+            placeholderAnswerId,
+            questionItem,
+          });
         },
         onFile(file) {
           const lastThought =
@@ -883,6 +929,8 @@ const Main: FC<IMainProps> = ({
       setIsRespondingConCurrCon,
       getCurrConversationId,
       setRespondingFalse,
+      capabilities,
+      providerName,
     ]
   );
 
@@ -936,11 +984,11 @@ const Main: FC<IMainProps> = ({
     };
   }, [isFloatingMode, uiState.isExpanded, uiState.handleCollapse]);
 
-  // TODO 暂时去掉，后续需要加入挂载失败重试功能
-  // if (appUnavailable)
-  //   return <AppUnavailable isUnknownReason={isUnknownReason} errMessage={!hasSetAppConfig ? 'Please set APP_ID and API_KEY in config/index.tsx' : ''} />
-
-  if (!APP_ID || !APP_INFO || appUnavailable) return <Loading type="app" />;
+  if (appUnavailable) return <Loading type="app" />;
+  if (!capabilities) {
+    if (isFloatingMode) return null;
+    return <Loading type="app" />;
+  }
   if (!promptConfig) {
     if (isFloatingMode) return null;
     return <Loading type="app" />;

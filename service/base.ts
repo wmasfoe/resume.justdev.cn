@@ -103,6 +103,7 @@ export type IOnDataMoreInfo = {
 
 export type IOnData = (message: string, isFirstMessage: boolean, moreInfo: IOnDataMoreInfo) => void
 export type IOnThought = (though: ThoughtItem) => void
+export type IOnReasoning = (delta: string, moreInfo: { id?: string; messageId?: string }) => void
 export type IOnFile = (file: VisionFile) => void
 export type IOnMessageEnd = (messageEnd: MessageEnd) => void
 export type IOnMessageReplace = (messageReplace: MessageReplace) => void
@@ -121,6 +122,7 @@ type IOtherOptions = {
   deleteContentType?: boolean
   onData?: IOnData // for stream
   onThought?: IOnThought
+  onReasoning?: IOnReasoning
   onFile?: IOnFile
   onMessageEnd?: IOnMessageEnd
   onMessageReplace?: IOnMessageReplace
@@ -151,6 +153,7 @@ const handleStream = (
   onWorkflowFinished?: IOnWorkflowFinished,
   onNodeStarted?: IOnNodeStarted,
   onNodeFinished?: IOnNodeFinished,
+  onReasoning?: IOnReasoning,
 ) => {
   if (!response.ok)
     throw new Error('Network response was not ok')
@@ -226,6 +229,12 @@ const handleStream = (
             }
             else if (bufferObj.event === 'node_finished') {
               onNodeFinished?.(bufferObj as NodeFinishedResponse)
+            }
+            else if (bufferObj.event === 'reasoning_delta') {
+              onReasoning?.(unicodeToChar(bufferObj.delta || ''), {
+                id: bufferObj.id,
+                messageId: bufferObj.message_id,
+              })
             }
           }
         })
@@ -368,6 +377,7 @@ export const ssePost = (
     onData,
     onCompleted,
     onThought,
+    onReasoning,
     onFile,
     onMessageEnd,
     onMessageReplace,
@@ -417,7 +427,7 @@ export const ssePost = (
         onData?.(str, isFirstMessage, moreInfo)
       }, (hasError?: boolean) => {
         onCompleted?.(hasError)
-      }, onThought, onMessageEnd, onMessageReplace, onFile, onWorkflowStarted, onWorkflowFinished, onNodeStarted, onNodeFinished)
+      }, onThought, onMessageEnd, onMessageReplace, onFile, onWorkflowStarted, onWorkflowFinished, onNodeStarted, onNodeFinished, onReasoning)
     }).catch((e) => {
       Toast.notify({ type: 'error', message: e })
       onError?.(`${e}`)
