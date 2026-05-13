@@ -129,7 +129,7 @@
     },
     {
       "projectName": "DSP投放平台 - 钛动科技",
-      "mode": "all",
+      "mode": "never",
       "role": "前端开发",
       "workSkill": ["FastMCP", "Flask", "NestJS", "React", "Monorepo"],
       "desc": [
@@ -342,7 +342,7 @@
     {
       "name": "在线简历",
       "displayName": "在线简历（当前页面）",
-      "summary": "使用 JSON 和 NextJS 构建的在线简历，并且支持生成 PDF 文件。并且通过 Dify 提供的免费服务实现了简历的数字分身，可以通过下方悬浮的输入框发起提问。再次感谢 Dify、Github Actions 和 Vercel 提供的免费服务。",
+      "summary": "使用 JSON 和 NextJS 构建的在线简历，并且支持生成 PDF 文件。通过 Dify 提供的免费服务实现了简历的数字分身，可以通过下方悬浮的输入框发起提问。再次感谢 Dify、Github Actions 和 Vercel 提供的免费服务。",
       "website": "https://resume.justdev.cn",
       "githubUrl": "https://github.com/wmasfoe/resume.justdev.cn",
       "primaryLanguage": "Next.js"
