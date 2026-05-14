@@ -1,0 +1,324 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://resume.justdev.cn/resume.schema.json",
+  "title": "ResumeData",
+  "description": "简历数据结构（参考 jsonresume.org 字段命名，并扩展了 workProject、openSourceProject 等自定义板块）",
+  "type": "object",
+  "required": ["basics"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema 引用路径，用于让 IDE 提供字段补全和 hover 提示"
+    },
+    "basics": {
+      "type": "object",
+      "description": "个人基础信息（姓名、联系方式、个人主页等）",
+      "required": ["name"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "中文姓名或常用展示名"
+        },
+        "picture": {
+          "type": "string",
+          "description": "头像图片 URL（可选，当前简历主页未直接使用）"
+        },
+        "label": {
+          "type": "string",
+          "description": "职业标签，如 “前端开发工程师”"
+        },
+        "status": {
+          "type": "string",
+          "description": "求职状态，如 “在职, 2周内到岗”"
+        },
+        "phone": {
+          "type": "string",
+          "description": "手机号码，会被渲染为可点击的 tel: 链接"
+        },
+        "workingYears": {
+          "type": "string",
+          "description": "工作年限的中文描述，如 “五年工作经验”"
+        },
+        "summary": {
+          "type": "string",
+          "description": "简介段落，仅在线版本展示"
+        },
+        "website": {
+          "type": "string",
+          "description": "个人主页（仅元数据，渲染由 profiles.portfolio 控制）"
+        },
+        "address": {
+          "type": "string",
+          "description": "所在地，如 “中国·北京”"
+        },
+        "username": {
+          "type": "string",
+          "description": "在简历元数据中保留的用户名，未直接渲染"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "description": "邮箱地址，会被渲染为可点击的 mailto: 链接"
+        },
+        "profiles": {
+          "type": "object",
+          "description": "外部主页链接，目前支持 GitHub 与个人作品集",
+          "properties": {
+            "gitHub": {
+              "$ref": "#/definitions/Profile",
+              "description": "GitHub 主页"
+            },
+            "portfolio": {
+              "$ref": "#/definitions/Profile",
+              "description": "个人作品集 / 博客主页"
+            }
+          }
+        }
+      }
+    },
+    "skillList": {
+      "type": "array",
+      "description": "掌握的技能列表。每条建议格式：“分类: 描述”，会自动把冒号前的部分加粗",
+      "items": {
+        "type": "string"
+      }
+    },
+    "work": {
+      "type": "array",
+      "description": "工作经历列表",
+      "items": { "$ref": "#/definitions/WorkExperience" }
+    },
+    "workProject": {
+      "type": "array",
+      "description": "工作中的代表性项目",
+      "items": { "$ref": "#/definitions/WorkProject" }
+    },
+    "openSourceProject": {
+      "type": "array",
+      "description": "开源项目",
+      "items": { "$ref": "#/definitions/OpenSourceProject" }
+    },
+    "education": {
+      "type": "array",
+      "description": "教育经历",
+      "items": { "$ref": "#/definitions/Education" }
+    },
+    "publications": {
+      "type": "array",
+      "description": "出版物（暂未渲染，预留字段）",
+      "items": { "type": "object" }
+    },
+    "volunteer": {
+      "type": "array",
+      "description": "志愿者经历（暂未渲染，预留字段）",
+      "items": { "type": "object" }
+    },
+    "awards": {
+      "type": "array",
+      "description": "获奖经历（暂未渲染，预留字段）",
+      "items": { "type": "object" }
+    },
+    "languages": {
+      "type": "array",
+      "description": "语言能力（暂未渲染，预留字段）",
+      "items": { "type": "object" }
+    },
+    "interests": {
+      "type": "array",
+      "description": "兴趣爱好（暂未渲染，预留字段）",
+      "items": { "type": "object" }
+    },
+    "references": {
+      "type": "array",
+      "description": "推荐人（暂未渲染，预留字段）",
+      "items": { "type": "object" }
+    }
+  },
+  "definitions": {
+    "DisplayMode": {
+      "type": "string",
+      "enum": ["all", "online", "pdf", "never"],
+      "description": "条目展示模式：all=全部展示, online=只在网页版展示, pdf=只在 PDF 版展示, never=隐藏"
+    },
+    "Profile": {
+      "type": "object",
+      "description": "外部主页配置",
+      "required": ["url"],
+      "properties": {
+        "network": {
+          "type": "string",
+          "description": "平台名称，如 “GitHub” / “Portfolio”"
+        },
+        "username": {
+          "type": "string",
+          "description": "在该平台的用户名或展示名"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "完整 URL，会作为图标链接的跳转目标"
+        }
+      }
+    },
+    "WorkExperience": {
+      "type": "object",
+      "description": "一段工作经历",
+      "required": ["company", "position"],
+      "properties": {
+        "company": {
+          "type": "string",
+          "description": "公司名称"
+        },
+        "mode": {
+          "$ref": "#/definitions/DisplayMode"
+        },
+        "position": {
+          "type": "string",
+          "description": "职位名称"
+        },
+        "website": {
+          "type": "string",
+          "format": "uri",
+          "description": "公司官网，会作为公司名右侧的图标链接"
+        },
+        "location": {
+          "type": "string",
+          "description": "工作地点"
+        },
+        "summary": {
+          "type": "string",
+          "description": "团队 / 业务线描述（暂未直接渲染，可用作元数据）"
+        },
+        "isCurrentRole": {
+          "type": "boolean",
+          "description": "是否为当前职位（暂未直接渲染，可用作元数据）"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "入职日期，格式建议 YYYY-MM-DD 或 YYYY-MM"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "离职日期；缺省时显示为 “至今”"
+        },
+        "highlights": {
+          "type": "array",
+          "description": "工作亮点 / 主要职责，每条建议以中文分号或句号结尾。可用 “前缀: 内容” 让前缀加粗",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "WorkProject": {
+      "type": "object",
+      "description": "工作项目经验",
+      "required": ["projectName", "desc"],
+      "properties": {
+        "projectName": {
+          "type": "string",
+          "description": "项目名称，建议格式 “项目名 - 公司”"
+        },
+        "mode": {
+          "$ref": "#/definitions/DisplayMode"
+        },
+        "role": {
+          "type": "string",
+          "description": "在该项目中的角色（暂未直接渲染，可用作元数据）"
+        },
+        "workSkill": {
+          "type": "array",
+          "description": "项目使用的技术栈，会渲染为 “技术栈” 行的标签",
+          "items": { "type": "string" }
+        },
+        "desc": {
+          "type": "array",
+          "description": "项目分段描述",
+          "items": { "$ref": "#/definitions/WorkProjectSection" }
+        },
+        "startDate": {
+          "type": "string",
+          "description": "项目起始日期（暂未直接渲染，可用作元数据）"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "项目结束日期（暂未直接渲染，可用作元数据）"
+        }
+      }
+    },
+    "WorkProjectSection": {
+      "type": "object",
+      "description": "项目描述的一个小节",
+      "required": ["type", "content"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "小节标题，如 “主要职责” / “产出成果”"
+        },
+        "content": {
+          "type": "array",
+          "description": "小节内容条目，每条会渲染为列表项。可用 “前缀: 内容” 让前缀加粗",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "OpenSourceProject": {
+      "type": "object",
+      "description": "开源项目条目",
+      "required": ["displayName", "githubUrl"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "仓库标识，建议 “owner/repo”（元数据用）"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "页面上展示的名称"
+        },
+        "summary": {
+          "type": "string",
+          "description": "项目简介，会渲染在标题下方"
+        },
+        "website": {
+          "type": "string",
+          "format": "uri",
+          "description": "项目主页（暂未直接渲染，可用作元数据）"
+        },
+        "githubUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "GitHub 仓库地址，会作为标题的跳转链接"
+        },
+        "primaryLanguage": {
+          "type": "string",
+          "description": "主要技术栈或语言（暂未直接渲染，可用作元数据）"
+        }
+      }
+    },
+    "Education": {
+      "type": "object",
+      "description": "教育经历条目",
+      "required": ["institution"],
+      "properties": {
+        "studyType": {
+          "type": "string",
+          "description": "学历与专业，如 “本科·软件工程”"
+        },
+        "area": {
+          "type": "string",
+          "description": "学校所在地"
+        },
+        "institution": {
+          "type": "string",
+          "description": "学校名称"
+        },
+        "startDate": {
+          "type": "string",
+          "description": "入学日期，格式建议 YYYY-MM"
+        },
+        "endDate": {
+          "type": "string",
+          "description": "毕业日期，格式建议 YYYY-MM"
+        }
+      }
+    }
+  }
+}

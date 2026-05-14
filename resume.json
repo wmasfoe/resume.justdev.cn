@@ -1,4 +1,5 @@
 {
+  "$schema": "./resume.schema.json",
   "basics": {
     "name": "李嘉奇",
     "picture": "https://blog.justdev.cn/static/favicons/favicon-32x32.png",
@@ -340,7 +341,7 @@
       "primaryLanguage": "Vue"
     },
     {
-      "name": "在线简历",
+      "name": "wmasfoe/resume.justdev.cn",
       "displayName": "在线简历（当前页面）",
       "summary": "使用 JSON 和 NextJS 构建的在线简历，并且支持生成 PDF 文件。通过 Dify 提供的免费服务实现了简历的数字分身，可以通过下方悬浮的输入框发起提问。再次感谢 Dify、Github Actions 和 Vercel 提供的免费服务。",
       "website": "https://resume.justdev.cn",

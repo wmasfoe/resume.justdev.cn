@@ -1,7 +1,14 @@
 import React from 'react'
 import TargetVersion from '../TargeVersion'
-import resumeData from './resume.json'
 import styles from './render-resume.module.css'
+import type { ResumeData } from '@/types/resume'
+
+export type { ResumeData }
+
+export interface ResumeViewerProps {
+  /** 简历数据（结构参考项目根目录 resume.json，类型由 resume.schema.json 生成） */
+  resume: ResumeData
+}
 
 /** 公共函数，根据传入参数生成样式 */
 const getSpanClassName = (isSeparator: boolean, applyMode: 'pc' | 'mobile'): string => {
@@ -67,8 +74,8 @@ const SectionList: React.FC<SectionListProps> = ({ title, data, renderItem, extr
 
 /** GithubWebSite 组件，用于展示 GitHub 与 个人网站图标链接 */
 function GithubWebSite(props: {
-  githubInfo: Record<string, any>
-  websiteInfo: Record<string, any>
+  githubInfo?: { url: string; [k: string]: unknown }
+  websiteInfo?: { url: string; [k: string]: unknown }
   applyMode: 'pc' | 'mobile'
 }) {
   const { githubInfo, websiteInfo, applyMode } = props
@@ -150,37 +157,37 @@ function getModeClassName(mode?: 'online' | 'pdf' | 'all' | 'never') {
   return `${mode === 'online' ? styles.onlineOnly : ''} ${mode === 'pdf' ? styles.pdfOnly : ''}`.trim()
 }
 
-export default function ResumeViewer() {
+export default function ResumeViewer({ resume }: ResumeViewerProps) {
   return (
     <div className={`${styles.resumeContainer} ${styles.variables}`}>
       {/* 头部信息 */}
       <header className={styles.profileCard}>
         <div className={styles.nameAndProfession}>
-          <h1>{resumeData.basics.name}</h1>
+          <h1>{resume.basics.name}</h1>
           <div className={styles.profilesDetail}>
-            <p className={styles.jobTitle}>{resumeData.basics.status}</p>
+            <p className={styles.jobTitle}>{resume.basics.status}</p>
             <span className={`${styles.detail} ${styles.split}`}>|</span>
-            <p className={styles.jobTitle}>{resumeData.basics.workingYears}</p>
+            <p className={styles.jobTitle}>{resume.basics.workingYears}</p>
             <GithubWebSite
               applyMode={'pc'}
-              githubInfo={resumeData.basics.profiles.gitHub}
-              websiteInfo={resumeData.basics.profiles.portfolio}
+              githubInfo={resume.basics.profiles?.gitHub}
+              websiteInfo={resume.basics.profiles?.portfolio}
             />
           </div>
           <div className={styles.contactDetails}>
-            {resumeData.basics.phone && (
+            {resume.basics.phone && (
               <span className={styles.detail}>
-                <a href={`tel:${resumeData.basics.phone}`} rel="noopener noreferrer">
-                  {resumeData.basics.phone}
+                <a href={`tel:${resume.basics.phone}`} rel="noopener noreferrer">
+                  {resume.basics.phone}
                 </a>
               </span>
             )}
-            {resumeData.basics.email && (
+            {resume.basics.email && (
               <>
                 <span className={`${styles.detail} ${styles.split}`}>|</span>
                 <span className={styles.detail}>
-                  <a href={`mailto:${resumeData.basics.email}`} rel="noopener noreferrer">
-                    {resumeData.basics.email}
+                  <a href={`mailto:${resume.basics.email}`} rel="noopener noreferrer">
+                    {resume.basics.email}
                   </a>
                 </span>
               </>
@@ -193,8 +200,8 @@ export default function ResumeViewer() {
           <div className={`${styles.mobileArea} ${styles.onlineOnly} ${styles.mobileOnly}`}>
             <GithubWebSite
               applyMode={'mobile'}
-              githubInfo={resumeData.basics.profiles.gitHub}
-              websiteInfo={resumeData.basics.profiles.portfolio}
+              githubInfo={resume.basics.profiles?.gitHub}
+              websiteInfo={resume.basics.profiles?.portfolio}
             />
             <span className={`${styles.onlineOnly} ${styles.mobileOnly} ${styles.detail} ${styles.split}`}>|</span>
             <div className={`${styles.onlineOnly} ${styles.mobileOnly}`}>
@@ -208,7 +215,7 @@ export default function ResumeViewer() {
       <section className={`${styles.backgroundCard} ${styles.onlineOnly}`}>
         <h2 className={styles.sectionTitle}>简介</h2>
         <div className={styles.cardNested}>
-          <p className={styles.normalText}>{resumeData.basics.summary}</p>
+          <p className={styles.normalText}>{resume.basics.summary}</p>
         </div>
       </section>
 
@@ -216,7 +223,7 @@ export default function ResumeViewer() {
       <section className={styles.backgroundCard}>
         <h2 className={styles.sectionTitle}>掌握的技能</h2>
         <ul className={styles.contentList}>
-          {resumeData.skillList.map((skill, index) => (
+          {(resume.skillList ?? []).map((skill: string) => (
             <li key={skill}>{
               getLiBoldContent(skill)
             }</li>
@@ -227,7 +234,7 @@ export default function ResumeViewer() {
       {/* 工作经历 */}
       <SectionList
         title="工作经历"
-        data={resumeData.work.filter((j: any) => j.mode !== 'never')}
+        data={(resume.work ?? []).filter(j => j.mode !== 'never')}
         wrapperClass={styles.workExperience}
         renderItem={(job) => (
           <div className={`${styles.cardNested} ${styles.notMargin} ${getModeClassName(job.mode)}`}>
@@ -259,7 +266,7 @@ export default function ResumeViewer() {
       {/* 教育经历 */}
       <SectionList
         title="教育经历"
-        data={resumeData.education}
+        data={resume.education ?? []}
         renderItem={(education) => (
           <div className={`${styles.cardNested} ${styles.projectCard} ${styles.openSourceProject}`}>
             <div className={`${styles.projectHeader} ${styles.educationHeader}`}>
@@ -280,7 +287,7 @@ export default function ResumeViewer() {
       {/* 项目经验 */}
       <SectionList
         title="项目经验"
-        data={resumeData.workProject.filter((p: any) => p.mode !== 'never')}
+        data={(resume.workProject ?? []).filter(p => p.mode !== 'never')}
         renderItem={(project) => (
           <div
             className={`${styles.cardNested} ${styles.projectCard} ${getModeClassName(project.mode)}`}
@@ -315,7 +322,7 @@ export default function ResumeViewer() {
       {/* 开源项目 */}
       <SectionList
         title="开源项目"
-        data={resumeData.openSourceProject}
+        data={resume.openSourceProject ?? []}
         renderItem={(project) => (
           <div className={`${styles.cardNested} ${styles.projectCard} ${styles.openSourceProject}`}>
             <div className={`${styles.projectHeader} ${styles.openSourceProjectHeader}`}>

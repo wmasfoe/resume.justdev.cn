@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect' next dev",
     "build:pdf": "NODE_ENV=development node script/pdf.js",
+    "build:types": "json2ts -i resume.schema.json -o types/resume.d.ts --bannerComment ''",
+    "prebuild": "npm run build:types",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -66,6 +68,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "fs-extra": "^11.3.0",
     "husky": "^8.0.3",
+    "json-schema-to-typescript": "^15.0.4",
     "lint-staged": "^13.2.2",
     "postcss": "^8.4.21",
     "puppeteer": "15.5.0",

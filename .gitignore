@@ -55,3 +55,7 @@ pnpm-lock.yaml
 # /public/pdfs/resume.pdf
 /public/pdfs/resume.html
 /debug-screenshot.png
+
+# agent
+*.log
+/.ctx
