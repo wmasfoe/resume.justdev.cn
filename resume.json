@@ -349,6 +349,19 @@
       "primaryLanguage": "Next.js"
     }
   ],
+  "miscProject": [
+    {
+      "projectName": "示例小项目 A",
+      "summary": "用 1-2 句话描述一下这个不值得拆成完整 workProject 的小玩具/实验/Demo。",
+      "workSkill": ["TypeScript", "Vite"],
+      "url": "https://github.com/wmasfoe"
+    },
+    {
+      "projectName": "示例小项目 B",
+      "summary": "无链接版本：仅展示标题、描述、技术栈标签。",
+      "workSkill": ["Node.js"]
+    }
+  ],
   "education": [
     {
       "studyType": "本科·软件工程",
