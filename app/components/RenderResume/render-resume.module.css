@@ -240,7 +240,6 @@
 }
 
 .contentList li {
-    position: relative;
     margin-bottom: var(--resume-text-gap);
     font-size: 1rem;
 }
@@ -382,4 +381,47 @@
   .split {
     opacity: 0.24;
   }
+}
+
+/* 「其他项目」折叠区块 —— 仅 Web 端展示，PDF 端由 .onlineOnly 自动隐藏 */
+.miscToggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+}
+
+.miscToggle .sectionTitle {
+  margin-bottom: 0;
+  flex: 1;
+}
+
+.miscChevron {
+  font-size: 1.4rem;
+  line-height: 1;
+  margin-left: 0.5rem;
+  transition: transform 0.25s ease;
+  color: var(--font-color);
+}
+
+.miscChevronOpen {
+  transform: rotate(180deg);
+}
+
+.miscBody {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+/* 折叠展开高度上限：纯 CSS 折叠的常规妥协，若条目过多可上调或改为测量真实高度 */
+.miscBodyOpen {
+  max-height: 4000px;
 }

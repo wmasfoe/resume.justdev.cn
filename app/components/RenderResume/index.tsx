@@ -1,5 +1,6 @@
 import React from 'react'
 import TargetVersion from '../TargeVersion'
+import MiscProjectSection from './MiscProjectSection'
 import styles from './render-resume.module.css'
 import type { ResumeData } from '@/types/resume'
 
@@ -354,6 +355,9 @@ export default function ResumeViewer({ resume }: ResumeViewerProps) {
           </div>
         )}
       />
+
+      {/* 其他项目（Web 端折叠，PDF 端隐藏） */}
+      <MiscProjectSection data={resume.miscProject ?? []} />
     </div>
   )
 }

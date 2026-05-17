@@ -98,6 +98,11 @@
       "description": "开源项目",
       "items": { "$ref": "#/definitions/OpenSourceProject" }
     },
+    "miscProject": {
+      "type": "array",
+      "description": "其他/杂项小项目。Web 端在简历末尾以折叠区块展示，PDF 端整体隐藏",
+      "items": { "$ref": "#/definitions/MiscProject" }
+    },
     "education": {
       "type": "array",
       "description": "教育经历",
@@ -257,6 +262,31 @@
           "type": "array",
           "description": "小节内容条目，每条会渲染为列表项。可用 “前缀: 内容” 让前缀加粗",
           "items": { "type": "string" }
+        }
+      }
+    },
+    "MiscProject": {
+      "type": "object",
+      "description": "其他/杂项小项目条目（轻量级，不分段描述）",
+      "required": ["projectName", "summary"],
+      "properties": {
+        "projectName": {
+          "type": "string",
+          "description": "项目名称"
+        },
+        "summary": {
+          "type": "string",
+          "description": "一句话项目描述"
+        },
+        "workSkill": {
+          "type": "array",
+          "description": "技术栈标签，沿用 workProject 的 workSkill 习惯",
+          "items": { "type": "string" }
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "可选的项目链接（GitHub / Demo / 文章）。提供时项目名将渲染为可点击链接"
         }
       }
     },

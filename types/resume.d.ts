@@ -86,6 +86,10 @@ export interface ResumeData {
    */
   openSourceProject?: OpenSourceProject[];
   /**
+   * 其他/杂项小项目。Web 端在简历末尾以折叠区块展示，PDF 端整体隐藏
+   */
+  miscProject?: MiscProject[];
+  /**
    * 教育经历
    */
   education?: Education[];
@@ -279,6 +283,28 @@ export interface OpenSourceProject {
    * 主要技术栈或语言（暂未直接渲染，可用作元数据）
    */
   primaryLanguage?: string;
+  [k: string]: unknown;
+}
+/**
+ * 其他/杂项小项目条目（轻量级，不分段描述）
+ */
+export interface MiscProject {
+  /**
+   * 项目名称
+   */
+  projectName: string;
+  /**
+   * 一句话项目描述
+   */
+  summary: string;
+  /**
+   * 技术栈标签，沿用 workProject 的 workSkill 习惯
+   */
+  workSkill?: string[];
+  /**
+   * 可选的项目链接（GitHub / Demo / 文章）。提供时项目名将渲染为可点击链接
+   */
+  url?: string;
   [k: string]: unknown;
 }
 /**

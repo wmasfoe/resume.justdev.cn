@@ -681,7 +681,19 @@ const Main: FC<IMainProps> = ({
           });
         },
         async onCompleted(hasError?: boolean) {
-          if (hasError) return;
+          if (hasError) {
+            // 静默失败：仅收起 loading，回滚空的 AI 占位符；保留用户的提问气泡
+            setRespondingFalse();
+            setChatList(
+              produce(getChatList(), (draft) => {
+                const idx = draft.findIndex(
+                  (item) => item.id === placeholderAnswerId
+                );
+                if (idx !== -1) draft.splice(idx, 1);
+              })
+            );
+            return;
+          }
 
           if (capabilities && !capabilities.conversationList) {
             saveChatHistory(providerName, getChatList());
@@ -824,16 +836,15 @@ const Main: FC<IMainProps> = ({
             })
           );
         },
-        onError(errorMessage?: string, errorCode?: string) {
-          setChatErrorNotice(getChatErrorNotice(errorMessage, errorCode));
+        onError() {
+          // 静默失败：与 onCompleted(hasError=true) 形成幂等双保险
           setRespondingFalse();
-          // 回滚占位符答案
           setChatList(
             produce(getChatList(), (draft) => {
-              draft.splice(
-                draft.findIndex((item) => item.id === placeholderAnswerId),
-                1
+              const idx = draft.findIndex(
+                (item) => item.id === placeholderAnswerId
               );
+              if (idx !== -1) draft.splice(idx, 1);
             })
           );
         },

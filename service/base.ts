@@ -252,6 +252,9 @@ const handleStream = (
       }
       if (!hasError)
         read()
+    }).catch(() => {
+      // 流读取中途异常（服务器中断、网络抖动等）：静默触发完成回调，由调用方收起 loading
+      onCompleted?.(true)
     })
   }
   read()
@@ -406,13 +409,11 @@ export const ssePost = (
           .then((data: any) => {
             const message = data?.message || 'Server Error'
             const code = data?.code ? String(data.code) : String(res.status)
-            Toast.notify({ type: 'error', message })
             onError?.(message, code)
             onCompleted?.(true)
           })
           .catch(() => {
             const code = String(res.status)
-            Toast.notify({ type: 'error', message: 'Server Error' })
             onError?.('Server Error', code)
             onCompleted?.(true)
           })
@@ -420,7 +421,6 @@ export const ssePost = (
       }
       return handleStream(res, (str: string, isFirstMessage: boolean, moreInfo: IOnDataMoreInfo) => {
         if (moreInfo.errorMessage) {
-          Toast.notify({ type: 'error', message: moreInfo.errorMessage })
           onError?.(moreInfo.errorMessage, moreInfo.errorCode)
           return
         }
@@ -429,7 +429,6 @@ export const ssePost = (
         onCompleted?.(hasError)
       }, onThought, onMessageEnd, onMessageReplace, onFile, onWorkflowStarted, onWorkflowFinished, onNodeStarted, onNodeFinished, onReasoning)
     }).catch((e) => {
-      Toast.notify({ type: 'error', message: e })
       onError?.(`${e}`)
       onCompleted?.(true)
     })

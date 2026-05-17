@@ -55,9 +55,11 @@ async function buildPDF() {
     
     // 使用Puppeteer访问页面并获取HTML
     console.log('使用Puppeteer访问页面...');
-    const browser = await puppeteer.launch({ 
+    const browser = await puppeteer.launch({
       headless: 'new',
-      args: ['--no-sandbox', '--disable-setuid-sandbox'] 
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH
+        || (process.platform === 'darwin' ? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome' : undefined),
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
     
