@@ -240,7 +240,6 @@
 }
 
 .contentList li {
-    position: relative;
     margin-bottom: var(--resume-text-gap);
     font-size: 1rem;
 }
