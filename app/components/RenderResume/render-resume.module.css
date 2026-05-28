@@ -383,6 +383,114 @@
   }
 }
 
+/* PDF 排版精简（@media print 整合区）
+   注：Puppeteer 已在 page.pdf({margin}) 中设置物理 margin，
+   这里不再定义 @page，避免双重 margin 压缩可用空间。 */
+@media print {
+  /* 通过覆盖 .resumeContainer 上的 CSS 变量，统一收紧字号与间距
+     同时放宽 widows/orphans（Chrome 默认 2 会让短段落整段被推下页） */
+  .resumeContainer {
+    --resume-module-gap: 0.55rem;
+    --resume-section-title-gap: 0.25rem;
+    --resume-module-group-gap: 0.4rem;
+    --resume-text-gap: 0.12rem;
+    --big-title: 1.2rem;
+    --title: 1.1rem;
+    --sub-title: 1rem;
+    orphans: 1;
+    widows: 1;
+  }
+  .resumeContainer * {
+    orphans: 1;
+    widows: 1;
+  }
+
+  /* 头部压成 2 行居左：第 1 行 h1 + profilesDetail 同行，第 2 行 contactDetails 单独 */
+  .profileCard {
+    text-align: left;
+    margin-bottom: 0.3rem !important;
+  }
+  .nameAndProfession {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: baseline;
+    justify-content: flex-start;
+    gap: 0;
+  }
+  .nameAndProfession h1:first-child {
+    margin-right: 0.6rem;
+  }
+  .nameAndProfession h1 {
+    font-size: 1.35rem;
+    margin: 0;
+  }
+  .profilesDetail {
+    margin-top: 0;
+    justify-content: flex-start;
+    flex: 0 1 auto;
+  }
+  .contactDetails {
+    flex-basis: 100%;
+    justify-content: flex-start;
+    margin-top: 0;
+    font-size: 0.92rem;
+  }
+  .jobTitle {
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  /* 进一步收紧开源项目内部间距，给页末塞下留余地 */
+  .openSourceProjectHeader {
+    margin-bottom: 0.3rem;
+  }
+  .openSourceProject {
+    margin-bottom: 0.3rem;
+    /* 不容许整段被启发式推到下一页 */
+    page-break-before: avoid;
+    break-before: avoid;
+  }
+
+  /* 头部更紧凑 */
+  .nameAndProfession h1 {
+    font-size: 1.5rem;
+  }
+  .jobTitle {
+    font-size: 1rem;
+  }
+
+  /* descSection 上下间距收缩 */
+  .descSection {
+    margin-top: 0.35rem;
+    margin-bottom: 0.15rem;
+  }
+  .descSection h4 {
+    margin-bottom: 0.15rem;
+  }
+
+  /* 列表 li 字号微缩 */
+  .contentList li,
+  .highlightList li {
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  /* 分页控制：sub-section 不跨页中断、子项标题不孤立。
+     .backgroundCard 在打印时退出 block 流（display: contents），
+     避免 Chrome 把每个 backgroundCard 当独立"section block"在末尾留白。 */
+  .backgroundCard {
+    display: contents;
+  }
+  .sectionTitle {
+    margin-bottom: var(--resume-section-title-gap);
+  }
+  .cardNested h3,
+  .descSection h4 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+}
+
 /* 「其他项目」折叠区块 —— 仅 Web 端展示，PDF 端由 .onlineOnly 自动隐藏 */
 .miscToggle {
   display: flex;

@@ -166,8 +166,13 @@ export default function ResumeViewer({ resume }: ResumeViewerProps) {
         <div className={styles.nameAndProfession}>
           <h1>{resume.basics.name}</h1>
           <div className={styles.profilesDetail}>
-            <p className={styles.jobTitle}>{resume.basics.status}</p>
-            <span className={`${styles.detail} ${styles.split}`}>|</span>
+            {
+              resume.basics.status ?
+              <>
+                <p className={styles.jobTitle}>{resume.basics.status}</p>
+                <span className={`${styles.detail} ${styles.split}`}>|</span>
+              </> : <></>
+            }
             <p className={styles.jobTitle}>{resume.basics.workingYears}</p>
             <GithubWebSite
               applyMode={'pc'}
@@ -306,16 +311,29 @@ export default function ResumeViewer({ resume }: ResumeViewerProps) {
                 ))}
               </div>
             )}
-            {project.desc.map((section: any, i: number) => (
-              <div key={i} className={styles.descSection}>
-                <h4>{section.type}</h4>
-                <ul className={styles.contentList}>
-                  {section.content.map((item: string, j: number) => (
-                    <li key={j}>{getLiBoldContent(item)}</li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {project.desc
+              .filter((s: any) => s.mode !== 'never')
+              .map((section: any, i: number) => (
+                <div
+                  key={i}
+                  className={`${styles.descSection} ${getModeClassName(section.mode)}`}
+                >
+                  <h4>{section.type}</h4>
+                  <ul className={styles.contentList}>
+                    {section.content
+                      .filter((item: any) => typeof item === 'string' || item.mode !== 'never')
+                      .map((item: any, j: number) => {
+                        const text = typeof item === 'string' ? item : item.text
+                        const itemMode = typeof item === 'string' ? undefined : item.mode
+                        return (
+                          <li key={j} className={getModeClassName(itemMode)}>
+                            {getLiBoldContent(text)}
+                          </li>
+                        )
+                      })}
+                  </ul>
+                </div>
+              ))}
           </div>
         )}
       />
@@ -323,9 +341,9 @@ export default function ResumeViewer({ resume }: ResumeViewerProps) {
       {/* 开源项目 */}
       <SectionList
         title="开源项目"
-        data={resume.openSourceProject ?? []}
+        data={(resume.openSourceProject ?? []).filter(p => p.mode !== 'never')}
         renderItem={(project) => (
-          <div className={`${styles.cardNested} ${styles.projectCard} ${styles.openSourceProject}`}>
+          <div className={`${styles.cardNested} ${styles.projectCard} ${styles.openSourceProject} ${getModeClassName(project.mode)}`}>
             <div className={`${styles.projectHeader} ${styles.openSourceProjectHeader}`}>
               <h3>
                 <a href={project.githubUrl} className="arrow-link" target="_blank">

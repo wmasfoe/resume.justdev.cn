@@ -258,10 +258,30 @@
           "type": "string",
           "description": "小节标题，如 “主要职责” / “产出成果”"
         },
+        "mode": {
+          "$ref": "#/definitions/DisplayMode"
+        },
         "content": {
           "type": "array",
-          "description": "小节内容条目，每条会渲染为列表项。可用 “前缀: 内容” 让前缀加粗",
-          "items": { "type": "string" }
+          "description": "小节内容条目，每条会渲染为列表项。可用 “前缀: 内容” 让前缀加粗。需要单条 mode 控制时，把对应整段改成 { text, mode } 对象数组",
+          "items": {
+            "oneOf": [
+              { "type": "string" },
+              {
+                "type": "object",
+                "required": ["text"],
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "description": "条目文本内容，渲染规则等同于 string 形式"
+                  },
+                  "mode": {
+                    "$ref": "#/definitions/DisplayMode"
+                  }
+                }
+              }
+            ]
+          }
         }
       }
     },
@@ -298,6 +318,9 @@
         "name": {
           "type": "string",
           "description": "仓库标识，建议 “owner/repo”（元数据用）"
+        },
+        "mode": {
+          "$ref": "#/definitions/DisplayMode"
         },
         "displayName": {
           "type": "string",
