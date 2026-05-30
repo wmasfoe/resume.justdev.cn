@@ -200,8 +200,43 @@ async function buildPDF() {
     const bodyHeight = await page.evaluate(() => {
       return document.body.scrollHeight;
     });
-    
+
     console.log(`页面总高度: ${bodyHeight}px`);
+
+    // === DEBUG: emulate print media，打印每个 backgroundCard 位置/高度 ===
+    await page.emulateMediaType('print');
+    await new Promise(r => setTimeout(r, 500));
+    const diag = await page.evaluate(() => {
+      const container = document.querySelector('[class*="resumeContainer"]');
+      const containerRect = container.getBoundingClientRect();
+      // 列出所有有 layout 的 h2/h3/h4/卡片元素的位置，定位 break 点
+      const elems = Array.from(container.querySelectorAll('h2, h3, h4, [class*="cardNested"], [class*="descSection"]'));
+      return {
+        containerTop: containerRect.top,
+        containerHeight: containerRect.height,
+        viewportH: window.innerHeight,
+        items: elems.map(el => {
+          const r = el.getBoundingClientRect();
+          const cs = getComputedStyle(el);
+          return {
+            tag: el.tagName,
+            text: (el.innerText || '').slice(0, 30),
+            top: Math.round(r.top),
+            height: Math.round(r.height),
+            breakBefore: cs.breakBefore,
+            breakInside: cs.breakInside,
+            breakAfter: cs.breakAfter,
+          }
+        })
+      }
+    });
+    console.log('=== PRINT MEDIA DIAGNOSTICS ===');
+    console.log('container:', diag.containerTop, '+', diag.containerHeight);
+    diag.items.forEach((s, i) => {
+      console.log(`[${i}] ${s.tag} top=${s.top} h=${s.height} bi=${s.breakInside} ba=${s.breakAfter} bb=${s.breakBefore} -- "${s.text.replace(/\n/g, ' ')}"`);
+    });
+    await page.emulateMediaType(null);
+    // === END DEBUG ===
     
     // 打印PDF，使用适合的配置确保样式保留
     console.log('生成PDF...');

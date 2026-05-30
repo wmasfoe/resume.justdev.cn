@@ -4,9 +4,9 @@
     "name": "李嘉奇",
     "picture": "https://blog.justdev.cn/static/favicons/favicon-32x32.png",
     "label": "前端开发工程师",
-    "status": "在职, 2周内到岗",
+    "status": "",
     "phone": "18532377382",
-    "workingYears": "五年工作经验",
+    "workingYears": "5 年经验",
     "summary": "5年前端开发经验，专注于大型复杂应用架构设计与性能优化。熟悉 React/Vue 技术栈，具备跨端开发经验，对前端工程化、性能优化有深入理解。",
     "website": "https://justdev.cn",
     "address": "中国·北京",
@@ -26,14 +26,23 @@
     }
   },
   "skillList": [
-    "架构设计: 具备大型应用架构设计能力，熟悉微前端、Monorepo等架构模式，有丰富的性能优化经验；",
-    "前端框架: 熟练掌握 Vue、React、Nuxt、Next 等主流前端框架；",
-    "跨端开发: 熟悉 RN、Taro、uni-app 等跨端开发技术，具备小程序开发经验；",
-    "混合开发与交互: 熟悉 Hybrid 混合开发，熟悉 JS-Bridge 技术及 H5 与原生交互流程；",
-    "数据可视化: 熟练使用 ECharts、G6、F2 等可视化工具，并具备封装通用图表库的实践经验；",
-    "数据结构与算法: 熟悉常见数据结构，了解常用算法及设计模式；",
-    "网络协议与 API 开发: 掌握 HTTP 与 RPC 协议，拥有 GraphQL 开发经验；",
-    "服务端开发与优化: 具备 Node.js 开发经验，熟悉 Nest.js、Koa 等框架；",
+    "架构设计: 具备大型应用架构设计能力，熟悉微前端、Monorepo 等架构模式，有丰富的性能优化经验；",
+    {
+      "text": "前端框架: 熟练掌握 Vue、React、Nuxt、Next 等主流前端框架；",
+      "mode": "all"
+    },
+    {
+      "text": "跨端与混合开发: 熟悉 RN、uni-app 等跨端方案与小程序开发；熟悉 Hybrid 与 JS-Bridge 技术及 H5 与原生交互流程；",
+      "mode": "all"
+    },
+    {
+      "text": "可视化与基础: 熟练使用 ECharts、G6 等可视化工具，具备封装通用图表库的实践经验；熟悉常见数据结构与设计模式；",
+      "mode": "all"
+    },
+    {
+      "text": "服务端与协议: 掌握 HTTP / RPC / GraphQL 协议，具备 Node.js 开发经验，熟悉 Nest.js、Koa 等框架；",
+      "mode": "all"
+    },
     "AI 工程化: 实践 MCP / Function Calling 将业务能力外化为 Tool 集，落地运营 Agent；熟悉 Dify、RAG 等智能问答建设，日常使用 Claude Code 提升研发效率。"
   ],
   "work": [
@@ -48,8 +57,8 @@
       "startDate": "2025-05-10",
       "highlights": [
         "主导 DSP 投放平台架构治理与 AI Native 化，将平台核心能力封装为 MCP Server，赋能运营 Agent 落地；",
-        "主导 Nexus AI CodeReview 项目，设计跨仓库联动审查与 Token 预算分批引擎，显著降低研发代码 Review 成本；",
-        "推动团队 AI 工程化能力建设，组织 Vibe Coding(AI 协作编程)与 MCP/Agent 实践分享，沉淀团队 AI 协作范式；",
+        "主导 Nexus AI CodeReview 项目，设计跨仓库联动审查与审查引擎，显著降低研发代码 Review 成本；",
+        "推动团队 AI 工程化能力建设，组织 Vibe Coding 与 MCP/Agent 实践分享，沉淀团队 AI 协作范式；",
         "主导前端技术栈升级与工程化标准化，统一构建、发布与质量保障流水线。"
       ]
     },
@@ -106,9 +115,18 @@
         {
           "type": "系统架构与工程化优化",
           "content": [
-            "架构升级: 采用 Monorepo 拆分应用模块，统一依赖与发布流水线，降低模块耦合；",
-            "权限重构: 落地基于角色继承的 RBAC 模型，实现按钮级权限点配置，统一前后端权限校验链路；",
-            "性能优化: 通过路由级代码分割、非核心 JS 懒加载与 CDN 长效缓存策略，显著缩短首屏时间；",
+            {
+              "text": "架构升级: 采用 Monorepo 拆分应用模块，统一依赖与发布流水线，降低模块耦合；",
+              "mode": "all"
+            },
+            {
+              "text": "权限重构: 落地基于角色继承的 RBAC 模型，实现按钮级权限点配置，统一前后端权限校验链路；",
+              "mode": "all"
+            },
+            {
+              "text": "性能优化: 通过路由级代码分割、非核心 JS 懒加载与 CDN 长效缓存策略，显著缩短首屏时间；",
+              "mode": "all"
+            },
             "模块重构: 重构洞察模块的数据结构，抽离通用 Hook，统一图表配置与数据请求范式；",
             "配置化升级: 将筛选项、枚举常量抽离为 JSON 配置，支持运营侧自助调整，降低硬编码风险；",
             "微前端集成: 引入微前端方案嵌入跨业务线模块，实现广告投放与素材管理等系统的页面级复用。"
@@ -117,19 +135,31 @@
         {
           "type": "AI Native 化",
           "content": [
-            "能力外化(MCP Server): 基于 MCP 协议将 DSP 平台核心能力(广告组查询、预算调整、定向编辑、效果分析等)封装为标准化 Tool 集，供 Agent 与外部模型统一调用；",
-            "Tool 抽象设计: 围绕投放业务场景沉淀语义化 Tool Schema，明确入参约束、副作用与回滚边界，降低模型误调用风险；",
-            "自然语言运营: 接入运营 Copilot，支持运营人员通过自然语言完成查数、调价、批量操作等高频任务，Agent 解析意图后通过 MCP Tool 链式调用平台能力；",
-            "权限与安全融合: 将 Agent 调用链路与既有 RBAC 模型打通，所有 Tool 执行均复用平台鉴权与审计体系，确保 Agent 操作可追溯、可回滚。"
+            { "text": "能力外化(MCP Server): 基于 MCP 协议将 DSP 平台核心能力(广告组查询、预算调整、定向编辑、效果分析等)封装为标准化 Tool 集，供 Agent 与外部模型统一调用；" },
+            { "text": "Tool 抽象设计: 围绕投放业务场景沉淀语义化 Tool Schema，明确入参约束、副作用与回滚边界，降低模型误调用风险；", "mode": "online" },
+            { "text": "自然语言运营: 接入运营 Copilot，支持运营人员通过自然语言完成查数、调价、批量操作等高频任务，Agent 解析意图后通过 MCP Tool 链式调用平台能力；" },
+            { "text": "权限与安全融合: 将 Agent 调用链路与既有 RBAC 模型打通，所有 Tool 执行均复用平台鉴权与审计体系，确保 Agent 操作可追溯、可回滚。", "mode": "online" }
           ]
         },
         {
           "type": "工作成果",
           "content": [
-            "整体页面加载速度提升 27%，通过架构治理显著降低后续维护成本；",
-            "建立按钮级精细化权限体系，统一前后端校验链路，提升系统安全性与配置灵活性；",
-            "微前端方案沉淀跨业务线复用能力，支撑多条投放产品线的快速集成；",
-            "AI Native 化方面: 将平台关键操作以 MCP Tool 形式标准化输出，跑通“自然语言 → Agent → 平台执行”闭环，为后续多 Agent 协作打下基础。"
+            {
+              "text": "整体页面加载速度提升 27%，通过架构治理显著降低后续维护成本；",
+              "mode": "all"
+            },
+            {
+              "text": "微前端方案沉淀跨业务线复用能力，支撑多条投放产品线的快速集成；",
+              "mode": "all"
+            },
+            {
+              "text": "建立按钮级精细化权限体系，统一前后端校验链路，提升系统安全性与配置灵活性；",
+              "mode": "all"
+            },
+            {
+              "text": "AI Native 化方面: 将平台关键操作以 MCP Tool 形式标准化输出，跑通“自然语言 → Agent → 平台执行”闭环，为后续多 Agent 协作打下基础。",
+              "mode": "online"
+            }
           ]
         }
       ]
@@ -157,6 +187,7 @@
         },
         {
           "type": "后端业务逻辑",
+          "mode": "online",
           "content": [
             "平台后端: 基于 NestJS + Prisma 构建 AICR 后端服务，提供项目配置、审查记录、用户反馈等管理 API；",
             "事件驱动: 接入 GitLab Webhook 自动触发 MR 审查任务，打通“事件接收 - 任务入队 - 审查回写”链路；",
@@ -180,6 +211,7 @@
       "desc": [
         {
           "type": "背景",
+          "mode": "online",
           "content": [
             "业务上: 公司内部亟需构建一套可复用、高扩展性的通用图表库，以展示出主题相同的图表样式。",
             "需求上: 图表库的可扩展性、可维护性、可复用性、性能优化、用户体验优化等。"
@@ -187,6 +219,7 @@
         },
         {
           "type": "主要职责",
+          "mode": "online",
           "content": [
             "项目搭建、架构设计、数据格式设计、插件体系设计、文档优化等",
             "提升图表库的扩展性、可维护性与用户体验"
@@ -195,14 +228,14 @@
         {
           "type": "主要做的事情",
           "content": [
-            "项目架构: 采用 Monorepo 架构统一管理代码，结合 Tree shaking、拆分子包技术优化包体积",
-            "数据格式设计: 根据 echarts 的数据结构，抽象出 dimensions 与 metrics ，支持多种图表适配",
-            "Hook 封装: 借鉴 Hook 思想，封装通用 hooks 供团队调用，提升代码复用率",
-            "插件体系: 提供一套插件体系，提高图表库的可扩展性；比如 数据转换插件、tooltip 渲染插件等",
-            "核心封装: 封装 chart.core 文件，管理 ECharts 实例与事件，逻辑清晰，易于维护",
-            "用户体验: 利用 Dify 知识库 + GPT4o 大模型，优化文档搜索体验，精准识别用户意图，提高搜索准确度",
-            "文档优化: 封装 Sandpack 功能，实现代码在线编辑、预览、分享功能",
-            "前沿探索: 探索使用 ChatGPT 辅助进行单元测试与 Code Review ，优化测试覆盖率和代码质量"
+            { "text": "项目架构: 采用 Monorepo 架构统一管理代码，结合 Tree shaking、拆分子包技术优化包体积" },
+            { "text": "数据格式设计: 根据 echarts 的数据结构，抽象出 dimensions 与 metrics ，支持多种图表适配" },
+            { "text": "Hook 封装: 借鉴 Hook 思想，封装通用 hooks 供团队调用，提升代码复用率", "mode": "online" },
+            { "text": "插件体系: 提供一套插件体系，提高图表库的可扩展性；比如 数据转换插件、tooltip 渲染插件等" },
+            { "text": "核心封装: 封装 chart.core 文件，管理 ECharts 实例与事件，逻辑清晰，易于维护", "mode": "online" },
+            { "text": "用户体验: 利用 Dify 知识库 + OpenAI 大模型，优化文档搜索体验，精准识别用户意图，提高搜索准确度", "mode": "online" },
+            { "text": "文档优化: 封装 Sandpack 功能，实现代码在线编辑、预览、分享功能", "mode": "online" },
+            { "text": "前沿探索: 探索使用 ChatGPT 辅助进行单元测试与 Code Review ，优化测试覆盖率和代码质量", "mode": "online" }
           ]
         },
         {
@@ -210,7 +243,10 @@
           "content": [
             "沉淀出可复用的通用图表库，覆盖团队内多业务线主题图表场景，显著降低重复开发成本；",
             "通过 dimensions/metrics 数据抽象与插件体系，降低业务接入成本，支持快速适配新图表类型；",
-            "文档侧落地 Sandpack 在线编辑与 Dify 智能搜索，优化使用引导与上手体验。"
+            {
+              "text": "文档侧落地 Sandpack 在线编辑与 Dify 智能搜索，优化使用引导与上手体验。",
+              "mode": "all"
+            }
           ]
         }
       ]
@@ -238,17 +274,18 @@
         {
           "type": "主要做的事情",
           "content": [
-            "跨端兼容: 封装统一 JSBridge 方法，兼容 Web、Native 和 Iframe 内嵌场景",
-            "页面优化: 使用 SSR、SSG、ISR 技术实现页面静态化和预渲染",
-            "长列表优化: 利用 Suspense 与 IntersectionObserver 优化任务中心页长列表，封装自定义 hook 降低维护成本",
-            "推送与适配: 实现 WebHook 站内信 push ，基于屏幕 DPI 进行低端手机分辨率适配",
-            "代码稳定性: 使用 Jest 进行单元测试，提高代码稳定性和维护效率",
-            "BFF层设计: 使用 Nest 框架聚合 RPC 接口，封装中间件统一身份校验，并设计接口枚举 code 降低开发成本",
-            "自动化与监控: 利用 Slardar 进行性能监控及异常上报，结合飞书 Webhook 实现异常提醒"
+            { "text": "跨端兼容: 封装统一 JSBridge 方法，兼容 Web、Native 和 Iframe 内嵌场景" },
+            { "text": "页面优化: 使用 SSR、SSG、ISR 技术实现页面静态化和预渲染" },
+            { "text": "长列表优化: 利用 Suspense 与 IntersectionObserver 优化任务中心页长列表，封装自定义 hook 降低维护成本" },
+            { "text": "推送与适配: 实现 WebHook 站内信 push ，基于屏幕 DPI 进行低端手机分辨率适配" },
+            { "text": "代码稳定性: 使用 Jest 进行单元测试，提高代码稳定性和维护效率", "mode": "online" },
+            { "text": "BFF层设计: 使用 Nest 框架聚合 RPC 接口，封装中间件统一身份校验，并设计接口枚举 code 降低开发成本" },
+            { "text": "自动化与监控: 利用 Slardar 进行性能监控及异常上报，结合飞书 Webhook 实现异常提醒" }
           ]
         },
         {
           "type": "工作成果",
+          "mode": "online",
           "content": [
             "通过 SSR/SSG/ISR 与长列表懒加载落地，显著缩短任务中心页首屏与滚动响应时间；",
             "通过 BFF 层聚合 RPC 接口与中间件统一鉴权，降低接口对接成本并提升整体调用稳定性。"
@@ -257,53 +294,6 @@
       ],
       "startDate": "2019-08-06",
       "endDate": "2021-07-10"
-    },
-    {
-      "projectName": "橙子建站 - 字节跳动",
-      "mode": "all",
-      "role": "前端开发",
-      "workSkill": ["React", "Nest.js", "axios", "Koa", "MongoDB"],
-      "desc": [
-        {
-          "type": "主要职责",
-          "content": [
-            "参与系统的组件化开发，设计并实现拖拽式页面编辑器，提升平台的易用性和灵活性；",
-            "参与服务端 API 接口的开发，确保用户设计的页面能够与实时数据进行有效绑定。"
-          ]
-        },
-        {
-          "type": "主要做的事情",
-          "content": [
-            "组件开发: 创建可复用的基础组件，并将项目中重复的组件封装成业务组件；",
-            "组件渲染器开发: 通过将业务组件打包成 UMD 格式，实现组件的远程加载；",
-            "用户数据操作与反馈: 实现了基于后端事务机制的实时反馈，确保在数据提交过程中，如果操作失败，用户能够及时得到正确的错误提示，避免数据不一致或误操作；",
-            "文档编写: 编写技术文档，梳理组件的设计、功能的实现、组件的使用，方便团队成员快速上手并进行协作；",
-            "数据存储: 使用 MongoDB 数据库存储页面的配置和组件的状态；",
-            "后端性能优化: 在请求处理时采用 Redis 进行缓存，来减少对数据库的高频访问；",
-            "Redis 缓存预热: 提前将页面的模版等需要高频访问的数据加载到 Redis ，避免数据库启动时的性能瓶颈。"
-          ]
-        }
-      ],
-      "startDate": "2019-08-06",
-      "endDate": "2021-07-10"
-    },
-    {
-      "projectName": "巨量引擎官网 - 字节跳动",
-      "mode": "all",
-      "role": "前端开发",
-      "workSkill": ["Nuxt.js", "axios", "monorepo", "Egg.js", "MySQL"],
-      "desc": [
-        {
-          "type": "主要做的事情",
-          "content": [
-            "基于开源 DoraCMS 二次开发 CMS 系统",
-            "官网常量文案抽离 JSON 文件，利用 CDN 优化用户体验，日常文案修改由运营处理，节省研发人力",
-            "使用 SSG、ISR 进行页面静态化，优化 SEO",
-            "302 替换为 301 重定向，生成 Sitemap，优化 SEO",
-            "next-i18n 实现多语言切换，提高用户体验"
-          ]
-        }
-      ]
     },
     {
       "projectName": "Tenant Portal",
@@ -335,6 +325,7 @@
     },
     {
       "name": "wmasfoe/resume.justdev.cn",
+      "mode": "all",
       "displayName": "在线简历（当前页面）",
       "summary": "使用 JSON 和 NextJS 构建的在线简历，并且支持生成 PDF 文件。通过 Dify 提供的免费服务实现了简历的数字分身，可以通过下方悬浮的输入框发起提问。再次感谢 Dify、Github Actions 和 Vercel 提供的免费服务。",
       "website": "https://resume.justdev.cn",
@@ -343,6 +334,16 @@
     }
   ],
   "miscProject": [
+    {
+      "projectName": "橙子建站 - 字节跳动",
+      "workSkill": ["React", "Nest.js", "Koa", "MongoDB"],
+      "summary": "字节商业化建站平台，组件化开发拖拽式页面编辑器；业务组件打包为 UMD 远程加载，后端基于 MongoDB + Redis 缓存预热提升性能与稳定性。"
+    },
+    {
+      "projectName": "巨量引擎官网 - 字节跳动",
+      "workSkill": ["Nuxt.js", "Monorepo", "Egg.js", "MySQL"],
+      "summary": "基于开源 DoraCMS 二次开发的官网 + CMS 系统，文案抽离 JSON 由运营自助维护；SSG/ISR 静态化、301 重定向与 Sitemap 优化 SEO，next-i18n 支持多语言。"
+    }
   ],
   "education": [
     {

@@ -1,20 +1,22 @@
+/* ===== 设计变量 =====
+   所有常调的简历间距和字号都集中在这里，避免在业务规则里散落魔法值。 */
 .variables {
-  /*模块之间的间距，比如工作经历、简介这种大的模块*/
+  /* Web 端模块之间的间距，比如工作经历、简介这种大的模块。 */
   --resume-module-gap: 1.2rem;
-  /*模块顶部title和下方正文之间的间距*/
+  /* 模块标题和正文之间的间距。 */
   --resume-section-title-gap: 0.6rem;
-  /*模块每行text之间的间距，比如工作内容部分1、2、3*/
+  /* 列表每行之间的间距，比如工作内容 1、2、3。 */
   --resume-text-gap: 0.2rem;
-  /*模块中的内联模块的间距，比如项目1、项目2*/
+  /* 同一模块内多个条目的间距，比如项目 1、项目 2。 */
   --resume-module-group-gap: 1rem;
 
-  /* 大标题字体 */
+  /* Web 端字号。 */
   --big-title: 1.4rem;
-  /* 次级标题字体 */
   --title: 1.25rem;
-  /* 工作经历职责字体 */
   --sub-title: 1.1rem;
 }
+
+/* ===== 基础容器与文本 ===== */
 .resumeContainer {
   max-width: 800px;
   margin: 0 auto;
@@ -22,64 +24,47 @@
   font-family: 'Nunito Sans', "Helvetica Neue", Helvetica, Arial, 'Noto Sans SC', sans-serif;
   color: var(--foreground);
 }
-.resumeContainer ul {
-  margin-left: 1rem !important;
-  list-style: outside !important;
-  padding-left: 0.5rem !important;
-}
-.resumeContainer ul li::marker {
-  margin-right: 0.1rem !important;
-}
-@media print {
-  .resumeContainer {
-    padding: 0;
-  }
-}
 
-.resumeContainer ul {
-    padding-left: 20px;
-    margin: 0 0 0.5rem;
-}
 .resumeContainer a {
-    border-bottom: 1px dashed var(--foreground);
+  border-bottom: 1px dashed var(--foreground);
 }
 
-/* 头部信息样式 */
-.profileCard {
-    margin-bottom: var(--resume-module-gap);
-    text-align: center;
+.resumeContainer ul {
+  margin: 0 0 0.5rem 1rem;
+  padding-left: 0.5rem;
+  list-style: outside;
 }
-@media print {
-  .profileCard {
-    margin-bottom: 1rem !important;
-  }
+
+.resumeContainer ul li::marker {
+  margin-right: 0.1rem;
+}
+
+.notBorderBottom {
+  border-bottom: none !important;
+}
+
+/* ===== 头部信息 ===== */
+.profileCard {
+  margin-bottom: var(--resume-module-gap);
+  text-align: center;
 }
 
 .nameAndProfession {
   position: relative;
 }
+
 .nameAndProfession h1 {
-    font-size: 1.8rem;
-    font-weight: 600;
+  font-size: 1.8rem;
+  font-weight: 600;
 }
 
 .jobTitle {
-    color: var(--foreground);
-    font-size: 1.2rem;
-    margin: 0.1rem 0 0;
-    opacity: 0.8;
-}
-.notBorderBottom {
-  border-bottom: none !important;
+  color: var(--foreground);
+  font-size: 1.2rem;
+  margin: 0.1rem 0 0;
+  opacity: 0.8;
 }
 
-.contactDetails {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-top: 0.3rem;
-}
 .profilesDetail {
   display: flex;
   flex-flow: row nowrap;
@@ -88,19 +73,12 @@
   gap: 0.5rem;
 }
 
-@media print {
-  .contactDetails {
-    margin-top: 0 !important;
-  }
-  .profilesDetail {
-    margin-top: -0.1rem;
-  }
-}
-
-.split {
-  color: var(--font-color);
-  font-size: 0.8rem;
-  opacity: 0.3;
+.contactDetails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
 }
 
 .detail {
@@ -109,12 +87,28 @@
   gap: 0.5rem;
 }
 
-/* 背景卡片样式 */
-.backgroundCard {
-    margin-bottom: var(--resume-module-gap);
+.split {
+  color: var(--font-color);
+  font-size: 0.8rem;
+  opacity: 0.3;
 }
+
+.mobileArea {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+/* ===== 通用 section / card / list ===== */
+.backgroundCard {
+  margin-bottom: var(--resume-module-gap);
+}
+
 .backgroundCard:last-of-type {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .sectionTitle {
@@ -128,40 +122,68 @@
   margin-bottom: var(--resume-module-group-gap);
   flex: 1;
 }
-.cardNested:last-of-type {
-  margin-bottom: 0;
-}
+
+.cardNested:last-of-type,
 .cardNested.notMargin {
   margin-bottom: 0;
 }
 
+.cardNested,
+.workExperience {
+  padding-left: var(--resume-section-title-gap);
+  padding-right: var(--resume-section-title-gap);
+}
+
+.cardNested h3,
+.projectHeader h3 {
+  font-size: var(--title);
+  font-weight: 600;
+}
+
 .cardNested h3 {
-    font-size: var(--title);
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.metaInfo {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 0.75rem;
-    font-size: 0.9rem;
-    color: var(--foreground);
-    opacity: 0.7;
+.normalText {
+  font-size: 1.1rem;
+  color: var(--font-color);
 }
 
-.textMuted {
-    opacity: 0.8;
+.contentList {
+  list-style: none;
+  padding-left: 1rem;
+}
+
+.contentList li,
+.highlightList li {
+  margin-bottom: var(--resume-text-gap);
+}
+
+.contentList li {
+  font-size: 1rem;
+}
+
+.contentList li:last-of-type {
+  margin-bottom: 0;
 }
 
 .highlightList {
-    margin-top: var(--resume-text-gap);
+  margin-top: var(--resume-text-gap);
 }
 
-.highlightList li {
-    margin-bottom: var(--resume-text-gap);
+.metaInfo {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9rem;
+  color: var(--foreground);
+  opacity: 0.7;
+}
+
+.textMuted {
+  opacity: 0.8;
 }
 
 .workExperience {
@@ -169,195 +191,142 @@
   flex-direction: column;
   gap: 0.3rem;
 }
-.cardNested,
-.workExperience {
-  padding-left: var(--resume-section-title-gap);
-  padding-right: var(--resume-section-title-gap);
-}
-@media print {
-  .workExperience {
-    flex-direction: row;
-    gap: var(--resume-module-group-gap);
-  }
-}
 
-/* 项目卡片样式 */
-.projectCard {
-    margin-bottom: var(--resume-module-group-gap);
-}
+/* ===== 项目与教育 ===== */
+.projectCard,
 .openSourceProject {
   margin-bottom: var(--resume-module-group-gap);
 }
 
 .projectHeader {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
 .openSourceProjectHeader {
   margin-bottom: 0.7rem;
 }
 
-.projectHeader h3 {
-    font-size: var(--title);
-    font-weight: 600;
-}
-.normalText {
-    font-size: 1.1rem;
-    color: var(--font-color);
-}
 .techStack {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-    margin-bottom: 1rem;
-    margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .techTag {
-    display: inline-block;
-    font-size: 1rem;
-    line-height: 1rem;
+  display: inline-block;
+  font-size: 1rem;
+  line-height: 1rem;
 }
+
 .techTag.techTagAfter:not(:last-of-type):not(.strong)::after {
-    content: " + ";
+  content: " + ";
 }
 
 .descSection {
-    margin-bottom: 0.3rem;
-    margin-top: 0.7rem;
+  margin-top: 0.7rem;
+  margin-bottom: 0.3rem;
 }
 
 .descSection h4 {
-    font-size: var(--sub-title);
-    font-weight: 600;
-    margin-bottom: 0.3rem;
+  font-size: var(--sub-title);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
 }
 
-.contentList {
-    list-style: none;
-    padding-left: 1rem;
+.educationHeader {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: start;
+  gap: 12px;
 }
 
-.contentList li {
-    margin-bottom: var(--resume-text-gap);
-    font-size: 1rem;
+.educationBold {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 1.1rem;
+  color: var(--foreground);
+  font-weight: 600;
 }
 
-.contentList li:last-of-type {
-    margin-bottom: 0;
+.educationNormal {
+  font-size: 1.1rem;
+  color: var(--font-color);
+  font-weight: 400;
 }
 
-@media (max-width: 768px) {
-    .resumeContainer {
-        padding: 1rem;
-    }
-    
-    .nameAndProfession h1 {
-        font-size: 1.8rem;
-    }
+.educationTime {
+  margin-top: var(--resume-text-gap);
 }
 
+/* ===== 显示模式工具类 =====
+   这些类只负责“在哪种媒介显示”，业务样式不要再通过它们改间距或字号。 */
 .onlineOnly {
   display: block;
 }
+
+li.onlineOnly {
+  display: list-item;
+}
+
 .pdfOnly {
   display: none;
 }
 
-@media print {
-  .onlineOnly {
-    display: none !important;
-  }
-  .pdfOnly {
-    display: block !important;
-  }
+.pcOnly {
+  display: block;
+}
+
+.pcOnlyInlineFlex,
+.pcOrPDFOnly {
+  display: inline-flex;
 }
 
 .blockToInline {
   display: inline-block;
 }
+
 .pcVersionChange {
   position: absolute;
   right: 1rem;
   top: 0.8rem;
 }
 
-/* .mobileOnly {
-  display: none;
-} */
-.pcOnly {
-  display: block;
-}
-.pcOnlyInlineFlex {
-  display: inline-flex;
-}
-
+/* ===== 移动端覆盖 ===== */
 @media (min-width: 767px) {
   .mobileOnly {
-    display: none !important ;
+    display: none !important;
   }
 }
+
 @media (max-width: 768px) {
-  .pcOnly {
-    display: none;
+  .resumeContainer {
+    padding: 1rem;
   }
+
+  .nameAndProfession h1 {
+    font-size: 1.8rem;
+  }
+
+  .pcOnly,
   .pcOnlyInlineFlex {
     display: none;
   }
-  /* .mobileOnly {
-    display: block;
-  } */
+
+  /* 移动端隐藏桌面/PDF 共用入口，例如联系方式中的 PDF 专用链接。 */
   .pcOrPDFOnly {
     display: none !important;
   }
 }
 
-@media print {
-  .pcOrPDFOnly {
-    display: inline-flex !important;
-  }
-}
-
-.pcOrPDFOnly {
-  display: inline-flex;
-}
-
-.educationHeader {
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 12px;
-  justify-content: start;
-  align-items: center;
-}
-.educationBold {
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  gap: 6px;
-  align-items: center;
-  font-size: 1.1rem;
-  color: var(--foreground);
-  font-weight: 600;
-}
-.educationNormal {
-  font-size: 1.1rem;
-  color: var(--font-color);
-  font-weight: 400;
-}
-.educationTime {
-  margin-top: var(--resume-text-gap);
-}
-
-.mobileArea {
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
-  margin-top: 0.5rem;
-}
-
+/* ===== 暗色模式 ===== */
 @media screen and (prefers-color-scheme: dark) {
   .resumeContainer {
     --foreground: #e8dfd4;
@@ -383,7 +352,142 @@
   }
 }
 
-/* 「其他项目」折叠区块 —— 仅 Web 端展示，PDF 端由 .onlineOnly 自动隐藏 */
+/* ===== PDF 覆盖 =====
+   Puppeteer 已在 page.pdf({ margin }) 中设置物理页边距，这里不写 @page，
+   避免 CSS 页边距和脚本页边距叠加后压缩可用空间。 */
+@media print {
+  .resumeContainer {
+    --resume-module-gap: 0.55rem;
+    --resume-section-title-gap: 0.25rem;
+    --resume-module-group-gap: 0.4rem;
+    --resume-text-gap: 0.12rem;
+    --big-title: 1.2rem;
+    --title: 1.1rem;
+    --sub-title: 1rem;
+    padding: 0.5rem;
+    orphans: 1;
+    widows: 1;
+  }
+
+  .resumeContainer * {
+    orphans: 1;
+    widows: 1;
+  }
+
+  /* PDF 显隐规则集中在这里，避免组件样式互相抢 display。 */
+  .onlineOnly {
+    display: none !important;
+  }
+
+  .pdfOnly {
+    display: block !important;
+  }
+
+  li.pdfOnly {
+    display: list-item !important;
+  }
+
+  .detail.pdfOnly,
+  .pcOnlyInlineFlex.pdfOnly,
+  .pcOrPDFOnly {
+    display: inline-flex !important;
+  }
+
+  /* PDF 头部固定为两行：姓名/状态一行，联系方式一行。 */
+  .profileCard {
+    text-align: left;
+    margin-bottom: 0.3rem;
+  }
+
+  .nameAndProfession {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    line-height: 1.1;
+    margin-bottom: 0.8rem;
+  }
+
+  .nameAndProfession h1:first-child {
+    margin-right: 0.6rem;
+  }
+
+  .nameAndProfession h1 {
+    font-size: 1.5rem;
+    line-height: 1.05;
+    margin: 0;
+  }
+
+  .profilesDetail {
+    justify-content: flex-start;
+    flex: 0 1 auto;
+  }
+
+  .contactDetails {
+    align-items: center;
+    flex-basis: 100%;
+    justify-content: center;
+    margin-top: 0.3rem;
+    font-size: 0.92rem;
+    line-height: 1.15;
+  }
+
+  .jobTitle {
+    font-size: 1rem;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  .workExperience {
+    flex-direction: row;
+    gap: var(--resume-module-group-gap);
+  }
+
+  .openSourceProjectHeader,
+  .openSourceProject {
+    margin-bottom: 0.3rem;
+  }
+
+  .openSourceProject {
+    /* 避免 Chrome PDF 在开源项目之前启发式分页，导致页末留白。 */
+    page-break-before: avoid;
+    break-before: avoid;
+  }
+
+  .descSection {
+    margin-top: 0.35rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .descSection h4 {
+    margin-bottom: 0.15rem;
+  }
+
+  .contentList li,
+  .highlightList li {
+    font-size: 0.92rem;
+    line-height: 1.45;
+  }
+
+  /* display: contents 能减少 Chrome 把 section 当整块分页时产生的大段留白。 */
+  .backgroundCard {
+    display: contents;
+  }
+
+  .sectionTitle {
+    margin-bottom: var(--resume-section-title-gap);
+  }
+
+  .cardNested h3,
+  .descSection h4 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+}
+
+/* ===== 其他项目折叠区 =====
+   只在 Web 端展示；PDF 端依赖 .onlineOnly 统一隐藏。 */
 .miscToggle {
   display: flex;
   align-items: center;
@@ -421,7 +525,7 @@
   transition: max-height 0.35s ease;
 }
 
-/* 折叠展开高度上限：纯 CSS 折叠的常规妥协，若条目过多可上调或改为测量真实高度 */
+/* 纯 CSS 折叠需要一个足够大的上限；条目明显增多时再调这个值。 */
 .miscBodyOpen {
   max-height: 4000px;
 }

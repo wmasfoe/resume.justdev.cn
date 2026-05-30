@@ -70,9 +70,19 @@ export interface ResumeData {
     [k: string]: unknown;
   };
   /**
-   * 掌握的技能列表。每条建议格式：“分类: 描述”，会自动把冒号前的部分加粗
+   * 掌握的技能列表。每条建议格式：“分类: 描述”，会自动把冒号前的部分加粗。需要按在线/PDF 控制时，可使用 { text, mode } 对象
    */
-  skillList?: string[];
+  skillList?: (
+    | string
+    | {
+        /**
+         * 技能条目文本内容，渲染规则等同于 string 形式
+         */
+        text: string;
+        mode?: DisplayMode;
+        [k: string]: unknown;
+      }
+  )[];
   /**
    * 工作经历列表
    */
@@ -249,10 +259,21 @@ export interface WorkProjectSection {
    * 小节标题，如 “主要职责” / “产出成果”
    */
   type: string;
+  mode?: DisplayMode;
   /**
-   * 小节内容条目，每条会渲染为列表项。可用 “前缀: 内容” 让前缀加粗
+   * 小节内容条目，每条会渲染为列表项。可用 “前缀: 内容” 让前缀加粗。需要单条 mode 控制时，把对应整段改成 { text, mode } 对象数组
    */
-  content: string[];
+  content: (
+    | string
+    | {
+        /**
+         * 条目文本内容，渲染规则等同于 string 形式
+         */
+        text: string;
+        mode?: DisplayMode;
+        [k: string]: unknown;
+      }
+  )[];
   [k: string]: unknown;
 }
 /**
@@ -263,6 +284,7 @@ export interface OpenSourceProject {
    * 仓库标识，建议 “owner/repo”（元数据用）
    */
   name?: string;
+  mode?: DisplayMode;
   /**
    * 页面上展示的名称
    */
