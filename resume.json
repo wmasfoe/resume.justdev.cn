@@ -28,28 +28,20 @@
   "skillList": [
     "架构设计: 具备大型应用架构设计能力，熟悉微前端、Monorepo 等架构模式，有丰富的性能优化经验；",
     {
-      "text": "前端技能: 熟练掌握 Vue、React、Nuxt、Next 等主流前端框架，熟悉 RN、uni-app、小程序、Hybrid 与 JS-Bridge 等跨端/混合开发方案；熟练使用 ECharts、G6 等可视化工具，具备封装通用图表库的实践经验；",
-      "mode": "pdf"
-    },
-    {
-      "text": "服务端与基础: 熟悉常见数据结构与设计模式；掌握 HTTP / RPC 协议，具备 Node.js 开发经验，熟悉 Nest.js、Koa 框架；",
-      "mode": "pdf"
-    },
-    {
       "text": "前端框架: 熟练掌握 Vue、React、Nuxt、Next 等主流前端框架；",
-      "mode": "online"
+      "mode": "all"
     },
     {
       "text": "跨端与混合开发: 熟悉 RN、uni-app 等跨端方案与小程序开发；熟悉 Hybrid 与 JS-Bridge 技术及 H5 与原生交互流程；",
-      "mode": "online"
+      "mode": "all"
     },
     {
       "text": "可视化与基础: 熟练使用 ECharts、G6 等可视化工具，具备封装通用图表库的实践经验；熟悉常见数据结构与设计模式；",
-      "mode": "online"
+      "mode": "all"
     },
     {
       "text": "服务端与协议: 掌握 HTTP / RPC / GraphQL 协议，具备 Node.js 开发经验，熟悉 Nest.js、Koa 等框架；",
-      "mode": "online"
+      "mode": "all"
     },
     "AI 工程化: 实践 MCP / Function Calling 将业务能力外化为 Tool 集，落地运营 Agent；熟悉 Dify、RAG 等智能问答建设，日常使用 Claude Code 提升研发效率。"
   ],
