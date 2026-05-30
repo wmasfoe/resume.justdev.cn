@@ -364,7 +364,7 @@ li.onlineOnly {
     --big-title: 1.2rem;
     --title: 1.1rem;
     --sub-title: 1rem;
-    padding: 0;
+    padding: 0.5rem;
     orphans: 1;
     widows: 1;
   }
@@ -403,7 +403,7 @@ li.onlineOnly {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 0;
     line-height: 1.1;
     margin-bottom: 0.8rem;
@@ -427,7 +427,7 @@ li.onlineOnly {
   .contactDetails {
     align-items: center;
     flex-basis: 100%;
-    justify-content: flex-start;
+    justify-content: center;
     margin-top: 0.3rem;
     font-size: 0.92rem;
     line-height: 1.15;

@@ -162,7 +162,7 @@
             },
             {
               "text": "建立按钮级精细化权限体系，统一前后端校验链路，提升系统安全性与配置灵活性；",
-              "mode": "online"
+              "mode": "all"
             },
             {
               "text": "AI Native 化方面: 将平台关键操作以 MCP Tool 形式标准化输出，跑通“自然语言 → Agent → 平台执行”闭环，为后续多 Agent 协作打下基础。",
@@ -253,7 +253,7 @@
             "通过 dimensions/metrics 数据抽象与插件体系，降低业务接入成本，支持快速适配新图表类型；",
             {
               "text": "文档侧落地 Sandpack 在线编辑与 Dify 智能搜索，优化使用引导与上手体验。",
-              "mode": "online"
+              "mode": "all"
             }
           ]
         }
@@ -285,10 +285,10 @@
             { "text": "跨端兼容: 封装统一 JSBridge 方法，兼容 Web、Native 和 Iframe 内嵌场景" },
             { "text": "页面优化: 使用 SSR、SSG、ISR 技术实现页面静态化和预渲染" },
             { "text": "长列表优化: 利用 Suspense 与 IntersectionObserver 优化任务中心页长列表，封装自定义 hook 降低维护成本" },
-            { "text": "推送与适配: 实现 WebHook 站内信 push ，基于屏幕 DPI 进行低端手机分辨率适配", "mode": "online" },
+            { "text": "推送与适配: 实现 WebHook 站内信 push ，基于屏幕 DPI 进行低端手机分辨率适配" },
             { "text": "代码稳定性: 使用 Jest 进行单元测试，提高代码稳定性和维护效率", "mode": "online" },
             { "text": "BFF层设计: 使用 Nest 框架聚合 RPC 接口，封装中间件统一身份校验，并设计接口枚举 code 降低开发成本" },
-            { "text": "自动化与监控: 利用 Slardar 进行性能监控及异常上报，结合飞书 Webhook 实现异常提醒", "mode": "online" }
+            { "text": "自动化与监控: 利用 Slardar 进行性能监控及异常上报，结合飞书 Webhook 实现异常提醒" }
           ]
         },
         {
