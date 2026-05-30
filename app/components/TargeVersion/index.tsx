@@ -34,7 +34,7 @@ const TargetVersion: React.FC = () => {
             target="_blank"
             className={styles.versionLink}
           >
-            前往在线版本
+            PDF 版有所精简，更多请移步在线版本
             <svg width="14" height="14" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M19 11H37V29" stroke="#333" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
               <path d="M11.5439 36.4559L36.9997 11" stroke="#333" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>

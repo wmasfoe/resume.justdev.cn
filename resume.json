@@ -27,10 +27,30 @@
   },
   "skillList": [
     "架构设计: 具备大型应用架构设计能力，熟悉微前端、Monorepo 等架构模式，有丰富的性能优化经验；",
-    "前端框架: 熟练掌握 Vue、React、Nuxt、Next 等主流前端框架；",
-    "跨端与混合开发: 熟悉 RN、Taro、uni-app 等跨端方案与小程序开发；熟悉 Hybrid 与 JS-Bridge 技术及 H5 与原生交互流程；",
-    "可视化与基础: 熟练使用 ECharts、G6、F2 等可视化工具，具备封装通用图表库的实践经验；熟悉常见数据结构与设计模式；",
-    "服务端与协议: 掌握 HTTP / RPC / GraphQL 协议，具备 Node.js 开发经验，熟悉 Nest.js、Koa 等框架；",
+    {
+      "text": "前端技能: 熟练掌握 Vue、React、Nuxt、Next 等主流前端框架，熟悉 RN、uni-app、小程序、Hybrid 与 JS-Bridge 等跨端/混合开发方案；熟练使用 ECharts、G6 等可视化工具，具备封装通用图表库的实践经验；",
+      "mode": "pdf"
+    },
+    {
+      "text": "服务端与基础: 熟悉常见数据结构与设计模式；掌握 HTTP / RPC 协议，具备 Node.js 开发经验，熟悉 Nest.js、Koa 框架；",
+      "mode": "pdf"
+    },
+    {
+      "text": "前端框架: 熟练掌握 Vue、React、Nuxt、Next 等主流前端框架；",
+      "mode": "online"
+    },
+    {
+      "text": "跨端与混合开发: 熟悉 RN、uni-app 等跨端方案与小程序开发；熟悉 Hybrid 与 JS-Bridge 技术及 H5 与原生交互流程；",
+      "mode": "online"
+    },
+    {
+      "text": "可视化与基础: 熟练使用 ECharts、G6 等可视化工具，具备封装通用图表库的实践经验；熟悉常见数据结构与设计模式；",
+      "mode": "online"
+    },
+    {
+      "text": "服务端与协议: 掌握 HTTP / RPC / GraphQL 协议，具备 Node.js 开发经验，熟悉 Nest.js、Koa 等框架；",
+      "mode": "online"
+    },
     "AI 工程化: 实践 MCP / Function Calling 将业务能力外化为 Tool 集，落地运营 Agent；熟悉 Dify、RAG 等智能问答建设，日常使用 Claude Code 提升研发效率。"
   ],
   "work": [
@@ -45,8 +65,8 @@
       "startDate": "2025-05-10",
       "highlights": [
         "主导 DSP 投放平台架构治理与 AI Native 化，将平台核心能力封装为 MCP Server，赋能运营 Agent 落地；",
-        "主导 Nexus AI CodeReview 项目，设计跨仓库联动审查与 Token 预算分批引擎，显著降低研发代码 Review 成本；",
-        "推动团队 AI 工程化能力建设，组织 Vibe Coding(AI 协作编程)与 MCP/Agent 实践分享，沉淀团队 AI 协作范式；",
+        "主导 Nexus AI CodeReview 项目，设计跨仓库联动审查与审查引擎，显著降低研发代码 Review 成本；",
+        "推动团队 AI 工程化能力建设，组织 Vibe Coding 与 MCP/Agent 实践分享，沉淀团队 AI 协作范式；",
         "主导前端技术栈升级与工程化标准化，统一构建、发布与质量保障流水线。"
       ]
     },
@@ -102,11 +122,19 @@
         },
         {
           "type": "系统架构与工程化优化",
-          "mode": "online",
           "content": [
-            "架构升级: 采用 Monorepo 拆分应用模块，统一依赖与发布流水线，降低模块耦合；",
-            "权限重构: 落地基于角色继承的 RBAC 模型，实现按钮级权限点配置，统一前后端权限校验链路；",
-            "性能优化: 通过路由级代码分割、非核心 JS 懒加载与 CDN 长效缓存策略，显著缩短首屏时间；",
+            {
+              "text": "架构升级: 采用 Monorepo 拆分应用模块，统一依赖与发布流水线，降低模块耦合；",
+              "mode": "all"
+            },
+            {
+              "text": "权限重构: 落地基于角色继承的 RBAC 模型，实现按钮级权限点配置，统一前后端权限校验链路；",
+              "mode": "all"
+            },
+            {
+              "text": "性能优化: 通过路由级代码分割、非核心 JS 懒加载与 CDN 长效缓存策略，显著缩短首屏时间；",
+              "mode": "all"
+            },
             "模块重构: 重构洞察模块的数据结构，抽离通用 Hook，统一图表配置与数据请求范式；",
             "配置化升级: 将筛选项、枚举常量抽离为 JSON 配置，支持运营侧自助调整，降低硬编码风险；",
             "微前端集成: 引入微前端方案嵌入跨业务线模块，实现广告投放与素材管理等系统的页面级复用。"
@@ -124,10 +152,22 @@
         {
           "type": "工作成果",
           "content": [
-            "整体页面加载速度提升 27%，通过架构治理显著降低后续维护成本；",
-            "建立按钮级精细化权限体系，统一前后端校验链路，提升系统安全性与配置灵活性；",
-            "微前端方案沉淀跨业务线复用能力，支撑多条投放产品线的快速集成；",
-            "AI Native 化方面: 将平台关键操作以 MCP Tool 形式标准化输出，跑通“自然语言 → Agent → 平台执行”闭环，为后续多 Agent 协作打下基础。"
+            {
+              "text": "整体页面加载速度提升 27%，通过架构治理显著降低后续维护成本；",
+              "mode": "all"
+            },
+            {
+              "text": "微前端方案沉淀跨业务线复用能力，支撑多条投放产品线的快速集成；",
+              "mode": "all"
+            },
+            {
+              "text": "建立按钮级精细化权限体系，统一前后端校验链路，提升系统安全性与配置灵活性；",
+              "mode": "online"
+            },
+            {
+              "text": "AI Native 化方面: 将平台关键操作以 MCP Tool 形式标准化输出，跑通“自然语言 → Agent → 平台执行”闭环，为后续多 Agent 协作打下基础。",
+              "mode": "online"
+            }
           ]
         }
       ]
@@ -187,6 +227,7 @@
         },
         {
           "type": "主要职责",
+          "mode": "online",
           "content": [
             "项目搭建、架构设计、数据格式设计、插件体系设计、文档优化等",
             "提升图表库的扩展性、可维护性与用户体验"
@@ -197,10 +238,10 @@
           "content": [
             { "text": "项目架构: 采用 Monorepo 架构统一管理代码，结合 Tree shaking、拆分子包技术优化包体积" },
             { "text": "数据格式设计: 根据 echarts 的数据结构，抽象出 dimensions 与 metrics ，支持多种图表适配" },
-            { "text": "Hook 封装: 借鉴 Hook 思想，封装通用 hooks 供团队调用，提升代码复用率" },
+            { "text": "Hook 封装: 借鉴 Hook 思想，封装通用 hooks 供团队调用，提升代码复用率", "mode": "online" },
             { "text": "插件体系: 提供一套插件体系，提高图表库的可扩展性；比如 数据转换插件、tooltip 渲染插件等" },
             { "text": "核心封装: 封装 chart.core 文件，管理 ECharts 实例与事件，逻辑清晰，易于维护", "mode": "online" },
-            { "text": "用户体验: 利用 Dify 知识库 + GPT4o 大模型，优化文档搜索体验，精准识别用户意图，提高搜索准确度", "mode": "online" },
+            { "text": "用户体验: 利用 Dify 知识库 + OpenAI 大模型，优化文档搜索体验，精准识别用户意图，提高搜索准确度", "mode": "online" },
             { "text": "文档优化: 封装 Sandpack 功能，实现代码在线编辑、预览、分享功能", "mode": "online" },
             { "text": "前沿探索: 探索使用 ChatGPT 辅助进行单元测试与 Code Review ，优化测试覆盖率和代码质量", "mode": "online" }
           ]
@@ -210,7 +251,10 @@
           "content": [
             "沉淀出可复用的通用图表库，覆盖团队内多业务线主题图表场景，显著降低重复开发成本；",
             "通过 dimensions/metrics 数据抽象与插件体系，降低业务接入成本，支持快速适配新图表类型；",
-            "文档侧落地 Sandpack 在线编辑与 Dify 智能搜索，优化使用引导与上手体验。"
+            {
+              "text": "文档侧落地 Sandpack 在线编辑与 Dify 智能搜索，优化使用引导与上手体验。",
+              "mode": "online"
+            }
           ]
         }
       ]
@@ -289,7 +333,7 @@
     },
     {
       "name": "wmasfoe/resume.justdev.cn",
-      "mode": "online",
+      "mode": "all",
       "displayName": "在线简历（当前页面）",
       "summary": "使用 JSON 和 NextJS 构建的在线简历，并且支持生成 PDF 文件。通过 Dify 提供的免费服务实现了简历的数字分身，可以通过下方悬浮的输入框发起提问。再次感谢 Dify、Github Actions 和 Vercel 提供的免费服务。",
       "website": "https://resume.justdev.cn",

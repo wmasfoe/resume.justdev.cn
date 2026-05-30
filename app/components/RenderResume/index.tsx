@@ -158,6 +158,8 @@ function getModeClassName(mode?: 'online' | 'pdf' | 'all' | 'never') {
   return `${mode === 'online' ? styles.onlineOnly : ''} ${mode === 'pdf' ? styles.pdfOnly : ''}`.trim()
 }
 
+type SkillItem = string | { text: string; mode?: 'online' | 'pdf' | 'all' | 'never' }
+
 export default function ResumeViewer({ resume }: ResumeViewerProps) {
   return (
     <div className={`${styles.resumeContainer} ${styles.variables}`}>
@@ -229,11 +231,18 @@ export default function ResumeViewer({ resume }: ResumeViewerProps) {
       <section className={styles.backgroundCard}>
         <h2 className={styles.sectionTitle}>掌握的技能</h2>
         <ul className={styles.contentList}>
-          {(resume.skillList ?? []).map((skill: string) => (
-            <li key={skill}>{
-              getLiBoldContent(skill)
-            }</li>
-          ))}
+          {(resume.skillList ?? [])
+            .filter((skill: SkillItem) => typeof skill === 'string' || skill.mode !== 'never')
+            .map((skill: SkillItem) => {
+              const text = typeof skill === 'string' ? skill : skill.text
+              const mode = typeof skill === 'string' ? undefined : skill.mode
+
+              return (
+                <li key={text} className={getModeClassName(mode)}>
+                  {getLiBoldContent(text)}
+                </li>
+              )
+            })}
         </ul>
       </section>
 

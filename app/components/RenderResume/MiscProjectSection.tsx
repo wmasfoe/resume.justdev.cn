@@ -14,7 +14,7 @@ const MiscProjectSection: React.FC<{ data: MiscProject[] }> = ({ data }) => {
         onClick={() => setExpanded(v => !v)}
         aria-expanded={expanded}
       >
-        <h2 className={styles.sectionTitle}>其他项目 / Other Projects</h2>
+        <h2 className={styles.sectionTitle}>其他项目</h2>
         <span className={`${styles.miscChevron} ${expanded ? styles.miscChevronOpen : ''}`} aria-hidden="true">▾</span>
       </button>
       <div className={`${styles.miscBody} ${expanded ? styles.miscBodyOpen : ''}`}>

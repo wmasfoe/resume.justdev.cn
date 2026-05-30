@@ -70,9 +70,19 @@ export interface ResumeData {
     [k: string]: unknown;
   };
   /**
-   * 掌握的技能列表。每条建议格式：“分类: 描述”，会自动把冒号前的部分加粗
+   * 掌握的技能列表。每条建议格式：“分类: 描述”，会自动把冒号前的部分加粗。需要按在线/PDF 控制时，可使用 { text, mode } 对象
    */
-  skillList?: string[];
+  skillList?: (
+    | string
+    | {
+        /**
+         * 技能条目文本内容，渲染规则等同于 string 形式
+         */
+        text: string;
+        mode?: DisplayMode;
+        [k: string]: unknown;
+      }
+  )[];
   /**
    * 工作经历列表
    */
