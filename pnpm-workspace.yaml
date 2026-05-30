@@ -1,3 +1,6 @@
-allowBuilds:
-  '@parcel/watcher': true
-  puppeteer: true
+packages:
+  - .
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - puppeteer
